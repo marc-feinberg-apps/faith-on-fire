@@ -27,6 +27,19 @@ pnpm lint        # eslint across all packages
 pnpm format      # prettier --write
 ```
 
+## Netlify deployment
+
+This repo is configured for Netlify via `netlify.toml`:
+
+- Build command: `pnpm build`
+- Publish directory: `apps/web/dist/client`
+- Node: `22`
+- pnpm: `10.33.4`
+
+TanStack Start prerenders the linked marketing pages during `pnpm build` and
+generates `sitemap.xml` for `https://www.faithonfire.world`. Netlify uses
+`/index.html` as the fallback for client-side route handling.
+
 ## Project structure
 
 ```
