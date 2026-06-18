@@ -5,7 +5,7 @@ import { CheckmarkCircle02Icon, Cancel01Icon } from "@hugeicons/core-free-icons"
 import { SectionHeading } from "@/components/section-heading"
 import { GradientSection } from "@/components/gradient-section"
 import { FireCtaSection } from "@/components/fire-cta-section"
-import { TestimonialCard } from "@/components/testimonial-card"
+import { TestimonialMarqueeGrid } from "@/components/testimonial-marquee"
 import { Card, CardContent } from "@workspace/ui/components/card"
 import {
   brotherhoodLies,
@@ -175,11 +175,9 @@ function CommunityPage() {
       </GradientSection>
 
       <GradientSection variant="cream">
-        <SectionHeading eyebrow="Brothers Speak" title="What Men Are Saying" />
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {testimonials.map((testimonial) => (
-            <TestimonialCard key={testimonial.name} {...testimonial} />
-          ))}
+        <SectionHeading eyebrow="Voices on Marc's Work" title="What People Are Saying" />
+        <div className="mt-14">
+          <TestimonialMarqueeGrid testimonials={testimonials} />
         </div>
       </GradientSection>
 
