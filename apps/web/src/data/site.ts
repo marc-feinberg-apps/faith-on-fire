@@ -13,8 +13,60 @@ export const navLinks = [
   { label: "Blueprint", href: "/blueprint" },
   { label: "Community", href: "/community" },
   { label: "Resources", href: "/resources" },
+  { label: "Books", href: "/books" },
   { label: "About", href: "/about" },
   { label: "Join", href: "/join" },
+]
+
+export const books = [
+  {
+    title: "The Wisdom Journal",
+    subtitle: "31 Proverbs. 31 Days. Wisdom for life.",
+    description:
+      "A daily Proverbs journal for turning reflection into practical wisdom, faith, and life application.",
+    image: "/assets/marc/book-wisdom-journal-cover.jpg",
+    url: "https://www.amazon.com/Wisdom-Journal-Proverbs-Days-Life/dp/B08KM829RJ",
+  },
+  {
+    title: "The Wisdom Journal For Parents",
+    subtitle: "31 Proverbs. 31 Days. Wisdom for parents.",
+    description:
+      "A parent-focused Proverbs journal for building wisdom, clarity, and faith-centered leadership at home.",
+    image: "/assets/marc/book-wisdom-journal-parents.jpg",
+    url: "https://www.amazon.com/Wisdom-Journal-Parents-Days-31-Proverbs-Wisdom/dp/B0DQJ7QJVS",
+  },
+  {
+    title: "The Wisdom Journal For Teens",
+    subtitle: "31 Proverbs. 31 Days. Wisdom for teens.",
+    description:
+      "A teen-focused Proverbs journal for growing in wisdom, confidence, character, and daily direction.",
+    image: "/assets/marc/book-wisdom-journal-teens.jpg",
+    url: "https://www.amazon.com/Wisdom-Journal-Teens-Proverbs-31-Days-Wisdom/dp/B0DQ4K9DBK",
+  },
+  {
+    title: "The Dream Teen",
+    subtitle: "3 life-changing steps for parents to empower teens.",
+    description:
+      "A parent-focused framework for helping teens become connected, confident, committed, and resilient.",
+    image: "/assets/marc/book-full-power.jpg",
+    url: "https://www.amazon.com/Dream-Teen-CONNECTED-CONFIDENT-Extraordinary/dp/B0DNW5T35H",
+  },
+  {
+    title: "Debt Settlement's Dirty Little Secrets",
+    subtitle: "Exposing the truth. Protecting your wallet.",
+    description:
+      "A consumer protection guide that reveals costly debt settlement traps and points toward better options.",
+    image: "/assets/marc/book-wisdom-journal.png",
+    url: "https://www.amazon.com/Debt-Settlements-Dirty-Little-Secrets/dp/B0FLXSV3XD",
+  },
+  {
+    title: "Full Power",
+    subtitle: "Healing trauma. Restoring purpose. Living free.",
+    description:
+      "A story-driven guide for transforming pain, resentment, betrayal, and loss into purpose and freedom.",
+    image: "/assets/marc/book-dream-teen.jpg",
+    url: "https://www.amazon.com/Full-Power-Unforgiveness-Steals-Simple/dp/1978215282",
+  },
 ]
 
 export const fourPillars = [
@@ -460,19 +512,28 @@ export const founder = {
 
 export const testimonials = [
   {
-    quote:
-      "God never turns away a returning son. The way back is always open.",
-    name: "Charles Spurgeon",
+    quote: "Coach Marc is the real deal.",
+    name: "Evander Holyfield, 5X Heavyweight Champion",
   },
   {
-    quote:
-      "Returning to God doesn't just rescue you from your past. It launches you toward your purpose.",
-    name: "Craig Groeschel",
+    quote: "This is the man to meet, Coach Marc.",
+    name: "Shannon Briggs, 2X Heavyweight Champion",
   },
   {
-    quote:
-      "I joined a men's group, confessed my struggles, and began attending church again. My marriage healed, my purpose revived, and I became a mentor to younger men facing similar trials.",
-    name: "Daniel, Faith on Fire Brother",
+    quote: "He opened my mind.",
+    name: "Henry Tillman, Olympic Heavyweight Gold Medalist",
+  },
+  {
+    quote: "You need somebody to help you, and that would be Marc.",
+    name: "Pastor Kevin Jackson, Best Selling Author",
+  },
+  {
+    quote: "He's so accessible, so personal, so loving.",
+    name: "Natalia Maldonado, Lifestyle Entrepreneur",
+  },
+  {
+    quote: "He will help to push your envelope so you can achieve your goals.",
+    name: "Debra Kagan, Womens Mojo Specialist",
   },
 ]
 

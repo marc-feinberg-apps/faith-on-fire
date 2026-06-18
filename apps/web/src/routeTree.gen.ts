@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as JoinRouteImport } from './routes/join'
 import { Route as CommunityRouteImport } from './routes/community'
+import { Route as BooksRouteImport } from './routes/books'
 import { Route as BlueprintRouteImport } from './routes/blueprint'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -29,6 +30,11 @@ const JoinRoute = JoinRouteImport.update({
 const CommunityRoute = CommunityRouteImport.update({
   id: '/community',
   path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BooksRoute = BooksRouteImport.update({
+  id: '/books',
+  path: '/books',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlueprintRoute = BlueprintRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/blueprint': typeof BlueprintRoute
+  '/books': typeof BooksRoute
   '/community': typeof CommunityRoute
   '/join': typeof JoinRoute
   '/resources': typeof ResourcesRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/blueprint': typeof BlueprintRoute
+  '/books': typeof BooksRoute
   '/community': typeof CommunityRoute
   '/join': typeof JoinRoute
   '/resources': typeof ResourcesRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/blueprint': typeof BlueprintRoute
+  '/books': typeof BooksRoute
   '/community': typeof CommunityRoute
   '/join': typeof JoinRoute
   '/resources': typeof ResourcesRoute
@@ -78,16 +87,25 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/blueprint'
+    | '/books'
     | '/community'
     | '/join'
     | '/resources'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/blueprint' | '/community' | '/join' | '/resources'
+  to:
+    | '/'
+    | '/about'
+    | '/blueprint'
+    | '/books'
+    | '/community'
+    | '/join'
+    | '/resources'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/blueprint'
+    | '/books'
     | '/community'
     | '/join'
     | '/resources'
@@ -97,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   BlueprintRoute: typeof BlueprintRoute
+  BooksRoute: typeof BooksRoute
   CommunityRoute: typeof CommunityRoute
   JoinRoute: typeof JoinRoute
   ResourcesRoute: typeof ResourcesRoute
@@ -123,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/community'
       fullPath: '/community'
       preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/books': {
+      id: '/books'
+      path: '/books'
+      fullPath: '/books'
+      preLoaderRoute: typeof BooksRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blueprint': {
@@ -153,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   BlueprintRoute: BlueprintRoute,
+  BooksRoute: BooksRoute,
   CommunityRoute: CommunityRoute,
   JoinRoute: JoinRoute,
   ResourcesRoute: ResourcesRoute,
