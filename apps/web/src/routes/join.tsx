@@ -12,7 +12,7 @@ export const Route = createFileRoute("/join")({
       {
         name: "description",
         content:
-          "Start your Faith on Fire journey today. Tell us what you're believing God for and which area you need most — Return, Restore, Reignite, Remain, or Brotherhood.",
+          "Start your Faith on Fire journey today. Tell us what you're believing God for and which area you need most — Return, Restore, Reignite, or Brotherhood.",
       },
     ],
   }),
@@ -29,7 +29,7 @@ function JoinPage() {
             Join Faith on Fire
           </span>
           <h1 className="text-4xl leading-[1.1] text-foreground sm:text-5xl">
-            Come into the Brotherhood and remain on fire together.
+            Come into the Brotherhood and stay on fire together.
           </h1>
           <p className="text-base leading-relaxed text-muted-foreground normal-case font-sans sm:text-lg">
             This is for every man ready to return, rebuild, and run his race through the Faith on

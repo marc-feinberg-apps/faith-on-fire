@@ -111,7 +111,7 @@ To adjust brand colors, edit the HSL values in `:root` — every other color
 
 ## Content
 
-All real site copy (taglines, the four pillars, the 10 Blueprint modules,
+All real site copy (taglines, the three pillars, the 10 Blueprint modules,
 resources, founder bio, testimonials, problem-section stats, etc.) lives in
 `apps/web/src/data/site.ts`, sourced from the Faith on Fire Ebook and
 Workbook. Edit that file to update copy without touching component code.
@@ -122,6 +122,18 @@ The Join page (`/join`) form (`src/components/join-form.tsx`) is fully
 client-side validated with Zod and has no backend — on submit it logs the
 parsed values to the console and shows an in-page success state. Wire it up
 to a real backend/CRM by replacing the `console.log` in `handleSubmit`.
+
+## Environment
+
+The e-book popup purchase button reads the SamCart checkout URL from:
+
+```bash
+VITE_SAMCART_EBOOK_URL=https://samcart.com/placeholder-faith-on-fire-ebook
+```
+
+Set this in your local `.env` file and in Netlify environment variables when
+the real SamCart link is available. The app falls back to the placeholder URL
+above until the variable is configured.
 
 ## SEO
 

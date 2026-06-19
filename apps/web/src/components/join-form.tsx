@@ -19,7 +19,6 @@ const focusAreas = [
   { value: "return", label: "Return" },
   { value: "restore", label: "Restore" },
   { value: "reignite", label: "Reignite" },
-  { value: "remain", label: "Remain" },
   { value: "brotherhood", label: "Brotherhood" },
 ] as const
 

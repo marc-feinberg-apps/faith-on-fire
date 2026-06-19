@@ -5,7 +5,7 @@ import { PillarCard } from "@/components/pillar-card"
 import { FounderCard } from "@/components/founder-card"
 import { FireCtaSection } from "@/components/fire-cta-section"
 import { Card, CardContent } from "@workspace/ui/components/card"
-import { fourPillars } from "@/data/site"
+import { pillars } from "@/data/site"
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -14,7 +14,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Faith on Fire exists to help men come home to God, make peace with the man in the mirror, rediscover their assignment, and remain connected to a brotherhood that keeps the fire burning.",
+          "Faith on Fire exists to help men come home to God, make peace with the man in the mirror, and rediscover their assignment inside a brotherhood that keeps the fire burning.",
       },
     ],
   }),
@@ -54,8 +54,8 @@ function AboutPage() {
           </h1>
           <p className="text-lg leading-relaxed text-white/80 normal-case font-sans">
             Faith on Fire exists to help men come home to God, make peace with the man in the
-            mirror, rediscover their assignment, and remain connected to a brotherhood that keeps
-            the fire burning.
+            mirror, and rediscover their assignment inside a brotherhood that keeps the fire
+            burning.
           </p>
         </div>
       </section>
@@ -67,12 +67,12 @@ function AboutPage() {
               Mission
             </span>
             <h2 className="text-2xl text-foreground">
-              Lead men back to God with a simple, four-step roadmap.
+              Lead men back to God with a simple, three-pillar roadmap.
             </h2>
             <p className="text-base leading-relaxed text-muted-foreground normal-case font-sans">
-              Return, restore, reignite, remain — not formulas, but living pathways that have
-              changed countless lives, including the founder's own. The moment a man turns, no
-              matter how far he's wandered, the Father doesn't just wait. He runs.
+              Return, restore, and reignite — not formulas, but living pathways that have changed
+              countless lives, including the founder's own. The moment a man turns, no matter how
+              far he's wandered, the Father doesn't just wait. He runs.
             </p>
           </div>
           <div className="flex flex-col gap-3">
@@ -110,11 +110,11 @@ function AboutPage() {
       <GradientSection variant="cream">
         <SectionHeading
           eyebrow="The Roadmap"
-          title="The Four Pillars"
-          description="Every resource, every module, every conversation inside Faith on Fire runs through these four pillars."
+          title="The Three Pillars"
+          description="Every resource, every module, every conversation inside Faith on Fire runs through these three pillars."
         />
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {fourPillars.map((pillar, index) => (
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {pillars.map((pillar, index) => (
             <PillarCard key={pillar.key} pillar={pillar} index={index} />
           ))}
         </div>

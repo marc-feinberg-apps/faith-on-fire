@@ -58,10 +58,10 @@ function BlueprintPage() {
       <GradientSection variant="white">
         <SectionHeading
           eyebrow="Commitment Letters"
-          title="Four signed moments of decision"
+          title="Three signed moments of decision"
           description="The workbook anchors each pillar with a letter read aloud and signed before a witness, so the Blueprint moves from reflection into obedience."
         />
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {commitmentLetters.map((letter) => (
             <Card key={letter.title} className="border-none p-0 ring-1 ring-foreground/10">
               <CardContent className="flex h-full flex-col gap-3 p-6">
@@ -82,7 +82,7 @@ function BlueprintPage() {
         <SectionHeading
           eyebrow="Scripture Anchors"
           title="Verses that hold the journey together"
-          description="The ebook and workbook keep the roadmap rooted in Scripture, from repentance and renewal to brotherhood and remaining."
+          description="The ebook and workbook keep the roadmap rooted in Scripture, from repentance and renewal to brotherhood and calling."
         />
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {scriptureAnchors.map((anchor) => (

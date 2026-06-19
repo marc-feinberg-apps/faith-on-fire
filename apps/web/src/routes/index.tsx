@@ -14,7 +14,7 @@ import { Card, CardContent } from "@workspace/ui/components/card"
 import {
   costOfStayingAway,
   experienceItems,
-  fourPillars,
+  pillars,
   problemCards,
   problemStatSource,
   siteConfig,
@@ -103,12 +103,12 @@ function HeroSection() {
         <h1 className="text-5xl leading-[1.05] text-white sm:text-6xl md:text-7xl">
           Return. Restore.
           <br />
-          Reignite. Remain.
+          Reignite.
         </h1>
 
         <p className="max-w-2xl text-lg leading-relaxed text-white/80 normal-case font-sans sm:text-xl">
-          Faith on Fire helps men return to God, restore relationships, reignite their purpose,
-          and remain connected through brotherhood, spiritual discipline, and practical action.
+          Faith on Fire helps men return to God, restore relationships, and reignite their purpose
+          through brotherhood, spiritual discipline, and practical action.
         </p>
 
         <div className="flex flex-col items-center gap-4 sm:flex-row">
@@ -182,11 +182,11 @@ function PillarsSection() {
     <GradientSection variant="cream">
       <SectionHeading
         eyebrow="The Roadmap"
-        title="The Four Pillars"
-        description="A simple, four-step roadmap back to God — not a formula, but a living pathway that has changed countless lives."
+        title="The Three Pillars"
+        description="A simple, three-pillar roadmap back to God — not a formula, but a living pathway that has changed countless lives."
       />
-      <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {fourPillars.map((pillar, index) => (
+      <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {pillars.map((pillar, index) => (
           <PillarCard key={pillar.key} pillar={pillar} index={index} />
         ))}
       </div>

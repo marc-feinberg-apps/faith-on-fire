@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Faith on Fire",
   tagline:
-    "Helping Men Return To God, Restore Relationships, Reignite Their Purpose & Remain Connected",
+    "Helping Men Return To God, Restore Relationships & Reignite Their Purpose",
   supportingLine: "A Brotherhood For Men Who Refuse To Drift",
   url: "https://www.faithonfire.world",
   email: "Support@FaithOnFire.World",
@@ -11,7 +11,7 @@ export const siteConfig = {
 export const navLinks = [
   { label: "Home", href: "/" },
   { label: "Blueprint", href: "/blueprint" },
-  { label: "Community", href: "/community" },
+  { label: "Testimonials", href: "/community" },
   { label: "Resources", href: "/resources" },
   { label: "Books", href: "/books" },
   { label: "About", href: "/about" },
@@ -69,7 +69,7 @@ export const books = [
   },
 ]
 
-export const fourPillars = [
+export const pillars = [
   {
     key: "return",
     title: "Return",
@@ -93,14 +93,6 @@ export const fourPillars = [
     description:
       "Your calling didn't expire while you were away. Purpose isn't something you find — it's something you align with. It's time to walk in the assignment God placed in you before you were born.",
     verse: "“Live a life worthy of the calling you have received.” — Ephesians 4:1",
-  },
-  {
-    key: "remain",
-    title: "Remain",
-    subtitle: "Rhythms, Accountability & Daily Disciplines",
-    description:
-      "The hardest part of transformation isn't the breakthrough — it's the Tuesday after. Remaining on fire is a daily decision, made through daily disciplines and a brotherhood that won't let you drift alone.",
-    verse: "“The fire that is not fed will fade.”",
   },
 ]
 
@@ -220,7 +212,7 @@ export const experienceItems = [
   {
     title: "A Clear Roadmap for Spiritual Momentum",
     description:
-      "Return. Restore. Reignite. Remain. A simple four-step roadmap that has changed countless lives — including the founder's own.",
+      "Return. Restore. Reignite. A simple three-pillar roadmap that has changed countless lives — including the founder's own.",
     icon: "Compass01Icon",
   },
 ]
@@ -360,18 +352,17 @@ export const blueprintModules = [
   },
   {
     number: 9,
-    slug: "remain",
-    title: "Remain",
+    slug: "stay-the-course",
+    title: "Stay the Course",
     subtitle: "Keep the Fire Burning",
-    pillar: "Pillar #4",
     keyTeaching:
       "The hardest part of transformation isn't the breakthrough. It's the Tuesday after. The men who stay transformed aren't the ones who never struggle — they're the ones who have a system that brings them back quickly when they do.",
     reflectionPreview:
       "What are your three biggest personal triggers for spiritual drift? What is your plan for getting back on track within 24 hours when you have a bad day?",
-    declaration: "The Pillar #4 Remain Commitment Letter — your final and most important commitment.",
+    declaration: "Your daily fire plan — a practical commitment to keep walking with God and trusted brothers.",
     actionStep:
-      "Build your personal Remain System — daily non-negotiables, weekly anchors, early warning signs, and your 24-Hour Recovery Plan.",
-    tool: "Remain System",
+      "Build your personal fire plan — daily non-negotiables, weekly anchors, early warning signs, and your 24-Hour Recovery Plan.",
+    tool: "Daily Fire Plan",
     toolDescription:
       "Define daily non-negotiables, weekly anchors, early warning signs, and your 24-Hour Recovery Plan.",
   },
@@ -379,7 +370,7 @@ export const blueprintModules = [
     number: 10,
     slug: "the-invitation",
     title: "The Invitation",
-    subtitle: "Come Into the Brotherhood and Remain on Fire Together",
+    subtitle: "Come Into the Brotherhood and Stay on Fire Together",
     keyTeaching:
       "You made it. Let that sink in. You started this as one man, and you're finishing it as another. But your story isn't meant to end here. It's meant to fuel someone else's beginning.",
     reflectionPreview:
@@ -419,12 +410,6 @@ export const commitmentLetters = [
     description:
       "A signed commitment to align time, energy, decisions, and relationships with the God-given assignment still alive inside you.",
   },
-  {
-    pillar: "Pillar #4 Remain",
-    title: "Remain Commitment Letter",
-    description:
-      "A final commitment to protect daily disciplines, lock arms with brothers, and return within 24 hours when drift begins.",
-  },
 ]
 
 export const scriptureAnchors = [
@@ -434,7 +419,7 @@ export const scriptureAnchors = [
   { reference: "Ephesians 2:10", theme: "Restore", note: "Identity rooted in God's workmanship." },
   { reference: "Matthew 6:14-15", theme: "Forgiveness", note: "Freedom through release." },
   { reference: "Ephesians 4:1", theme: "Reignite", note: "Living worthy of the calling received." },
-  { reference: "Hebrews 10:24-25", theme: "Remain", note: "Keep meeting, encouraging, and spurring one another on." },
+  { reference: "Hebrews 10:24-25", theme: "Brotherhood", note: "Keep meeting, encouraging, and spurring one another on." },
 ]
 
 export const resources = [
@@ -465,7 +450,7 @@ export const resources = [
   {
     title: "Scripture Anchors",
     description:
-      "Keep a pocket reference of key scriptures for the moments doubt, fear, or temptation try to talk you out of remaining.",
+      "Keep a pocket reference of key scriptures for the moments doubt, fear, or temptation try to pull you off course.",
     icon: "Book02Icon",
   },
   {
@@ -491,12 +476,12 @@ export const resources = [
 export const downloads = [
   {
     title: "Faith on Fire Ebook",
-    description: "The complete roadmap: return, restore, reignite, and remain — in one sitting.",
+    description: "The complete roadmap: return, restore, and reignite — in one sitting.",
     href: "/downloads/faith-on-fire-ebook.pdf",
   },
   {
     title: "Faith on Fire Workbook",
-    description: "The official companion manual to the Blueprint — all 10 modules, all four commitment letters.",
+    description: "The official companion manual to the Blueprint — all 10 modules and all three commitment letters.",
     href: "/downloads/faith-on-fire-workbook.pdf",
   },
 ]
@@ -507,33 +492,47 @@ export const founder = {
   quote:
     "After 31 years, I found myself on my knees, broken yet finally ready. If He can receive me, He is longing to welcome you too.",
   bio:
-    "Marc started Faith on Fire after walking his own road back to God — the slow drift, the silent ache of spiritual distance, and the moment he finally came home. He built the Return, Restore, Reignite, Remain roadmap not as theory, but as the path that changed his own life first. Today, he's a guide for men ready to stop drifting and start walking with God again.",
+    "Marc started Faith on Fire after walking his own road back to God — the slow drift, the silent ache of spiritual distance, and the moment he finally came home. He built the Return, Restore, Reignite roadmap not as theory, but as the path that changed his own life first. Today, he's a guide for men ready to stop drifting and start walking with God again.",
 }
 
 export const testimonials = [
   {
     quote: "Coach Marc is the real deal.",
     name: "Evander Holyfield, 5X Heavyweight Champion",
+    videoUrl: "https://www.youtube.com/watch?v=Jw3kQg8Q3sg&t=6s",
+    videoId: "Jw3kQg8Q3sg",
+    videoStart: 6,
   },
   {
     quote: "This is the man to meet, Coach Marc.",
     name: "Shannon Briggs, 2X Heavyweight Champion",
+    videoUrl: "https://www.youtube.com/watch?v=z8yDajqhrBU&t=32s",
+    videoId: "z8yDajqhrBU",
+    videoStart: 32,
   },
   {
     quote: "He opened my mind.",
     name: "Henry Tillman, Olympic Heavyweight Gold Medalist",
+    videoUrl: "https://www.youtube.com/watch?v=N39saWdaBr0",
+    videoId: "N39saWdaBr0",
   },
   {
     quote: "You need somebody to help you, and that would be Marc.",
     name: "Pastor Kevin Jackson, Best Selling Author",
+    videoUrl: "https://www.youtube.com/watch?v=_Lp_VW6zr88",
+    videoId: "_Lp_VW6zr88",
   },
   {
     quote: "He's so accessible, so personal, so loving.",
     name: "Natalia Maldonado, Lifestyle Entrepreneur",
+    videoUrl: "https://www.youtube.com/watch?v=i_cLPK9u-U8",
+    videoId: "i_cLPK9u-U8",
   },
   {
     quote: "He will help to push your envelope so you can achieve your goals.",
     name: "Debra Kagan, Womens Mojo Specialist",
+    videoUrl: "https://www.youtube.com/watch?v=WZgi9mxViho",
+    videoId: "WZgi9mxViho",
   },
 ]
 
@@ -580,7 +579,7 @@ export const memberJourney = [
   },
   {
     step: "6",
-    title: "Remain",
-    description: "Build your Remain System and stay connected to the brotherhood for life.",
+    title: "Stay Connected",
+    description: "Build daily rhythms and stay connected to the brotherhood for life.",
   },
 ]

@@ -5,7 +5,7 @@ import { CheckmarkCircle02Icon, Cancel01Icon } from "@hugeicons/core-free-icons"
 import { SectionHeading } from "@/components/section-heading"
 import { GradientSection } from "@/components/gradient-section"
 import { FireCtaSection } from "@/components/fire-cta-section"
-import { TestimonialMarqueeGrid } from "@/components/testimonial-marquee"
+import { TestimonialVideoGrid } from "@/components/testimonial-marquee"
 import { Card, CardContent } from "@workspace/ui/components/card"
 import {
   brotherhoodLies,
@@ -18,11 +18,11 @@ import {
 export const Route = createFileRoute("/community")({
   head: () => ({
     meta: [
-      { title: "Community | Faith on Fire" },
+      { title: "Testimonials | Faith on Fire" },
       {
         name: "description",
         content:
-          "The Faith on Fire weekly mastermind — a brotherhood for men who want accountability, not performance; honesty, not hiding; discipline, not drift.",
+          "Video testimonials from people who have experienced Marc Feinberg's coaching, teaching, and guidance.",
       },
     ],
   }),
@@ -53,7 +53,7 @@ function CommunityPage() {
         <SectionHeading
           eyebrow="4 Lies Men Believe"
           title="What keeps men isolated"
-          description="The ebook names four lies that keep men disconnected from God, church, and the brothers who could help them remain."
+          description="The ebook names four lies that keep men disconnected from God, church, and the brothers who could help them stay connected."
         />
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {brotherhoodLies.map((lie, index) => (
@@ -175,9 +175,13 @@ function CommunityPage() {
       </GradientSection>
 
       <GradientSection variant="cream">
-        <SectionHeading eyebrow="Voices on Marc's Work" title="What People Are Saying" />
+        <SectionHeading
+          eyebrow="Video Testimonials"
+          title="What People Are Saying"
+          description="Watch real voices share what Marc's coaching, teaching, and guidance have meant in their lives."
+        />
         <div className="mt-14">
-          <TestimonialMarqueeGrid testimonials={testimonials} />
+          <TestimonialVideoGrid testimonials={testimonials} />
         </div>
       </GradientSection>
 

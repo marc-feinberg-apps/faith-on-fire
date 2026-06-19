@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@workspace/ui/components/card"
 import { cn } from "@workspace/ui/lib/utils"
-import type { fourPillars } from "@/data/site"
+import type { pillars } from "@/data/site"
 
 const accentByIndex = ["gradient-fire", "gradient-flame", "gradient-flame", "gradient-ember"]
 
@@ -8,7 +8,7 @@ export function PillarCard({
   pillar,
   index,
 }: {
-  pillar: (typeof fourPillars)[number]
+  pillar: (typeof pillars)[number]
   index: number
 }) {
   return (

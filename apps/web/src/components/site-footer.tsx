@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Mail01Icon } from "@hugeicons/core-free-icons"
 import { Separator } from "@workspace/ui/components/separator"
-import { siteConfig, fourPillars, navLinks } from "@/data/site"
+import { siteConfig, pillars, navLinks } from "@/data/site"
 
 export function SiteFooter() {
   return (
@@ -26,10 +26,10 @@ export function SiteFooter() {
 
           <div className="flex flex-col gap-3">
             <span className="font-heading text-sm font-semibold tracking-[0.2em] text-[var(--sun-gold)]">
-              The Four Pillars
+              The Three Pillars
             </span>
             <ul className="flex flex-col gap-2 text-sm text-white/70 normal-case font-sans">
-              {fourPillars.map((pillar) => (
+              {pillars.map((pillar) => (
                 <li key={pillar.key}>{pillar.title}</li>
               ))}
             </ul>

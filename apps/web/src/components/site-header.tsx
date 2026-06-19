@@ -32,8 +32,9 @@ export function SiteHeader() {
             <Link
               key={link.href}
               to={link.href}
-              className="font-heading text-sm font-medium tracking-wide text-foreground/80 transition-colors hover:text-[var(--fire-red)]"
+              className="font-heading text-sm font-medium tracking-wide transition-colors hover:text-[var(--fire-red)]"
               activeProps={{ className: "text-[var(--fire-red)]" }}
+              inactiveProps={{ className: "text-foreground/80" }}
             >
               {link.label}
             </Link>
@@ -63,8 +64,9 @@ export function SiteHeader() {
                   key={link.href}
                   to={link.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-lg px-3 py-3 font-heading text-base font-medium text-foreground/85 transition-colors hover:bg-muted hover:text-[var(--fire-red)]"
+                  className="rounded-lg px-3 py-3 font-heading text-base font-medium transition-colors hover:bg-muted hover:text-[var(--fire-red)]"
                   activeProps={{ className: "text-[var(--fire-red)]" }}
+                  inactiveProps={{ className: "text-foreground/85" }}
                 >
                   {link.label}
                 </Link>

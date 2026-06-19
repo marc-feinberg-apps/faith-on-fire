@@ -3,6 +3,7 @@ import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router"
 import appCss from "@workspace/ui/globals.css?url"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { EbookPopup } from "@/components/ebook-popup"
 import { siteConfig } from "@/data/site"
 
 const defaultTitle = "Faith on Fire | A Brotherhood for Men Who Refuse to Drift"
@@ -115,7 +116,9 @@ export const Route = createRootRoute({
   notFoundComponent: () => (
     <main className="flex min-h-[60vh] flex-col items-center justify-center gap-4 p-6 text-center">
       <h1 className="text-4xl">404</h1>
-      <p className="text-muted-foreground">The requested page could not be found.</p>
+      <p className="text-muted-foreground">
+        The requested page could not be found.
+      </p>
     </main>
   ),
   shellComponent: RootDocument,
@@ -132,6 +135,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           <SiteHeader />
           <main className="flex-1">{children}</main>
           <SiteFooter />
+          <EbookPopup />
         </div>
         <Scripts />
       </body>
