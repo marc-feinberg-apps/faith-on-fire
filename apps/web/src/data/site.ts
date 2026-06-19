@@ -473,19 +473,6 @@ export const resources = [
   },
 ]
 
-export const downloads = [
-  {
-    title: "Faith on Fire Ebook",
-    description: "The complete roadmap: return, restore, and reignite — in one sitting.",
-    href: "/downloads/faith-on-fire-ebook.pdf",
-  },
-  {
-    title: "Faith on Fire Workbook",
-    description: "The official companion manual to the Blueprint — all 10 modules and all three commitment letters.",
-    href: "/downloads/faith-on-fire-workbook.pdf",
-  },
-]
-
 export const founder = {
   name: "Marc Feinberg",
   role: "Founder, Faith on Fire",

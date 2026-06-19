@@ -1,6 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router"
-import { HugeiconsIcon } from "@hugeicons/react"
-import { Download01Icon } from "@hugeicons/core-free-icons"
 
 import { SectionHeading } from "@/components/section-heading"
 import { GradientSection } from "@/components/gradient-section"
@@ -8,7 +6,7 @@ import { ResourceCard } from "@/components/resource-card"
 import { FireCtaSection } from "@/components/fire-cta-section"
 import { Card, CardContent } from "@workspace/ui/components/card"
 import { Badge } from "@workspace/ui/components/badge"
-import { downloads, moduleTools, resources, scriptureAnchors } from "@/data/site"
+import { moduleTools, resources, scriptureAnchors } from "@/data/site"
 import type { SiteIconName } from "@/components/site-icon"
 
 export const Route = createFileRoute("/resources")({
@@ -106,35 +104,6 @@ function ResourcesPage() {
                 <p className="text-sm leading-relaxed text-muted-foreground normal-case font-sans">
                   {anchor.note}
                 </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </GradientSection>
-
-      <GradientSection variant="white">
-        <SectionHeading
-          eyebrow="Downloadable"
-          title="Take the Blueprint With You"
-          description="Download the files currently available on the site. Standalone templates will appear here once their PDFs are published."
-        />
-        <div className="mt-14 grid gap-6 sm:grid-cols-2">
-          {downloads.map((item) => (
-            <Card key={item.title} className="border-none p-0 ring-1 ring-foreground/10">
-              <CardContent className="flex items-center justify-between gap-4 p-6">
-                <div>
-                  <h3 className="text-lg">{item.title}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground normal-case font-sans">
-                    {item.description}
-                  </p>
-                </div>
-                <a
-                  href={item.href}
-                  className="gradient-fire flex size-11 shrink-0 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
-                  aria-label={`Download ${item.title}`}
-                >
-                  <HugeiconsIcon icon={Download01Icon} className="size-5" />
-                </a>
               </CardContent>
             </Card>
           ))}

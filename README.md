@@ -81,11 +81,8 @@ If you receive an updated asset pack, drop the files into
 referenced throughout the codebase, so no code changes should be needed for a
 like-for-like asset refresh.
 
-The real **Faith on Fire Ebook** and **Workbook** PDFs are included at
-`apps/web/public/downloads/faith-on-fire-ebook.pdf` and `-workbook.pdf`, linked
-from the Resources page. The "7-Day Prayer Journal" and "New Man Declaration
-Template" downloads on that page are placeholder links (`/downloads/7-day-...`)
-— add real files at those paths when they exist.
+The **Faith on Fire Ebook** and **Workbook** are paid products, so the Resources
+page does not expose downloadable PDF links.
 
 ## Brand colors & theme
 
