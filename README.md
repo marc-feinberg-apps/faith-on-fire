@@ -37,8 +37,9 @@ This repo is configured for Netlify via `netlify.toml`:
 - pnpm: `10.33.4`
 
 TanStack Start prerenders the linked marketing pages during `pnpm build` and
-generates `sitemap.xml` for `https://www.faithonfire.world`. Netlify uses
-`/index.html` as the fallback for client-side route handling.
+generates `sitemap.xml` for `https://www.faithonfire.world`. The Netlify Vite
+plugin also creates a server handler for TanStack Start server functions, which
+the Join form uses to send email through Resend.
 
 ## Project structure
 
