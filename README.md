@@ -116,9 +116,10 @@ Workbook. Edit that file to update copy without touching component code.
 ## Forms
 
 The Join page (`/join`) form (`src/components/join-form.tsx`) is fully
-client-side validated with Zod and has no backend — on submit it logs the
-parsed values to the console and shows an in-page success state. Wire it up
-to a real backend/CRM by replacing the `console.log` in `handleSubmit`.
+client-side validated with Zod, then submits to a TanStack Start server
+function (`src/server/join.ts`) that emails the request through Resend. The
+email is sent to `RESEND_JOIN_TO_EMAIL` and uses the applicant's email as the
+reply-to address.
 
 ## Environment
 
@@ -126,11 +127,14 @@ The e-book popup purchase button reads the SamCart checkout URL from:
 
 ```bash
 VITE_SAMCART_EBOOK_URL=https://samcart.com/placeholder-faith-on-fire-ebook
+RESEND_API_KEY=
+RESEND_FROM_EMAIL="Faith on Fire <support@faithonfire.world>"
+RESEND_JOIN_TO_EMAIL=support@faithonfire.world
 ```
 
 Set this in your local `.env` file and in Netlify environment variables when
-the real SamCart link is available. The app falls back to the placeholder URL
-above until the variable is configured.
+the real SamCart link and Resend account are available. `RESEND_API_KEY` and
+`RESEND_FROM_EMAIL` are required before the Join form can send email.
 
 ## SEO
 

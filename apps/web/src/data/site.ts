@@ -4,7 +4,7 @@ export const siteConfig = {
     "Helping Men Return To God, Restore Relationships & Reignite Their Purpose",
   supportingLine: "A Brotherhood For Men Who Refuse To Drift",
   url: "https://www.faithonfire.world",
-  email: "Support@FaithOnFire.World",
+  email: "support@faithonfire.world",
   ogImage: "/assets/brand/faith-on-fire-full-white.png",
 }
 

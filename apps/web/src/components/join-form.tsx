@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { z } from "zod"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { FireIcon, CheckmarkCircle02Icon } from "@hugeicons/core-free-icons"
 
@@ -14,29 +13,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@workspace/ui/components/select"
+import { focusAreas, joinFormSchema } from "@/lib/join-form"
+import { submitJoinRequest } from "@/server/join"
+import type { JoinFormValues } from "@/lib/join-form"
 
-const focusAreas = [
-  { value: "return", label: "Return" },
-  { value: "restore", label: "Restore" },
-  { value: "reignite", label: "Reignite" },
-  { value: "brotherhood", label: "Brotherhood" },
-] as const
-
-const joinFormSchema = z.object({
-  firstName: z.string().trim().min(1, "First name is required."),
-  lastName: z.string().trim().min(1, "Last name is required."),
-  email: z.string().trim().min(1, "Email is required.").email("Enter a valid email address."),
-  phone: z.string().trim().optional(),
-  believing: z
-    .string()
-    .trim()
-    .min(1, "Tell us what you're believing God for this season."),
-  focusArea: z.enum(focusAreas.map((f) => f.value) as [string, ...string[]], {
-    message: "Choose the area you need most right now.",
-  }),
-})
-
-type JoinFormValues = z.infer<typeof joinFormSchema>
 type FormErrors = Partial<Record<keyof JoinFormValues, string>>
 
 const initialValues: JoinFormValues = {
@@ -51,13 +31,15 @@ const initialValues: JoinFormValues = {
 export function JoinForm() {
   const [values, setValues] = useState<JoinFormValues>(initialValues)
   const [errors, setErrors] = useState<FormErrors>({})
+  const [submitError, setSubmitError] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
   function update<TKey extends keyof JoinFormValues>(key: TKey, value: JoinFormValues[TKey]) {
     setValues((prev: JoinFormValues) => ({ ...prev, [key]: value }))
   }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const result = joinFormSchema.safeParse(values)
 
@@ -72,8 +54,21 @@ export function JoinForm() {
     }
 
     setErrors({})
-    console.log("Faith on Fire join request:", result.data)
-    setSubmitted(true)
+    setSubmitError("")
+    setIsSubmitting(true)
+
+    try {
+      await submitJoinRequest({ data: result.data })
+      setSubmitted(true)
+    } catch (error) {
+      setSubmitError(
+        error instanceof Error
+          ? error.message
+          : "We couldn't send your request. Please email support@faithonfire.world.",
+      )
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   if (submitted) {
@@ -171,9 +166,16 @@ export function JoinForm() {
         {errors.focusArea ? <p className="text-xs text-destructive">{errors.focusArea}</p> : null}
       </div>
 
-      <Button type="submit" size="lg" className="gradient-fire mt-2 gap-2 text-white">
+      {submitError ? <p className="text-sm text-destructive">{submitError}</p> : null}
+
+      <Button
+        type="submit"
+        size="lg"
+        className="gradient-fire mt-2 gap-2 text-white"
+        disabled={isSubmitting}
+      >
         <HugeiconsIcon icon={FireIcon} className="size-4" />
-        Start My Faith on Fire Journey
+        {isSubmitting ? "Sending..." : "Start My Faith on Fire Journey"}
       </Button>
     </form>
   )
