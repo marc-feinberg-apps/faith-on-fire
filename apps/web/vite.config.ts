@@ -6,15 +6,15 @@ import viteReact from "@vitejs/plugin-react"
 import tailwindcss from "@tailwindcss/vite"
 
 // Vite's built-in env loading only exposes VITE_-prefixed vars to process.env.
-// Server-only secrets (e.g. RESEND_API_KEY) live in the root .env without that
-// prefix, so we load them into process.env ourselves for server functions.
-const rootEnv = loadEnv(process.env.NODE_ENV ?? "development", "../..", "")
-for (const [key, value] of Object.entries(rootEnv)) {
+// Server-only secrets (e.g. RESEND_API_KEY) live in .env without that prefix,
+// so we load them into process.env ourselves for server functions.
+const localEnv = loadEnv(process.env.NODE_ENV ?? "development", ".", "")
+for (const [key, value] of Object.entries(localEnv)) {
   if (process.env[key] === undefined) process.env[key] = value
 }
 
 const config = defineConfig({
-  envDir: "../..",
+  envDir: ".",
   resolve: { tsconfigPaths: true },
   plugins: [
     devtools(),
