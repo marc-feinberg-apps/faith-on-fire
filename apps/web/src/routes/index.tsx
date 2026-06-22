@@ -3,6 +3,7 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { FireIcon, MountainIcon, SunriseIcon } from "@hugeicons/core-free-icons"
 
 import { CtaButton } from "@/components/cta-button"
+import { IntroVideoSection } from "@/components/intro-video-section"
 import { SectionHeading } from "@/components/section-heading"
 import { GradientSection } from "@/components/gradient-section"
 import { FireCtaSection } from "@/components/fire-cta-section"
@@ -33,6 +34,7 @@ export const Route = createFileRoute("/")({
 function HomePage() {
   return (
     <>
+      <IntroVideoSection />
       <HeroSection />
       <ProblemSection />
       <CostSection />
