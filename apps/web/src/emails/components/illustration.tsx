@@ -1,26 +1,20 @@
-import { HugeiconsIcon } from "@hugeicons/react"
-import type { IconSvgElement } from "@hugeicons/react"
-import { Section, Text } from "@react-email/components"
+import { Img, Section, Text } from "@react-email/components"
 
 import { brand } from "./brand"
 
-export function IllustrationBox({
-  icon,
-  ribbon,
-}: {
-  icon: IconSvgElement
-  ribbon?: string
-}) {
+const SITE_URL = "https://www.faithonfire.world"
+
+export function IllustrationBox({ ribbon }: { ribbon?: string }) {
   return (
     <Section style={box}>
       {ribbon ? <Text style={ribbonText}>{ribbon}</Text> : null}
-      <table role="presentation" cellPadding={0} cellSpacing={0} align="center" style={{ margin: "0 auto" }}>
-        <tr>
-          <td style={badge}>
-            <HugeiconsIcon icon={icon} size={36} color="#FFFFFF" strokeWidth={2} />
-          </td>
-        </tr>
-      </table>
+      <Img
+        src={`${SITE_URL}/assets/brand/faith-on-fire-icon-transparent.png`}
+        alt="Faith on Fire"
+        width="96"
+        height="48"
+        style={{ display: "block", margin: "0 auto" }}
+      />
     </Section>
   )
 }
@@ -41,14 +35,4 @@ const ribbonText: React.CSSProperties = {
   textTransform: "uppercase" as const,
   color: brand.flameOrange,
   margin: "0 0 14px",
-}
-
-const badge: React.CSSProperties = {
-  backgroundImage: `linear-gradient(135deg, ${brand.flameOrange}, ${brand.fireRed})`,
-  borderRadius: "9999px",
-  width: "72px",
-  height: "72px",
-  textAlign: "center" as const,
-  verticalAlign: "middle" as const,
-  boxShadow: `0 8px 20px rgba(206, 35, 9, 0.3)`,
 }

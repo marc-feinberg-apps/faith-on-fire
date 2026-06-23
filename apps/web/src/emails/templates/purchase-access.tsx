@@ -1,4 +1,3 @@
-import { LockKeyIcon } from "@hugeicons/core-free-icons"
 import { Text } from "@react-email/components"
 
 import { CtaButton } from "../components/cta-button"
@@ -15,7 +14,7 @@ export function PurchaseAccessEmail({
 }) {
   return (
     <EmailLayout previewText={`You now have access to ${productLabel}`}>
-      <IllustrationBox icon={LockKeyIcon} />
+      <IllustrationBox />
       <Text style={heading}>You now have access to {productLabel}</Text>
       <Text style={paragraph}>Log in with your existing account to get started.</Text>
       <CtaButton label="Log in to Faith on Fire" url={loginUrl} />

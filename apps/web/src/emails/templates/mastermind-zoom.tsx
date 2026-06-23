@@ -1,4 +1,3 @@
-import { VideoCameraAiIcon } from "@hugeicons/core-free-icons"
 import { Text } from "@react-email/components"
 
 import { CtaButton } from "../components/cta-button"
@@ -9,7 +8,7 @@ import { heading, paragraph, strong } from "../components/text-styles"
 export function MastermindZoomEmail({ zoomUrl }: { zoomUrl: string }) {
   return (
     <EmailLayout previewText="Your weekly Mastermind call — save the time">
-      <IllustrationBox icon={VideoCameraAiIcon} />
+      <IllustrationBox />
       <Text style={heading}>Your weekly Mastermind call</Text>
       <Text style={paragraph}>
         The Mastermind meets <span style={strong}>every Saturday at 10:00 AM ET for 90 minutes</span>{" "}

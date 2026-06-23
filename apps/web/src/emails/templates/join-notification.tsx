@@ -1,4 +1,3 @@
-import { UserAdd01Icon } from "@hugeicons/core-free-icons"
 import { Hr, Row, Section, Text } from "@react-email/components"
 
 import { brand } from "../components/brand"
@@ -32,7 +31,7 @@ export function JoinNotificationEmail({
 }) {
   return (
     <EmailLayout previewText={`New Faith on Fire join request from ${fullName}`}>
-      <IllustrationBox icon={UserAdd01Icon} />
+      <IllustrationBox />
       <Text style={heading}>New Join Request</Text>
       <Section>
         <Field label="Name" value={fullName} />

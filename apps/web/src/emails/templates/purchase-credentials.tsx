@@ -1,4 +1,3 @@
-import { Key01Icon } from "@hugeicons/core-free-icons"
 import { Link, Text } from "@react-email/components"
 
 import { CredentialsBox } from "../components/credentials-box"
@@ -20,7 +19,7 @@ export function PurchaseCredentialsEmail({
 }) {
   return (
     <EmailLayout previewText={`Welcome to ${productLabel} — your login details`}>
-      <IllustrationBox icon={Key01Icon} />
+      <IllustrationBox />
       <Text style={heading}>Welcome to {productLabel}!</Text>
       <Text style={paragraph}>Your account is ready.</Text>
       <CredentialsBox email={email} password={password} />

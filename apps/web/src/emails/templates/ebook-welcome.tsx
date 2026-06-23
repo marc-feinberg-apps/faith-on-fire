@@ -1,4 +1,3 @@
-import { Book01Icon } from "@hugeicons/core-free-icons"
 import { Text } from "@react-email/components"
 
 import { CtaButton } from "../components/cta-button"
@@ -9,7 +8,7 @@ import { heading, paragraph, strong } from "../components/text-styles"
 export function EbookWelcomeEmail({ courseUrl }: { courseUrl: string }) {
   return (
     <EmailLayout previewText="Your Faith on Fire e-book is on its way">
-      <IllustrationBox icon={Book01Icon} ribbon="Welcome" />
+      <IllustrationBox ribbon="Welcome" />
       <Text style={heading}>Welcome to Faith on Fire!</Text>
       <Text style={paragraph}>
         Thanks for grabbing the e-book — your download and receipt are on the way from SamCart.

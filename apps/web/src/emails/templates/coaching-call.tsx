@@ -1,4 +1,3 @@
-import { Call02Icon } from "@hugeicons/core-free-icons"
 import { Link, Text } from "@react-email/components"
 
 import { brand } from "../components/brand"
@@ -16,7 +15,7 @@ export function CoachingCallEmail({
 }) {
   return (
     <EmailLayout previewText="Got 15 minutes? Let's talk.">
-      <IllustrationBox icon={Call02Icon} />
+      <IllustrationBox />
       <Text style={heading}>Got 15 minutes? Let's talk.</Text>
       <Text style={paragraph}>
         As part of your membership, you get a{" "}
