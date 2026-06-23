@@ -17,7 +17,7 @@ export const Route = createFileRoute("/login")({
   }),
   beforeLoad: ({ context, search }) => {
     if (context.auth.isAuthenticated) {
-      throw redirect({ href: sanitizeRedirect(search.redirect) ?? "/account" })
+      throw redirect({ href: sanitizeRedirect(search.redirect) ?? "/dashboard" })
     }
   },
   head: () => ({

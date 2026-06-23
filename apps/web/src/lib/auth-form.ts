@@ -14,3 +14,16 @@ export const requestPasswordResetSchema = z.object({
 export const resetPasswordSchema = z.object({
   password: z.string().min(8, "Password must be at least 8 characters."),
 })
+
+export const changePasswordSchema = z
+  .object({
+    currentPassword: z.string().min(1, "Enter your current password."),
+    password: z.string().min(8, "Password must be at least 8 characters."),
+    confirmPassword: z.string().min(1, "Confirm your new password."),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match.",
+    path: ["confirmPassword"],
+  })
+
+export type ChangePasswordValues = z.infer<typeof changePasswordSchema>

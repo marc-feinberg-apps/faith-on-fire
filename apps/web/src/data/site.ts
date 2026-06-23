@@ -670,3 +670,85 @@ export const mastermindFaqs = [
       "Life happens. There's no penalty for missing a session — just show up the following week and reconnect with your brothers.",
   },
 ] as const
+
+// ── Member areas (authenticated) ────────────────────────────────────────────
+
+// Placeholder run-times so each module reads like a real video lesson. The
+// member course library is built from `blueprintModules`; this just supplies a
+// duration per module number until real videos are wired up.
+const lessonDurations: Record<number, string> = {
+  1: "14 min",
+  2: "18 min",
+  3: "16 min",
+  4: "12 min",
+  5: "21 min",
+  6: "17 min",
+  7: "15 min",
+  8: "19 min",
+  9: "13 min",
+  10: "22 min",
+}
+
+export const courseLessons = blueprintModules.map((module) => ({
+  number: module.number,
+  slug: module.slug,
+  title: module.title,
+  subtitle: module.subtitle,
+  duration: lessonDurations[module.number] ?? "15 min",
+}))
+
+// The 15-minute consultation offer, reused on both member pages.
+export const consultation = {
+  eyebrow: "Members-Only Perk",
+  title: "Book a free 15-min call with Marc",
+  description:
+    "Get personal direction on where you are in the journey. Bring one question, one struggle, or one decision — and walk away with a clear next step.",
+  ctaLabel: "Grab Your Free 15 Minutes",
+} as const
+
+// The weekly Brotherhood mastermind cadence. Same Zoom link every week.
+export const mastermindSchedule = {
+  recurring: "Every Saturday · 10:00 AM EST",
+  duration: "90 minutes",
+  note: "Same Zoom link every week — bookmark it. No session is ever recorded over, so you can always catch the replay.",
+  agenda: [
+    { time: "10:00", label: "Welcome & Check-in", description: "Open the room, settle in, and name where you really are this week." },
+    { time: "10:15", label: "Key Teaching", description: "Marc walks the week's teaching — straight from the Blueprint." },
+    { time: "10:40", label: "Brotherhood Breakouts", description: "Smaller groups for honest conversation and real accountability." },
+    { time: "11:10", label: "Declaration & Action Step", description: "Commit out loud to your one action for the week ahead." },
+  ],
+} as const
+
+// Value reinforcement for the $397/mo membership — what's actually included.
+export const mastermindPerks = [
+  {
+    icon: "UserGroup03Icon",
+    title: "Live Weekly Mastermind",
+    description: "90 minutes every Saturday with Marc and the brotherhood — accountability you can't get alone.",
+  },
+  {
+    icon: "PlayIcon",
+    title: "Full Session Replay Library",
+    description: "Miss a week? Every session is saved so you never fall behind.",
+  },
+  {
+    icon: "Calendar03Icon",
+    title: "Monthly 1:1 With Marc",
+    description: "Personal direction on your walk, your assignment, and your next move.",
+  },
+  {
+    icon: "Download04Icon",
+    title: "Member Resource Vault",
+    description: "Workbook tools, commitment letters, and downloads — all in one place.",
+  },
+  {
+    icon: "Fire03Icon",
+    title: "Direct Brotherhood Access",
+    description: "Brothers in your corner between sessions, not just on Saturdays.",
+  },
+  {
+    icon: "Award01Icon",
+    title: "Cancel Any Time",
+    description: "No contract, no lock-in. Stay because it's worth it — month after month.",
+  },
+] as const

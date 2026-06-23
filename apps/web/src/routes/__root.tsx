@@ -6,16 +6,21 @@ import { SiteFooter } from "@/components/site-footer"
 import { EbookPopup } from "@/components/ebook-popup"
 import { siteConfig } from "@/data/site"
 import { getCurrentUser } from "@/server/auth"
+import { getMyAccess } from "@/server/member"
 import type { AuthContext } from "@/lib/auth-context"
+import type { AccessContext } from "@/lib/access-context"
 
 const defaultTitle = "Faith on Fire | A Brotherhood for Men Who Refuse to Drift"
 const defaultDescription = siteConfig.tagline
 
-export const Route = createRootRouteWithContext<{ auth: AuthContext }>()({
+export const Route = createRootRouteWithContext<{ auth: AuthContext; access: AccessContext }>()({
   beforeLoad: async () => {
     const { user } = await getCurrentUser()
     const auth: AuthContext = { isAuthenticated: !!user, user }
-    return { auth }
+    const access = user
+      ? await getMyAccess()
+      : { hasCourse: false, hasEbook: false, hasMastermind: false }
+    return { auth, access }
   },
   head: () => ({
     meta: [

@@ -45,7 +45,7 @@ export function LoginForm({ redirect }: { redirect?: string }) {
 
     try {
       await signInFn({ data: result.data })
-      await navigate({ to: redirect ?? "/account" })
+      await navigate({ to: redirect ?? "/dashboard" })
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : "Invalid email or password.")
     } finally {

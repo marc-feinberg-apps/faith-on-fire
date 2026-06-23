@@ -45,11 +45,11 @@ export function SiteHeader() {
         <div className="hidden items-center gap-4 lg:flex">
           {auth.isAuthenticated ? (
             <Link
-              to="/account"
+              to="/dashboard"
               className="flex items-center gap-2 font-heading text-sm font-medium text-foreground/80 transition-colors hover:text-[var(--fire-red)]"
             >
               <HugeiconsIcon icon={UserIcon} className="size-4" />
-              Account
+              Dashboard
             </Link>
           ) : (
             <Link
@@ -89,13 +89,13 @@ export function SiteHeader() {
                 </Link>
               ))}
               <Link
-                to={auth.isAuthenticated ? "/account" : "/login"}
+                to={auth.isAuthenticated ? "/dashboard" : "/login"}
                 onClick={() => setOpen(false)}
                 className="rounded-lg px-3 py-3 font-heading text-base font-medium transition-colors hover:bg-muted hover:text-[var(--fire-red)]"
                 activeProps={{ className: "text-[var(--fire-red)]" }}
                 inactiveProps={{ className: "text-foreground/85" }}
               >
-                {auth.isAuthenticated ? "Account" : "Log In"}
+                {auth.isAuthenticated ? "Dashboard" : "Log In"}
               </Link>
             </nav>
             <div className="mt-2 px-4">

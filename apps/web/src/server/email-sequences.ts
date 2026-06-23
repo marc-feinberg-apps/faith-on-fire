@@ -11,19 +11,24 @@ import {
 export type SequenceProduct = "ebook" | "course" | "mastermind"
 
 type SequenceStep = {
-  delayDays: number
+  delayMs: number | (() => number)
   template: () => Promise<{ subject: string; text: string; html: string }>
 }
 
+const MINUTE = 60 * 1000
+const DAY = 24 * 60 * MINUTE
+
+const coachingCallDelay = () => MINUTE * (15 + Math.random() * 15) // 15-30 min
+
 const SEQUENCES: Record<SequenceProduct, SequenceStep[]> = {
-  ebook: [{ delayDays: 2, template: promoteCourseTemplate }],
+  ebook: [{ delayMs: 2 * DAY, template: promoteCourseTemplate }],
   course: [
-    { delayDays: 1, template: coachingCallTemplate },
-    { delayDays: 5, template: promoteMastermindTemplate },
+    { delayMs: coachingCallDelay, template: coachingCallTemplate },
+    { delayMs: 1 * DAY, template: promoteMastermindTemplate },
   ],
   mastermind: [
-    { delayDays: 1, template: coachingCallTemplate },
-    { delayDays: 2, template: mastermindZoomTemplate },
+    { delayMs: coachingCallDelay, template: coachingCallTemplate },
+    { delayMs: 15 * MINUTE, template: mastermindZoomTemplate },
   ],
 }
 
@@ -42,7 +47,8 @@ export async function scheduleFollowUpEmails(product: SequenceProduct, email: st
   await Promise.all(
     steps.map(async (step) => {
       const { subject, text, html } = await step.template()
-      const scheduledAt = new Date(Date.now() + step.delayDays * 24 * 60 * 60 * 1000).toISOString()
+      const delayMs = typeof step.delayMs === "function" ? step.delayMs() : step.delayMs
+      const scheduledAt = new Date(Date.now() + delayMs).toISOString()
       const { error } = await client.resend.emails.send({
         from: client.from,
         to: email,

@@ -3,6 +3,7 @@ import { getRequest } from "@tanstack/react-start/server"
 import { z } from "zod"
 
 import {
+  changePasswordSchema,
   loginSchema,
   requestPasswordResetSchema,
   resetPasswordSchema,
@@ -55,6 +56,28 @@ export const updatePassword = createServerFn({ method: "POST" })
     const supabase = getSupabaseServerClient()
     const { error } = await supabase.auth.updateUser({ password: data.password })
     if (error) throw new Error("We couldn't update your password. Request a new reset link.")
+    return { ok: true }
+  })
+
+export const changePassword = createServerFn({ method: "POST" })
+  .validator(changePasswordSchema)
+  .handler(async ({ data }) => {
+    if (!isSupabaseConfigured()) throw new Error("Sign-in is not configured yet.")
+    const supabase = getSupabaseServerClient()
+
+    const { data: userData } = await supabase.auth.getUser()
+    const email = userData.user?.email
+    if (!email) throw new Error("You need to be signed in to change your password.")
+
+    // Verify the current password by re-authenticating before allowing a change.
+    const { error: signInError } = await supabase.auth.signInWithPassword({
+      email,
+      password: data.currentPassword,
+    })
+    if (signInError) throw new Error("Your current password is incorrect.")
+
+    const { error } = await supabase.auth.updateUser({ password: data.password })
+    if (error) throw new Error("We couldn't update your password. Please try again.")
     return { ok: true }
   })
 
