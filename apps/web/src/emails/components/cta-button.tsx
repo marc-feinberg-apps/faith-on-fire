@@ -22,6 +22,7 @@ const button: React.CSSProperties = {
   textTransform: "uppercase" as const,
   textDecoration: "none",
   borderRadius: "9999px",
-  padding: "16px 32px",
+  padding: "16px 36px",
   display: "inline-block",
+  boxShadow: "0 8px 18px rgba(206, 35, 9, 0.35)",
 }

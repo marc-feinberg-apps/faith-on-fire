@@ -51,12 +51,19 @@ export function EmailLayout({
       <Body style={main}>
         <div style={gradientBar} />
         <Section style={header}>
-          <Img
-            src={`${SITE_URL}/assets/brand/faith-on-fire-logo-white.png`}
-            alt="Faith on Fire"
-            width="180"
-            style={{ margin: "0 auto" }}
-          />
+          <table role="presentation" cellPadding={0} cellSpacing={0} align="center" style={{ margin: "0 auto" }}>
+            <tr>
+              <td style={logoBadge}>
+                <Img
+                  src={`${SITE_URL}/assets/brand/faith-on-fire-logo-transparent.png`}
+                  alt="Faith on Fire"
+                  width="130"
+                  height="67"
+                  style={{ display: "block" }}
+                />
+              </td>
+            </tr>
+          </table>
         </Section>
         <Container style={cardOuter}>
           <Section style={card}>{children}</Section>
@@ -104,6 +111,14 @@ const header: React.CSSProperties = {
   textAlign: "center" as const,
 }
 
+const logoBadge: React.CSSProperties = {
+  backgroundColor: "#FFFFFF",
+  borderRadius: "16px",
+  padding: "14px 20px",
+  boxShadow: "0 8px 20px rgba(0, 0, 0, 0.35)",
+  lineHeight: 0,
+}
+
 const cardOuter: React.CSSProperties = {
   maxWidth: "600px",
   margin: "0 auto",
@@ -115,6 +130,7 @@ const card: React.CSSProperties = {
   border: `1px solid ${brand.border}`,
   borderRadius: "20px",
   padding: "40px",
+  boxShadow: "0 10px 30px rgba(24, 19, 17, 0.08)",
 }
 
 const footer: React.CSSProperties = {

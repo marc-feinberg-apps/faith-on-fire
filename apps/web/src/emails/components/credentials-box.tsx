@@ -25,6 +25,7 @@ const box: React.CSSProperties = {
   borderRadius: "14px",
   padding: "20px 24px",
   margin: "20px 0",
+  boxShadow: "0 4px 12px rgba(24, 19, 17, 0.05)",
 }
 
 const row: React.CSSProperties = {
