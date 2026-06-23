@@ -6,6 +6,7 @@ import { SectionHeading } from "@/components/section-heading"
 import { GradientSection } from "@/components/gradient-section"
 import { FireCtaSection } from "@/components/fire-cta-section"
 import { ExternalCtaButton } from "@/components/external-cta-button"
+import { OwnedNotice } from "@/components/owned-notice"
 import { TestimonialVideoGrid } from "@/components/testimonial-marquee"
 import { Card, CardContent } from "@workspace/ui/components/card"
 import {
@@ -32,6 +33,10 @@ export const Route = createFileRoute("/ebook")({
 })
 
 function EbookPage() {
+  // The ebook is included with the Course and Mastermind tiers, so an owning
+  // member sees a "you already have it" notice instead of the buy CTA.
+  const { access } = Route.useRouteContext()
+
   return (
     <>
       <section className="relative overflow-hidden py-20 sm:py-28">
@@ -55,7 +60,11 @@ function EbookPage() {
             through the three pillars that bring you home: Return, Restore, Reignite.
           </p>
           <div className="mt-2 flex flex-col items-center gap-2">
-            <ExternalCtaButton href={ebookPurchaseUrl}>Get the E-book</ExternalCtaButton>
+            {access.hasEbook ? (
+              <OwnedNotice tone="light">You already have the E-book</OwnedNotice>
+            ) : (
+              <ExternalCtaButton href={ebookPurchaseUrl}>Get the E-book</ExternalCtaButton>
+            )}
             <p className="font-heading text-sm text-white/60 normal-case">
               {pricing.ebook.priceDisplay} · {pricing.ebook.guarantee}
             </p>
@@ -135,7 +144,11 @@ function EbookPage() {
           ))}
         </div>
         <div className="mt-12 flex flex-col items-center gap-2">
-          <ExternalCtaButton href={ebookPurchaseUrl}>Get the E-book</ExternalCtaButton>
+          {access.hasEbook ? (
+            <OwnedNotice>You already have the E-book</OwnedNotice>
+          ) : (
+            <ExternalCtaButton href={ebookPurchaseUrl}>Get the E-book</ExternalCtaButton>
+          )}
           <p className="font-heading text-sm text-muted-foreground normal-case">
             {pricing.ebook.priceDisplay} · {pricing.ebook.guarantee}
           </p>

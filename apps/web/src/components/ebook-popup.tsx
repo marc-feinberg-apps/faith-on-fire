@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link, useRouterState } from "@tanstack/react-router"
+import { Link, useRouteContext, useRouterState } from "@tanstack/react-router"
 import { HugeiconsIcon } from "@hugeicons/react"
 import {
   ArrowRight01Icon,
@@ -13,9 +13,11 @@ const dismissedKey = "fof-ebook-popup-dismissed"
 
 export function EbookPopup() {
   const pathname = useRouterState({ select: (state) => state.location.pathname })
-  // Hide where the ebook is already the focus: the homepage offer cards and the
-  // dedicated ebook page itself.
-  const isHidden = pathname === "/" || pathname === "/ebook"
+  const { access } = useRouteContext({ from: "__root__" })
+  // Hide where the ebook is already the focus (the homepage offer cards and the
+  // dedicated ebook page), and for members who already have the ebook via their
+  // Course or Mastermind access.
+  const isHidden = pathname === "/" || pathname === "/ebook" || access.hasEbook
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {

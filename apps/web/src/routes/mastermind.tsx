@@ -51,7 +51,7 @@ function MastermindPage() {
             weekly. Stay accountable.
           </p>
           <div className="mt-2">
-            <BuyButton product="mastermind">Join the Mastermind</BuyButton>
+            <BuyButton product="mastermind" tone="light">Join the Mastermind</BuyButton>
           </div>
           <p className="font-heading text-sm text-white/60 normal-case">
             {pricing.mastermind.priceDisplay} · {pricing.mastermind.guarantee}

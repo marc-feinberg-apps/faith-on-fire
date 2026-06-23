@@ -46,7 +46,11 @@ export const exchangeRecoveryCode = createServerFn({ method: "POST" })
     if (!isSupabaseConfigured()) return { ok: false }
     const supabase = getSupabaseServerClient()
     const { error } = await supabase.auth.exchangeCodeForSession(data.code)
-    return { ok: !error }
+    if (!error) return { ok: true }
+    // A recovery code is single-use. On a page refresh the exchange fails, but
+    // the recovery session is already established — treat that as valid.
+    const { data: userData } = await supabase.auth.getUser()
+    return { ok: !!userData.user }
   })
 
 export const updatePassword = createServerFn({ method: "POST" })
@@ -56,6 +60,9 @@ export const updatePassword = createServerFn({ method: "POST" })
     const supabase = getSupabaseServerClient()
     const { error } = await supabase.auth.updateUser({ password: data.password })
     if (error) throw new Error("We couldn't update your password. Request a new reset link.")
+    // End the recovery session so the user must sign in fresh with the new
+    // password rather than landing in an authenticated state from the link.
+    await supabase.auth.signOut()
     return { ok: true }
   })
 

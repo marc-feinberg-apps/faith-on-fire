@@ -66,7 +66,7 @@ function CoursePage() {
             Your breakthrough is in the work.
           </p>
           <div className="mt-2 flex flex-col items-center gap-2">
-            <BuyButton product="course">Buy the Course</BuyButton>
+            <BuyButton product="course" tone="light">Buy the Course</BuyButton>
             <p className="font-heading text-sm text-white/60 normal-case">
               {pricing.course.priceDisplay} · {pricing.course.guarantee}
             </p>

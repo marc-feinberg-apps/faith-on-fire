@@ -14,6 +14,7 @@ export const Route = createFileRoute("/login")({
   validateSearch: z.object({
     redirect: z.string().optional(),
     error: z.string().optional(),
+    reset: z.string().optional(),
   }),
   beforeLoad: ({ context, search }) => {
     if (context.auth.isAuthenticated) {
@@ -50,7 +51,11 @@ function LoginPage() {
           </p>
         </div>
 
-        {search.error ? (
+        {search.reset === "success" ? (
+          <p className="mb-4 text-center text-sm font-medium text-[var(--fire-red)]">
+            Your password has been updated. Log in with your new password.
+          </p>
+        ) : search.error ? (
           <p className="mb-4 text-center text-sm text-destructive">
             Something went wrong. Please try again.
           </p>

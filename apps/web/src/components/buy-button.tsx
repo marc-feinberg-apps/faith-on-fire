@@ -1,24 +1,42 @@
 import { useState } from "react"
 import { useServerFn } from "@tanstack/react-start"
+import { useRouteContext } from "@tanstack/react-router"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { ArrowRight01Icon } from "@hugeicons/core-free-icons"
 import { cn } from "@workspace/ui/lib/utils"
 
 import { createCheckoutSession } from "@/server/checkout"
+import { OwnedNotice } from "@/components/owned-notice"
 import type { Product } from "@/lib/checkout-form"
+
+const ownedLabels: Record<Product, string> = {
+  course: "You already own the Course",
+  mastermind: "You're already in the Mastermind",
+}
 
 export function BuyButton({
   product,
   children,
   className,
+  tone = "dark",
 }: {
   product: Product
   children: React.ReactNode
   className?: string
+  tone?: "light" | "dark"
 }) {
   const createCheckoutSessionFn = useServerFn(createCheckoutSession)
+  const { access } = useRouteContext({ from: "__root__" })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
+
+  // A Mastermind subscription unlocks the Course too, so a member who has
+  // Mastermind can't re-buy the Course either.
+  const owned = product === "mastermind" ? access.hasMastermind : access.hasCourse
+
+  if (owned) {
+    return <OwnedNotice tone={tone}>{ownedLabels[product]}</OwnedNotice>
+  }
 
   async function handleClick() {
     setError("")
