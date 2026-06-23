@@ -58,7 +58,7 @@ export function IntroVideoSection() {
   }
 
   return (
-    <section className="relative flex min-h-[calc(100dvh-4.5rem)] flex-col gap-4 overflow-hidden bg-[var(--ember-dark)] px-4 py-4 sm:gap-6 sm:px-6 sm:py-6">
+    <section className="relative flex flex-col gap-8 overflow-hidden bg-[var(--ember-dark)] px-4 pt-10 pb-16 sm:gap-10 sm:px-6 sm:pt-14 sm:pb-24">
       {/* ambient fire glow */}
       <div
         className="pointer-events-none absolute -top-1/3 left-1/2 size-[80vw] max-w-[900px] -translate-x-1/2 rounded-full opacity-30 blur-3xl"
@@ -67,12 +67,20 @@ export function IntroVideoSection() {
             "radial-gradient(closest-side, var(--flame-orange), var(--fire-red) 55%, transparent)",
         }}
       />
+      {/* soft glow easing into the next section so the boundary doesn't read as a hard edge */}
+      <div
+        className="pointer-events-none absolute -bottom-1/4 left-1/2 size-[70vw] max-w-[760px] -translate-x-1/2 rounded-full opacity-20 blur-3xl"
+        style={{
+          backgroundImage:
+            "radial-gradient(closest-side, var(--fire-red), transparent)",
+        }}
+      />
 
       {/* video */}
-      <div className="group relative z-10 min-h-0 flex-1">
+      <div className="group relative z-10 mx-auto w-full max-w-4xl">
         {/* gradient glow frame */}
         <div className="gradient-fire absolute -inset-px rounded-[1.4rem] opacity-70 blur-[2px]" />
-        <div className="relative size-full overflow-hidden rounded-[1.3rem] shadow-2xl shadow-black/50 ring-1 ring-white/10">
+        <div className="relative aspect-video w-full overflow-hidden rounded-[1.3rem] shadow-2xl shadow-black/50 ring-1 ring-white/10">
           <video
             ref={videoRef}
             src={introVideoUrl}
@@ -125,7 +133,7 @@ export function IntroVideoSection() {
       </div>
 
       {/* three offer cards */}
-      <div className="relative z-10 grid shrink-0 grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
+      <div className="relative z-10 mx-auto grid w-full max-w-4xl grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
         {sellCards.map((card, i) => {
           const inner = (
             <>

@@ -57,6 +57,10 @@ function HeroSection() {
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 gradient-ember" />
       <div
+        className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[var(--ember-dark)] to-transparent"
+        aria-hidden="true"
+      />
+      <div
         className="absolute -top-40 left-1/2 size-[700px] -translate-x-1/2 rounded-full opacity-40 blur-3xl"
         style={{
           backgroundImage:

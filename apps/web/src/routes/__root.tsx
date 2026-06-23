@@ -1,15 +1,22 @@
-import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router"
+import { HeadContent, Outlet, Scripts, createRootRouteWithContext } from "@tanstack/react-router"
 
 import appCss from "@workspace/ui/globals.css?url"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { EbookPopup } from "@/components/ebook-popup"
 import { siteConfig } from "@/data/site"
+import { getCurrentUser } from "@/server/auth"
+import type { AuthContext } from "@/lib/auth-context"
 
 const defaultTitle = "Faith on Fire | A Brotherhood for Men Who Refuse to Drift"
 const defaultDescription = siteConfig.tagline
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{ auth: AuthContext }>()({
+  beforeLoad: async () => {
+    const { user } = await getCurrentUser()
+    const auth: AuthContext = { isAuthenticated: !!user, user }
+    return { auth }
+  },
   head: () => ({
     meta: [
       {
@@ -121,8 +128,22 @@ export const Route = createRootRoute({
       </p>
     </main>
   ),
+  component: RootLayout,
   shellComponent: RootDocument,
 })
+
+function RootLayout() {
+  return (
+    <div className="flex min-h-svh flex-col">
+      <SiteHeader />
+      <main className="flex-1">
+        <Outlet />
+      </main>
+      <SiteFooter />
+      <EbookPopup />
+    </div>
+  )
+}
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
@@ -131,12 +152,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <div className="flex min-h-svh flex-col">
-          <SiteHeader />
-          <main className="flex-1">{children}</main>
-          <SiteFooter />
-          <EbookPopup />
-        </div>
+        {children}
         <Scripts />
       </body>
     </html>

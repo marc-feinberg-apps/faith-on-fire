@@ -2,15 +2,7 @@ import { createServerFn } from "@tanstack/react-start"
 import { Resend } from "resend"
 
 import { getFocusAreaLabel, joinFormSchema } from "@/lib/join-form"
-
-function escapeHtml(value: string) {
-  return value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;")
-}
+import { escapeHtml } from "@/lib/escape-html"
 
 export const submitJoinRequest = createServerFn({ method: "POST" })
   .validator(joinFormSchema)

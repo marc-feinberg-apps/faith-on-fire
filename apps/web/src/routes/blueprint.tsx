@@ -3,6 +3,7 @@ import { SectionHeading } from "@/components/section-heading"
 import { GradientSection } from "@/components/gradient-section"
 import { ModuleCard } from "@/components/module-card"
 import { FireCtaSection } from "@/components/fire-cta-section"
+import { BuyButton } from "@/components/buy-button"
 import { Card, CardContent } from "@workspace/ui/components/card"
 import { blueprintModules, commitmentLetters, scriptureAnchors } from "@/data/site"
 
@@ -98,6 +99,17 @@ function BlueprintPage() {
               </CardContent>
             </Card>
           ))}
+        </div>
+      </GradientSection>
+
+      <GradientSection variant="white">
+        <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
+          <SectionHeading
+            eyebrow="Get The Blueprint"
+            title="Get instant access to the full course."
+            description="All 10 modules, the commitment letters, and the scripture anchors — yours to keep."
+          />
+          <BuyButton product="course">Buy the Course</BuyButton>
         </div>
       </GradientSection>
 

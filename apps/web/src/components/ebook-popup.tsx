@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useRouterState } from "@tanstack/react-router"
 import { HugeiconsIcon } from "@hugeicons/react"
 import {
   ArrowRight01Icon,
@@ -15,15 +16,22 @@ const ebookPurchaseUrl =
   import.meta.env.VITE_SAMCART_EBOOK_URL || placeholderSamcartUrl
 
 export function EbookPopup() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname })
+  const isHomePage = pathname === "/"
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
+    if (isHomePage) {
+      setVisible(false)
+      return
+    }
+
     const timer = window.setTimeout(() => setVisible(true), 1200)
 
     return () => window.clearTimeout(timer)
-  }, [])
+  }, [isHomePage])
 
-  if (!visible) {
+  if (isHomePage || !visible) {
     return null
   }
 

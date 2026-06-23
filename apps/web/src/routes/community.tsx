@@ -6,6 +6,7 @@ import { SectionHeading } from "@/components/section-heading"
 import { GradientSection } from "@/components/gradient-section"
 import { FireCtaSection } from "@/components/fire-cta-section"
 import { TestimonialVideoGrid } from "@/components/testimonial-marquee"
+import { BuyButton } from "@/components/buy-button"
 import { Card, CardContent } from "@workspace/ui/components/card"
 import {
   brotherhoodLies,
@@ -182,6 +183,17 @@ function CommunityPage() {
         />
         <div className="mt-14">
           <TestimonialVideoGrid testimonials={testimonials} />
+        </div>
+      </GradientSection>
+
+      <GradientSection variant="white">
+        <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
+          <SectionHeading
+            eyebrow="Join The Mastermind"
+            title="Show up weekly. Stay accountable."
+            description="A recurring membership — cancel any time."
+          />
+          <BuyButton product="mastermind">Join the Mastermind</BuyButton>
         </div>
       </GradientSection>
 

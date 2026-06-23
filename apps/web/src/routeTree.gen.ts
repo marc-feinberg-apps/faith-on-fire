@@ -9,17 +9,40 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UpdatePasswordRouteImport } from './routes/update-password'
 import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as JoinRouteImport } from './routes/join'
 import { Route as CommunityRouteImport } from './routes/community'
 import { Route as BooksRouteImport } from './routes/books'
 import { Route as BlueprintRouteImport } from './routes/blueprint'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PurchaseSuccessRouteImport } from './routes/purchase/success'
+import { Route as AuthenticatedAccountRouteImport } from './routes/_authenticated/account'
+import { Route as ApiStripeWebhookRouteImport } from './routes/api/stripe/webhook'
+import { Route as ApiSamcartWebhookRouteImport } from './routes/api/samcart/webhook'
 
+const UpdatePasswordRoute = UpdatePasswordRouteImport.update({
+  id: '/update-password',
+  path: '/update-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResourcesRoute = ResourcesRouteImport.update({
   id: '/resources',
   path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JoinRoute = JoinRouteImport.update({
@@ -47,9 +70,33 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PurchaseSuccessRoute = PurchaseSuccessRouteImport.update({
+  id: '/purchase/success',
+  path: '/purchase/success',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAccountRoute = AuthenticatedAccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const ApiStripeWebhookRoute = ApiStripeWebhookRouteImport.update({
+  id: '/api/stripe/webhook',
+  path: '/api/stripe/webhook',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSamcartWebhookRoute = ApiSamcartWebhookRouteImport.update({
+  id: '/api/samcart/webhook',
+  path: '/api/samcart/webhook',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -60,7 +107,14 @@ export interface FileRoutesByFullPath {
   '/books': typeof BooksRoute
   '/community': typeof CommunityRoute
   '/join': typeof JoinRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/resources': typeof ResourcesRoute
+  '/update-password': typeof UpdatePasswordRoute
+  '/account': typeof AuthenticatedAccountRoute
+  '/purchase/success': typeof PurchaseSuccessRoute
+  '/api/samcart/webhook': typeof ApiSamcartWebhookRoute
+  '/api/stripe/webhook': typeof ApiStripeWebhookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -69,17 +123,32 @@ export interface FileRoutesByTo {
   '/books': typeof BooksRoute
   '/community': typeof CommunityRoute
   '/join': typeof JoinRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/resources': typeof ResourcesRoute
+  '/update-password': typeof UpdatePasswordRoute
+  '/account': typeof AuthenticatedAccountRoute
+  '/purchase/success': typeof PurchaseSuccessRoute
+  '/api/samcart/webhook': typeof ApiSamcartWebhookRoute
+  '/api/stripe/webhook': typeof ApiStripeWebhookRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/about': typeof AboutRoute
   '/blueprint': typeof BlueprintRoute
   '/books': typeof BooksRoute
   '/community': typeof CommunityRoute
   '/join': typeof JoinRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/resources': typeof ResourcesRoute
+  '/update-password': typeof UpdatePasswordRoute
+  '/_authenticated/account': typeof AuthenticatedAccountRoute
+  '/purchase/success': typeof PurchaseSuccessRoute
+  '/api/samcart/webhook': typeof ApiSamcartWebhookRoute
+  '/api/stripe/webhook': typeof ApiStripeWebhookRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -90,7 +159,14 @@ export interface FileRouteTypes {
     | '/books'
     | '/community'
     | '/join'
+    | '/login'
+    | '/reset-password'
     | '/resources'
+    | '/update-password'
+    | '/account'
+    | '/purchase/success'
+    | '/api/samcart/webhook'
+    | '/api/stripe/webhook'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -99,35 +175,78 @@ export interface FileRouteTypes {
     | '/books'
     | '/community'
     | '/join'
+    | '/login'
+    | '/reset-password'
     | '/resources'
+    | '/update-password'
+    | '/account'
+    | '/purchase/success'
+    | '/api/samcart/webhook'
+    | '/api/stripe/webhook'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/about'
     | '/blueprint'
     | '/books'
     | '/community'
     | '/join'
+    | '/login'
+    | '/reset-password'
     | '/resources'
+    | '/update-password'
+    | '/_authenticated/account'
+    | '/purchase/success'
+    | '/api/samcart/webhook'
+    | '/api/stripe/webhook'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   AboutRoute: typeof AboutRoute
   BlueprintRoute: typeof BlueprintRoute
   BooksRoute: typeof BooksRoute
   CommunityRoute: typeof CommunityRoute
   JoinRoute: typeof JoinRoute
+  LoginRoute: typeof LoginRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   ResourcesRoute: typeof ResourcesRoute
+  UpdatePasswordRoute: typeof UpdatePasswordRoute
+  PurchaseSuccessRoute: typeof PurchaseSuccessRoute
+  ApiSamcartWebhookRoute: typeof ApiSamcartWebhookRoute
+  ApiStripeWebhookRoute: typeof ApiStripeWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/update-password': {
+      id: '/update-password'
+      path: '/update-password'
+      fullPath: '/update-password'
+      preLoaderRoute: typeof UpdatePasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/resources': {
       id: '/resources'
       path: '/resources'
       fullPath: '/resources'
       preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/join': {
@@ -165,6 +284,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -172,17 +298,64 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/purchase/success': {
+      id: '/purchase/success'
+      path: '/purchase/success'
+      fullPath: '/purchase/success'
+      preLoaderRoute: typeof PurchaseSuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/account': {
+      id: '/_authenticated/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AuthenticatedAccountRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/api/stripe/webhook': {
+      id: '/api/stripe/webhook'
+      path: '/api/stripe/webhook'
+      fullPath: '/api/stripe/webhook'
+      preLoaderRoute: typeof ApiStripeWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/samcart/webhook': {
+      id: '/api/samcart/webhook'
+      path: '/api/samcart/webhook'
+      fullPath: '/api/samcart/webhook'
+      preLoaderRoute: typeof ApiSamcartWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface AuthenticatedRouteChildren {
+  AuthenticatedAccountRoute: typeof AuthenticatedAccountRoute
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedAccountRoute: AuthenticatedAccountRoute,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
   AboutRoute: AboutRoute,
   BlueprintRoute: BlueprintRoute,
   BooksRoute: BooksRoute,
   CommunityRoute: CommunityRoute,
   JoinRoute: JoinRoute,
+  LoginRoute: LoginRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   ResourcesRoute: ResourcesRoute,
+  UpdatePasswordRoute: UpdatePasswordRoute,
+  PurchaseSuccessRoute: PurchaseSuccessRoute,
+  ApiSamcartWebhookRoute: ApiSamcartWebhookRoute,
+  ApiStripeWebhookRoute: ApiStripeWebhookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

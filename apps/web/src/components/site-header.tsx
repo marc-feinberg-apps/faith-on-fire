@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { Link } from "@tanstack/react-router"
+import { Link, useRouteContext } from "@tanstack/react-router"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { Menu01Icon } from "@hugeicons/core-free-icons"
+import { Menu01Icon, UserIcon } from "@hugeicons/core-free-icons"
 import { Button } from "@workspace/ui/components/button"
 import {
   Sheet,
@@ -15,6 +15,7 @@ import { CtaButton } from "@/components/cta-button"
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false)
+  const { auth } = useRouteContext({ from: "__root__" })
 
   return (
     <header className="sticky top-0 z-50 border-b border-foreground/10 bg-background/90 backdrop-blur-md">
@@ -41,7 +42,23 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden items-center gap-4 lg:flex">
+          {auth.isAuthenticated ? (
+            <Link
+              to="/account"
+              className="flex items-center gap-2 font-heading text-sm font-medium text-foreground/80 transition-colors hover:text-[var(--fire-red)]"
+            >
+              <HugeiconsIcon icon={UserIcon} className="size-4" />
+              Account
+            </Link>
+          ) : (
+            <Link
+              to="/login"
+              className="font-heading text-sm font-medium text-foreground/80 transition-colors hover:text-[var(--fire-red)]"
+            >
+              Log In
+            </Link>
+          )}
           <CtaButton href="/join" size="default">
             Join the Brotherhood
           </CtaButton>
@@ -71,6 +88,15 @@ export function SiteHeader() {
                   {link.label}
                 </Link>
               ))}
+              <Link
+                to={auth.isAuthenticated ? "/account" : "/login"}
+                onClick={() => setOpen(false)}
+                className="rounded-lg px-3 py-3 font-heading text-base font-medium transition-colors hover:bg-muted hover:text-[var(--fire-red)]"
+                activeProps={{ className: "text-[var(--fire-red)]" }}
+                inactiveProps={{ className: "text-foreground/85" }}
+              >
+                {auth.isAuthenticated ? "Account" : "Log In"}
+              </Link>
             </nav>
             <div className="mt-2 px-4">
               <CtaButton href="/join" className="w-full">
