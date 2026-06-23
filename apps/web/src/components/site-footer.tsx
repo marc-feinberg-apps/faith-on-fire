@@ -22,6 +22,10 @@ export function SiteFooter() {
             <p className="max-w-sm text-sm leading-relaxed text-white/70 normal-case font-sans">
               {siteConfig.supportingLine}
             </p>
+            <p className="max-w-sm text-sm leading-relaxed text-white/55 normal-case font-sans">
+              Faith on Fire helps men come home to God, make peace with the man in the mirror, and
+              rediscover their assignment inside a brotherhood that keeps the fire burning.
+            </p>
           </div>
 
           <div className="flex flex-col gap-3">

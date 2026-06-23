@@ -16,11 +16,19 @@ import { brand } from "./brand"
 
 const SITE_URL = "https://www.faithonfire.world"
 
+const footerNavLinks = [
+  { label: "Ebook", href: `${SITE_URL}/ebook` },
+  { label: "Course", href: `${SITE_URL}/course` },
+  { label: "Mastermind", href: `${SITE_URL}/mastermind` },
+]
+
 export function EmailLayout({
   previewText,
+  footerVariant = "transactional",
   children,
 }: {
   previewText: string
+  footerVariant?: "transactional" | "marketing"
   children: React.ReactNode
 }) {
   return (
@@ -80,6 +88,17 @@ export function EmailLayout({
             </Link>
           </Text>
           <Hr style={footerHr} />
+          <table role="presentation" cellPadding={0} cellSpacing={0} align="center" style={{ margin: "0 auto 12px" }}>
+            <tr>
+              {footerNavLinks.map((link, index) => (
+                <td key={link.href} style={{ padding: index === 0 ? "0" : "0 0 0 16px" }}>
+                  <Link href={link.href} style={footerNavLink}>
+                    {link.label}
+                  </Link>
+                </td>
+              ))}
+            </tr>
+          </table>
           <Text style={footerMuted}>
             You're receiving this because you joined Faith on Fire at{" "}
             <Link href={SITE_URL} style={footerLink}>
@@ -87,6 +106,16 @@ export function EmailLayout({
             </Link>
             .
           </Text>
+          {footerVariant === "marketing" ? (
+            <Text style={footerMuted}>
+              Don't want these emails?{" "}
+              <Link href={`mailto:support@faithonfire.world?subject=Unsubscribe`} style={footerLink}>
+                Unsubscribe
+              </Link>
+              .
+            </Text>
+          ) : null}
+          <Text style={footerCopyright}>&copy; {new Date().getFullYear()} Faith on Fire. All rights reserved.</Text>
         </Section>
       </Body>
     </Html>
@@ -160,4 +189,19 @@ const footerLink: React.CSSProperties = {
 const footerHr: React.CSSProperties = {
   borderColor: brand.border,
   margin: "16px 0",
+}
+
+const footerNavLink: React.CSSProperties = {
+  fontFamily: brand.fontDisplay,
+  fontSize: "11px",
+  fontWeight: 700,
+  letterSpacing: "0.06em",
+  textTransform: "uppercase" as const,
+  color: brand.fireRed,
+  textDecoration: "none",
+}
+
+const footerCopyright: React.CSSProperties = {
+  ...footerMuted,
+  margin: "16px 0 0",
 }

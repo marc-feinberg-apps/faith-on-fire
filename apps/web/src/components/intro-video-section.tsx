@@ -3,47 +3,15 @@ import { Link } from "@tanstack/react-router"
 import { HugeiconsIcon } from "@hugeicons/react"
 import {
   ArrowRight01Icon,
-  Book01Icon,
-  Compass01Icon,
-  UserGroup03Icon,
   VolumeHighIcon,
   VolumeOffIcon,
 } from "@hugeicons/core-free-icons"
 
+import { SiteIcon } from "@/components/site-icon"
+import { offers, pricing } from "@/data/site"
+
 const introVideoUrl =
   import.meta.env.VITE_INTRO_VIDEO_URL || "/assets/video/intro-placeholder.mp4"
-
-const sellCards = [
-  {
-    icon: Book01Icon,
-    eyebrow: "The E-book",
-    title: "Get the E-book",
-    description: "Start the Faith on Fire Blueprint today.",
-    ctaLabel: "Get the E-book",
-    href:
-      import.meta.env.VITE_SAMCART_EBOOK_URL ||
-      "https://samcart.com/placeholder-faith-on-fire-ebook",
-    external: true,
-  },
-  {
-    icon: Compass01Icon,
-    eyebrow: "The Course",
-    title: "The Blueprint",
-    description: "The 10-module roadmap to return, restore, reignite.",
-    ctaLabel: "Explore the Blueprint",
-    href: "/blueprint",
-    external: false,
-  },
-  {
-    icon: UserGroup03Icon,
-    eyebrow: "The Brotherhood",
-    title: "Weekly Mastermind",
-    description: "Real accountability. Brothers for life.",
-    ctaLabel: "Find Your People",
-    href: "/join",
-    external: false,
-  },
-] as const
 
 export function IntroVideoSection() {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -75,6 +43,20 @@ export function IntroVideoSection() {
             "radial-gradient(closest-side, var(--fire-red), transparent)",
         }}
       />
+
+      {/* headline */}
+      <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">
+        <span className="font-heading text-sm font-semibold tracking-[0.25em] text-[var(--sun-gold)]">
+          A Brotherhood for Men Who Refuse to Drift
+        </span>
+        <h1 className="text-4xl leading-[1.05] text-white sm:text-5xl md:text-6xl">
+          Return. Restore. Reignite.
+        </h1>
+        <p className="max-w-2xl text-base leading-relaxed text-white/75 normal-case font-sans sm:text-lg">
+          Faith on Fire helps men return to God, restore relationships, and reignite their purpose —
+          through the e-book, the course, and the Brotherhood, our weekly mastermind.
+        </p>
+      </div>
 
       {/* video */}
       <div className="group relative z-10 mx-auto w-full max-w-4xl">
@@ -134,14 +116,14 @@ export function IntroVideoSection() {
 
       {/* three offer cards */}
       <div className="relative z-10 mx-auto grid w-full max-w-4xl grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
-        {sellCards.map((card, i) => {
+        {offers.map((card, i) => {
           const inner = (
             <>
               {/* hover glow */}
               <div className="gradient-fire pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover/card:opacity-10" />
               <div className="relative flex items-start gap-3">
                 <span className="flex size-11 shrink-0 items-center justify-center rounded-xl gradient-fire text-white shadow-lg shadow-[var(--fire-red)]/30 transition-transform duration-300 group-hover/card:scale-110 group-hover/card:-rotate-6">
-                  <HugeiconsIcon icon={card.icon} className="size-5" strokeWidth={2} />
+                  <SiteIcon name={card.icon} className="size-5" />
                 </span>
                 <div className="min-w-0">
                   <span className="font-heading text-[0.65rem] font-semibold tracking-[0.18em] text-[var(--sun-gold)] uppercase">
@@ -152,16 +134,21 @@ export function IntroVideoSection() {
                   </h3>
                 </div>
               </div>
-              <p className="relative mt-2 text-sm leading-snug text-white/70 normal-case font-sans">
+              <p className="relative mt-2 flex-1 text-sm leading-snug text-white/70 normal-case font-sans">
                 {card.description}
               </p>
-              <span className="relative mt-3 inline-flex items-center gap-1.5 font-heading text-sm font-bold tracking-wide text-white uppercase transition-colors group-hover/card:text-[var(--sun-gold)]">
-                {card.ctaLabel}
-                <HugeiconsIcon
-                  icon={ArrowRight01Icon}
-                  className="size-4 transition-transform group-hover/card:translate-x-1"
-                  strokeWidth={2.5}
-                />
+              <span className="relative mt-3 flex items-center justify-between gap-2">
+                <span className="inline-flex items-center gap-1.5 font-heading text-sm font-bold tracking-wide text-white uppercase transition-colors group-hover/card:text-[var(--sun-gold)]">
+                  {card.ctaLabel}
+                  <HugeiconsIcon
+                    icon={ArrowRight01Icon}
+                    className="size-4 transition-transform group-hover/card:translate-x-1"
+                    strokeWidth={2.5}
+                  />
+                </span>
+                <span className="shrink-0 font-heading text-sm font-bold text-[var(--sun-gold)]">
+                  {pricing[card.key].priceDisplay}
+                </span>
               </span>
             </>
           )
@@ -169,18 +156,7 @@ export function IntroVideoSection() {
           const cardClass =
             "animate-fade-in-up group/card relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.06] p-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--sun-gold)]/40 hover:bg-white/[0.1] hover:shadow-xl hover:shadow-black/40 sm:p-5"
 
-          return card.external ? (
-            <a
-              key={card.title}
-              href={card.href}
-              target="_blank"
-              rel="noreferrer"
-              className={cardClass}
-              style={{ animationDelay: `${0.15 + i * 0.12}s` }}
-            >
-              {inner}
-            </a>
-          ) : (
+          return (
             <Link
               key={card.title}
               to={card.href}

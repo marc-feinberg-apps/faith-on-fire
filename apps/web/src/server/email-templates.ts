@@ -8,7 +8,7 @@ import type { EmailContent } from "@/server/email-render"
 import { renderEmail } from "@/server/email-render"
 
 export function ebookWelcomeTemplate(): Promise<EmailContent> {
-  const courseUrl = `${siteConfig.url}/blueprint`
+  const courseUrl = `${siteConfig.url}/course`
   return renderEmail(
     EbookWelcomeEmail({ courseUrl }),
     "Your Faith on Fire e-book is on its way 🔥",
@@ -16,7 +16,7 @@ export function ebookWelcomeTemplate(): Promise<EmailContent> {
 }
 
 export function promoteCourseTemplate(): Promise<EmailContent> {
-  const courseUrl = `${siteConfig.url}/blueprint`
+  const courseUrl = `${siteConfig.url}/course`
   return renderEmail(PromoteCourseEmail({ courseUrl }), "Ready for the next step?")
 }
 
@@ -29,7 +29,7 @@ export function coachingCallTemplate(): Promise<EmailContent> {
 }
 
 export function promoteMastermindTemplate(): Promise<EmailContent> {
-  const mastermindUrl = `${siteConfig.url}/community`
+  const mastermindUrl = `${siteConfig.url}/mastermind`
   return renderEmail(
     PromoteMastermindEmail({ mastermindUrl }),
     "You don't have to do this alone",

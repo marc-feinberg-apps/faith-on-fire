@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useRouterState } from "@tanstack/react-router"
+import { Link, useRouterState } from "@tanstack/react-router"
 import { HugeiconsIcon } from "@hugeicons/react"
 import {
   ArrowRight01Icon,
@@ -9,19 +9,17 @@ import {
 
 import { Button } from "@workspace/ui/components/button"
 
-const placeholderSamcartUrl =
-  "https://samcart.com/placeholder-faith-on-fire-ebook"
-
-const ebookPurchaseUrl =
-  import.meta.env.VITE_SAMCART_EBOOK_URL || placeholderSamcartUrl
+const dismissedKey = "fof-ebook-popup-dismissed"
 
 export function EbookPopup() {
   const pathname = useRouterState({ select: (state) => state.location.pathname })
-  const isHomePage = pathname === "/"
+  // Hide where the ebook is already the focus: the homepage offer cards and the
+  // dedicated ebook page itself.
+  const isHidden = pathname === "/" || pathname === "/ebook"
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    if (isHomePage) {
+    if (isHidden || window.localStorage.getItem(dismissedKey)) {
       setVisible(false)
       return
     }
@@ -29,13 +27,14 @@ export function EbookPopup() {
     const timer = window.setTimeout(() => setVisible(true), 1200)
 
     return () => window.clearTimeout(timer)
-  }, [isHomePage])
+  }, [isHidden])
 
-  if (isHomePage || !visible) {
+  if (isHidden || !visible) {
     return null
   }
 
   function handleDismiss() {
+    window.localStorage.setItem(dismissedKey, "1")
     setVisible(false)
   }
 
@@ -75,14 +74,14 @@ export function EbookPopup() {
             asChild
             className="h-9 w-full gap-2 bg-[var(--fire-red)] hover:bg-[var(--fire-red)]/85"
           >
-            <a href={ebookPurchaseUrl} target="_blank" rel="noreferrer">
+            <Link to="/ebook" onClick={handleDismiss}>
               Get the E-book
               <HugeiconsIcon
                 icon={ArrowRight01Icon}
                 className="size-4"
                 strokeWidth={2}
               />
-            </a>
+            </Link>
           </Button>
         </div>
       </div>

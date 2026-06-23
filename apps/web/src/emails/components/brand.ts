@@ -8,6 +8,6 @@ export const brand = {
   mutedForeground: "#625650",
   border: "#DED6CE",
   card: "#FFFFFF",
-  fontDisplay: "'Oswald', 'Arial Black', sans-serif",
-  fontBody: "'Inter', Helvetica, Arial, sans-serif",
+  fontDisplay: "'Oswald', 'Segoe UI', system-ui, sans-serif",
+  fontBody: "'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif",
 }

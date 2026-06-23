@@ -33,7 +33,7 @@ function JoinPage() {
           </h1>
           <p className="text-base leading-relaxed text-muted-foreground normal-case font-sans sm:text-lg">
             This is for every man ready to return, rebuild, and run his race through the Faith on
-            Fire Blueprint and the Weekly Mastermind / Brotherhood. The work continues here.
+            Fire Blueprint and the Brotherhood — our Weekly Mastermind. The work continues here.
           </p>
 
           <div className="mt-4 flex flex-col gap-3 rounded-2xl bg-card p-6 ring-1 ring-foreground/10">

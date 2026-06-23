@@ -10,14 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as UpdatePasswordRouteImport } from './routes/update-password'
-import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as MastermindRouteImport } from './routes/mastermind'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as JoinRouteImport } from './routes/join'
+import { Route as EbookRouteImport } from './routes/ebook'
+import { Route as CourseRouteImport } from './routes/course'
 import { Route as CommunityRouteImport } from './routes/community'
 import { Route as BooksRouteImport } from './routes/books'
 import { Route as BlueprintRouteImport } from './routes/blueprint'
-import { Route as AboutRouteImport } from './routes/about'
+import { Route as AboutMarcRouteImport } from './routes/about-marc'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PurchaseSuccessRouteImport } from './routes/purchase/success'
@@ -30,14 +33,19 @@ const UpdatePasswordRoute = UpdatePasswordRouteImport.update({
   path: '/update-password',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ResourcesRoute = ResourcesRouteImport.update({
-  id: '/resources',
-  path: '/resources',
+const TestimonialsRoute = TestimonialsRouteImport.update({
+  id: '/testimonials',
+  path: '/testimonials',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MastermindRoute = MastermindRouteImport.update({
+  id: '/mastermind',
+  path: '/mastermind',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -48,6 +56,16 @@ const LoginRoute = LoginRouteImport.update({
 const JoinRoute = JoinRouteImport.update({
   id: '/join',
   path: '/join',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EbookRoute = EbookRouteImport.update({
+  id: '/ebook',
+  path: '/ebook',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CourseRoute = CourseRouteImport.update({
+  id: '/course',
+  path: '/course',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CommunityRoute = CommunityRouteImport.update({
@@ -65,9 +83,9 @@ const BlueprintRoute = BlueprintRouteImport.update({
   path: '/blueprint',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const AboutMarcRoute = AboutMarcRouteImport.update({
+  id: '/about-marc',
+  path: '/about-marc',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
@@ -102,14 +120,17 @@ const ApiSamcartWebhookRoute = ApiSamcartWebhookRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/about-marc': typeof AboutMarcRoute
   '/blueprint': typeof BlueprintRoute
   '/books': typeof BooksRoute
   '/community': typeof CommunityRoute
+  '/course': typeof CourseRoute
+  '/ebook': typeof EbookRoute
   '/join': typeof JoinRoute
   '/login': typeof LoginRoute
+  '/mastermind': typeof MastermindRoute
   '/reset-password': typeof ResetPasswordRoute
-  '/resources': typeof ResourcesRoute
+  '/testimonials': typeof TestimonialsRoute
   '/update-password': typeof UpdatePasswordRoute
   '/account': typeof AuthenticatedAccountRoute
   '/purchase/success': typeof PurchaseSuccessRoute
@@ -118,14 +139,17 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/about-marc': typeof AboutMarcRoute
   '/blueprint': typeof BlueprintRoute
   '/books': typeof BooksRoute
   '/community': typeof CommunityRoute
+  '/course': typeof CourseRoute
+  '/ebook': typeof EbookRoute
   '/join': typeof JoinRoute
   '/login': typeof LoginRoute
+  '/mastermind': typeof MastermindRoute
   '/reset-password': typeof ResetPasswordRoute
-  '/resources': typeof ResourcesRoute
+  '/testimonials': typeof TestimonialsRoute
   '/update-password': typeof UpdatePasswordRoute
   '/account': typeof AuthenticatedAccountRoute
   '/purchase/success': typeof PurchaseSuccessRoute
@@ -136,14 +160,17 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteWithChildren
-  '/about': typeof AboutRoute
+  '/about-marc': typeof AboutMarcRoute
   '/blueprint': typeof BlueprintRoute
   '/books': typeof BooksRoute
   '/community': typeof CommunityRoute
+  '/course': typeof CourseRoute
+  '/ebook': typeof EbookRoute
   '/join': typeof JoinRoute
   '/login': typeof LoginRoute
+  '/mastermind': typeof MastermindRoute
   '/reset-password': typeof ResetPasswordRoute
-  '/resources': typeof ResourcesRoute
+  '/testimonials': typeof TestimonialsRoute
   '/update-password': typeof UpdatePasswordRoute
   '/_authenticated/account': typeof AuthenticatedAccountRoute
   '/purchase/success': typeof PurchaseSuccessRoute
@@ -154,14 +181,17 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/about'
+    | '/about-marc'
     | '/blueprint'
     | '/books'
     | '/community'
+    | '/course'
+    | '/ebook'
     | '/join'
     | '/login'
+    | '/mastermind'
     | '/reset-password'
-    | '/resources'
+    | '/testimonials'
     | '/update-password'
     | '/account'
     | '/purchase/success'
@@ -170,14 +200,17 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/about'
+    | '/about-marc'
     | '/blueprint'
     | '/books'
     | '/community'
+    | '/course'
+    | '/ebook'
     | '/join'
     | '/login'
+    | '/mastermind'
     | '/reset-password'
-    | '/resources'
+    | '/testimonials'
     | '/update-password'
     | '/account'
     | '/purchase/success'
@@ -187,14 +220,17 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_authenticated'
-    | '/about'
+    | '/about-marc'
     | '/blueprint'
     | '/books'
     | '/community'
+    | '/course'
+    | '/ebook'
     | '/join'
     | '/login'
+    | '/mastermind'
     | '/reset-password'
-    | '/resources'
+    | '/testimonials'
     | '/update-password'
     | '/_authenticated/account'
     | '/purchase/success'
@@ -205,14 +241,17 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
-  AboutRoute: typeof AboutRoute
+  AboutMarcRoute: typeof AboutMarcRoute
   BlueprintRoute: typeof BlueprintRoute
   BooksRoute: typeof BooksRoute
   CommunityRoute: typeof CommunityRoute
+  CourseRoute: typeof CourseRoute
+  EbookRoute: typeof EbookRoute
   JoinRoute: typeof JoinRoute
   LoginRoute: typeof LoginRoute
+  MastermindRoute: typeof MastermindRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
-  ResourcesRoute: typeof ResourcesRoute
+  TestimonialsRoute: typeof TestimonialsRoute
   UpdatePasswordRoute: typeof UpdatePasswordRoute
   PurchaseSuccessRoute: typeof PurchaseSuccessRoute
   ApiSamcartWebhookRoute: typeof ApiSamcartWebhookRoute
@@ -228,11 +267,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UpdatePasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/resources': {
-      id: '/resources'
-      path: '/resources'
-      fullPath: '/resources'
-      preLoaderRoute: typeof ResourcesRouteImport
+    '/testimonials': {
+      id: '/testimonials'
+      path: '/testimonials'
+      fullPath: '/testimonials'
+      preLoaderRoute: typeof TestimonialsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reset-password': {
@@ -240,6 +279,13 @@ declare module '@tanstack/react-router' {
       path: '/reset-password'
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mastermind': {
+      id: '/mastermind'
+      path: '/mastermind'
+      fullPath: '/mastermind'
+      preLoaderRoute: typeof MastermindRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -254,6 +300,20 @@ declare module '@tanstack/react-router' {
       path: '/join'
       fullPath: '/join'
       preLoaderRoute: typeof JoinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ebook': {
+      id: '/ebook'
+      path: '/ebook'
+      fullPath: '/ebook'
+      preLoaderRoute: typeof EbookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/course': {
+      id: '/course'
+      path: '/course'
+      fullPath: '/course'
+      preLoaderRoute: typeof CourseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/community': {
@@ -277,11 +337,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlueprintRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
+    '/about-marc': {
+      id: '/about-marc'
+      path: '/about-marc'
+      fullPath: '/about-marc'
+      preLoaderRoute: typeof AboutMarcRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated': {
@@ -344,14 +404,17 @@ const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
-  AboutRoute: AboutRoute,
+  AboutMarcRoute: AboutMarcRoute,
   BlueprintRoute: BlueprintRoute,
   BooksRoute: BooksRoute,
   CommunityRoute: CommunityRoute,
+  CourseRoute: CourseRoute,
+  EbookRoute: EbookRoute,
   JoinRoute: JoinRoute,
   LoginRoute: LoginRoute,
+  MastermindRoute: MastermindRoute,
   ResetPasswordRoute: ResetPasswordRoute,
-  ResourcesRoute: ResourcesRoute,
+  TestimonialsRoute: TestimonialsRoute,
   UpdatePasswordRoute: UpdatePasswordRoute,
   PurchaseSuccessRoute: PurchaseSuccessRoute,
   ApiSamcartWebhookRoute: ApiSamcartWebhookRoute,

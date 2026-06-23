@@ -10,13 +10,57 @@ export const siteConfig = {
 
 export const navLinks = [
   { label: "Home", href: "/" },
-  { label: "Blueprint", href: "/blueprint" },
-  { label: "Testimonials", href: "/community" },
-  { label: "Resources", href: "/resources" },
+  { label: "Ebook", href: "/ebook" },
+  { label: "Course", href: "/course" },
+  { label: "Mastermind", href: "/mastermind" },
   { label: "Books", href: "/books" },
-  { label: "About", href: "/about" },
-  { label: "Join", href: "/join" },
+  { label: "Testimonials", href: "/testimonials" },
+  { label: "Founder", href: "/about-marc" },
 ]
+
+// The three things Faith on Fire sells. Single source of truth for the
+// homepage offer cards and any cross-sell grids.
+export const offers = [
+  {
+    key: "ebook",
+    icon: "Book01Icon",
+    eyebrow: "The E-book",
+    title: "Get the E-book",
+    description: "Start the Faith on Fire Blueprint today.",
+    ctaLabel: "Get the E-book",
+    href: "/ebook",
+  },
+  {
+    key: "course",
+    icon: "Compass01Icon",
+    eyebrow: "The Course",
+    title: "The Blueprint",
+    description: "The 10-module roadmap to return, restore, reignite.",
+    ctaLabel: "Explore the Course",
+    href: "/course",
+  },
+  {
+    key: "mastermind",
+    icon: "UserGroup03Icon",
+    eyebrow: "The Brotherhood",
+    title: "Weekly Mastermind",
+    description: "The Brotherhood — real accountability. Brothers for life.",
+    ctaLabel: "Join the Mastermind",
+    href: "/mastermind",
+  },
+] as const
+
+export const ebookPurchaseUrl =
+  import.meta.env.VITE_SAMCART_EBOOK_URL ||
+  "https://samcart.com/placeholder-faith-on-fire-ebook"
+
+// Manually maintained to match the live Stripe/SamCart prices — shown next to
+// every buy CTA so a man knows the cost and the guarantee before he clicks.
+export const pricing = {
+  ebook: { priceDisplay: "$7", guarantee: "One-time payment" },
+  course: { priceDisplay: "$97", guarantee: "One-time payment" },
+  mastermind: { priceDisplay: "$397/month", guarantee: "Cancel any time" },
+} as const
 
 export const books = [
   {
@@ -570,3 +614,59 @@ export const memberJourney = [
     description: "Build daily rhythms and stay connected to the brotherhood for life.",
   },
 ]
+
+export const courseFaqs = [
+  {
+    question: "Is this just videos, or is it actually interactive?",
+    answer:
+      "Every module follows the same structure: Key Teaching, Reflection Questions, a Declaration, and an Action Step you complete that week — including three signed commitment letters. It's built to be worked through, not watched passively.",
+  },
+  {
+    question: "How much time does it take each week?",
+    answer:
+      "Most men move through one module per week, with 30-60 minutes for the teaching, reflection, and action step combined. You can move at your own pace.",
+  },
+  {
+    question: "Do I need to already be 'where I should be' spiritually to start?",
+    answer:
+      "No — the course starts with the Wake-Up Call module specifically for men who feel they've drifted. Wherever you're starting from is the right place to start.",
+  },
+  {
+    question: "What if it's not for me?",
+    answer:
+      "Go through it in good faith. If it isn't for you, email support@faithonfire.world and we'll make it right.",
+  },
+  {
+    question: "Do I need the Mastermind to do the Course?",
+    answer:
+      "No, the Course stands on its own. Many men go through it on their own first, then join the Weekly Mastermind to walk it out with brothers.",
+  },
+] as const
+
+export const mastermindFaqs = [
+  {
+    question: "What actually happens in a weekly session?",
+    answer:
+      "A standing weekly call built on Key Teaching, reflection, a declaration, and an action step — plus honest, real conversation with men who will ask the hard questions.",
+  },
+  {
+    question: "Can I cancel any time?",
+    answer:
+      "Yes. The Mastermind is a recurring monthly membership and you can cancel any time — there's no contract or lock-in period.",
+  },
+  {
+    question: "Do I need to take the Course first?",
+    answer:
+      "No. The Course and the Mastermind reinforce each other, but you can join the Mastermind on its own and start with weekly brotherhood right away.",
+  },
+  {
+    question: "Is this group therapy or counseling?",
+    answer:
+      "No. The Mastermind is brotherhood and accountability, not clinical therapy. If you're working through a clinical mental-health issue, we'd encourage a licensed counselor alongside the brotherhood.",
+  },
+  {
+    question: "What if I miss a week?",
+    answer:
+      "Life happens. There's no penalty for missing a session — just show up the following week and reconnect with your brothers.",
+  },
+] as const

@@ -22,3 +22,20 @@ export const paragraph: React.CSSProperties = {
 export const strong: React.CSSProperties = {
   color: brand.fireRed,
 }
+
+export const label: React.CSSProperties = {
+  fontFamily: brand.fontDisplay,
+  fontSize: "11px",
+  fontWeight: 700,
+  letterSpacing: "0.06em",
+  textTransform: "uppercase" as const,
+  color: brand.mutedForeground,
+  margin: "0 0 2px",
+}
+
+export const value: React.CSSProperties = {
+  fontFamily: brand.fontBody,
+  fontSize: "15px",
+  color: brand.foreground,
+  margin: "0 0 8px",
+}

@@ -59,7 +59,7 @@ export function SiteHeader() {
               Log In
             </Link>
           )}
-          <CtaButton href="/join" size="default">
+          <CtaButton href="/mastermind" size="default">
             Join the Brotherhood
           </CtaButton>
         </div>
@@ -99,7 +99,7 @@ export function SiteHeader() {
               </Link>
             </nav>
             <div className="mt-2 px-4">
-              <CtaButton href="/join" className="w-full">
+              <CtaButton href="/mastermind" className="w-full">
                 Join the Brotherhood
               </CtaButton>
             </div>
