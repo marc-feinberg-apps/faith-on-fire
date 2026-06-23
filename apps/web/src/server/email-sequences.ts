@@ -12,7 +12,7 @@ export type SequenceProduct = "ebook" | "course" | "mastermind"
 
 type SequenceStep = {
   delayDays: number
-  template: () => { subject: string; text: string; html: string }
+  template: () => Promise<{ subject: string; text: string; html: string }>
 }
 
 const SEQUENCES: Record<SequenceProduct, SequenceStep[]> = {
@@ -41,20 +41,17 @@ export async function scheduleFollowUpEmails(product: SequenceProduct, email: st
   const steps = SEQUENCES[product]
   await Promise.all(
     steps.map(async (step) => {
-      const { subject, text, html } = step.template()
+      const { subject, text, html } = await step.template()
       const scheduledAt = new Date(Date.now() + step.delayDays * 24 * 60 * 60 * 1000).toISOString()
-      try {
-        await client.resend.emails.send({
-          from: client.from,
-          to: email,
-          subject,
-          text,
-          html,
-          scheduledAt,
-        })
-      } catch {
-        // A single failed step shouldn't block the rest of the sequence.
-      }
+      const { error } = await client.resend.emails.send({
+        from: client.from,
+        to: email,
+        subject,
+        text,
+        html,
+        scheduledAt,
+      })
+      if (error) console.error(`scheduleFollowUpEmails (${product}) failed:`, error)
     }),
   )
 }
@@ -63,10 +60,7 @@ export async function sendEbookWelcomeEmail(email: string) {
   const client = getResendClient()
   if (!client) return
 
-  const { subject, text, html } = ebookWelcomeTemplate()
-  try {
-    await client.resend.emails.send({ from: client.from, to: email, subject, text, html })
-  } catch {
-    // Ignore — the follow-up sequence will still attempt to send.
-  }
+  const { subject, text, html } = await ebookWelcomeTemplate()
+  const { error } = await client.resend.emails.send({ from: client.from, to: email, subject, text, html })
+  if (error) console.error("sendEbookWelcomeEmail failed:", error)
 }

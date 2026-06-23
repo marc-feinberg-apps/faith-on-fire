@@ -1,9 +1,11 @@
 import { Resend } from "resend"
 
-import { escapeHtml } from "@/lib/escape-html"
+import { siteConfig } from "@/data/site"
+import { PurchaseAccessEmail } from "@/emails/templates/purchase-access"
+import { PurchaseCredentialsEmail } from "@/emails/templates/purchase-credentials"
 import { productLabels } from "@/lib/checkout-form"
 import type { Product } from "@/lib/checkout-form"
-import { siteConfig } from "@/data/site"
+import { renderEmail } from "@/server/email-render"
 
 export async function sendPurchaseEmail({
   email,
@@ -23,45 +25,19 @@ export async function sendPurchaseEmail({
   const loginUrl = `${siteConfig.url}/login`
 
   if (tempPassword) {
-    await resend.emails.send({
-      from,
-      to: email,
-      subject: `Welcome to ${productLabel} — your login details`,
-      text: [
-        `Welcome to ${productLabel}!`,
-        "",
-        `Email: ${email}`,
-        `Temporary password: ${tempPassword}`,
-        "",
-        `Log in here: ${loginUrl}`,
-        "",
-        "You can change your password any time from your account page.",
-      ].join("\n"),
-      html: `
-        <h2>Welcome to ${escapeHtml(productLabel)}!</h2>
-        <p>Your account is ready.</p>
-        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-        <p><strong>Temporary password:</strong> ${escapeHtml(tempPassword)}</p>
-        <p><a href="${loginUrl}">Log in to Faith on Fire</a></p>
-        <p>You can change your password any time from your account page.</p>
-      `,
-    })
+    const { subject, text, html } = await renderEmail(
+      PurchaseCredentialsEmail({ productLabel, email, password: tempPassword, loginUrl }),
+      `Welcome to ${productLabel} — your login details`,
+    )
+    const { error } = await resend.emails.send({ from, to: email, subject, text, html })
+    if (error) console.error("sendPurchaseEmail (welcome) failed:", error)
     return
   }
 
-  await resend.emails.send({
-    from,
-    to: email,
-    subject: `You now have access to ${productLabel}`,
-    text: [
-      `Good news — you now have access to ${productLabel}.`,
-      "",
-      `Log in with your existing account: ${loginUrl}`,
-    ].join("\n"),
-    html: `
-      <h2>You now have access to ${escapeHtml(productLabel)}</h2>
-      <p>Log in with your existing account to get started.</p>
-      <p><a href="${loginUrl}">Log in to Faith on Fire</a></p>
-    `,
-  })
+  const { subject, text, html } = await renderEmail(
+    PurchaseAccessEmail({ productLabel, loginUrl }),
+    `You now have access to ${productLabel}`,
+  )
+  const { error } = await resend.emails.send({ from, to: email, subject, text, html })
+  if (error) console.error("sendPurchaseEmail (access granted) failed:", error)
 }

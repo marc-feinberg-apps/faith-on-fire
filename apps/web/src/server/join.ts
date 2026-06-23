@@ -1,8 +1,9 @@
 import { createServerFn } from "@tanstack/react-start"
 import { Resend } from "resend"
 
+import { JoinNotificationEmail } from "@/emails/templates/join-notification"
 import { getFocusAreaLabel, joinFormSchema } from "@/lib/join-form"
-import { escapeHtml } from "@/lib/escape-html"
+import { renderEmail } from "@/server/email-render"
 
 export const submitJoinRequest = createServerFn({ method: "POST" })
   .validator(joinFormSchema)
@@ -25,33 +26,25 @@ export const submitJoinRequest = createServerFn({ method: "POST" })
       timeZone: "America/New_York",
     })
 
+    const { subject, text, html } = await renderEmail(
+      JoinNotificationEmail({
+        fullName,
+        email: data.email,
+        phone,
+        focusArea,
+        submittedAt,
+        believing: data.believing,
+      }),
+      `New Faith on Fire join request from ${fullName}`,
+    )
+
     const { error } = await resend.emails.send({
       from,
       to,
       replyTo: data.email,
-      subject: `New Faith on Fire join request from ${fullName}`,
-      text: [
-        "New Faith on Fire join request",
-        "",
-        `Name: ${fullName}`,
-        `Email: ${data.email}`,
-        `Phone: ${phone}`,
-        `Focus area: ${focusArea}`,
-        `Submitted: ${submittedAt}`,
-        "",
-        "What they are believing God for:",
-        data.believing,
-      ].join("\n"),
-      html: `
-        <h2>New Faith on Fire join request</h2>
-        <p><strong>Name:</strong> ${escapeHtml(fullName)}</p>
-        <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
-        <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
-        <p><strong>Focus area:</strong> ${escapeHtml(focusArea)}</p>
-        <p><strong>Submitted:</strong> ${escapeHtml(submittedAt)}</p>
-        <h3>What they are believing God for</h3>
-        <p>${escapeHtml(data.believing).replaceAll("\n", "<br />")}</p>
-      `,
+      subject,
+      text,
+      html,
     })
 
     if (error) {
