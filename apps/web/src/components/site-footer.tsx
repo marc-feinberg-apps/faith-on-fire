@@ -51,6 +51,11 @@ export function SiteFooter() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link to="/contact" className="transition-colors hover:text-white">
+                  Contact
+                </Link>
+              </li>
             </ul>
             <a
               href={`mailto:${siteConfig.email}`}

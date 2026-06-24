@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { FireIcon, CheckmarkCircle02Icon } from "@hugeicons/core-free-icons"
+import { Mail01Icon, CheckmarkCircle02Icon } from "@hugeicons/core-free-icons"
 
 import { Button } from "@workspace/ui/components/button"
 import { Input } from "@workspace/ui/components/input"
@@ -13,40 +13,39 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@workspace/ui/components/select"
-import { focusAreas, joinFormSchema } from "@/lib/join-form"
-import { submitJoinRequest } from "@/server/join"
-import type { JoinFormValues } from "@/lib/join-form"
+import { contactTopics, contactFormSchema } from "@/lib/contact-form"
+import { submitContactRequest } from "@/server/contact"
+import type { ContactFormValues } from "@/lib/contact-form"
 
-type FormErrors = Partial<Record<keyof JoinFormValues, string>>
+type FormErrors = Partial<Record<keyof ContactFormValues, string>>
 
-const initialValues: JoinFormValues = {
+const initialValues: ContactFormValues = {
   firstName: "",
   lastName: "",
   email: "",
-  phone: "",
-  believing: "",
-  focusArea: "",
+  topic: "",
+  message: "",
 }
 
-export function JoinForm() {
-  const [values, setValues] = useState<JoinFormValues>(initialValues)
+export function ContactForm() {
+  const [values, setValues] = useState<ContactFormValues>(initialValues)
   const [errors, setErrors] = useState<FormErrors>({})
   const [submitError, setSubmitError] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
-  function update<TKey extends keyof JoinFormValues>(key: TKey, value: JoinFormValues[TKey]) {
-    setValues((prev: JoinFormValues) => ({ ...prev, [key]: value }))
+  function update<TKey extends keyof ContactFormValues>(key: TKey, value: ContactFormValues[TKey]) {
+    setValues((prev: ContactFormValues) => ({ ...prev, [key]: value }))
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    const result = joinFormSchema.safeParse(values)
+    const result = contactFormSchema.safeParse(values)
 
     if (!result.success) {
       const fieldErrors: FormErrors = {}
       for (const issue of result.error.issues) {
-        const key = issue.path[0] as keyof JoinFormValues
+        const key = issue.path[0] as keyof ContactFormValues
         fieldErrors[key] = issue.message
       }
       setErrors(fieldErrors)
@@ -58,13 +57,13 @@ export function JoinForm() {
     setIsSubmitting(true)
 
     try {
-      await submitJoinRequest({ data: result.data })
+      await submitContactRequest({ data: result.data })
       setSubmitted(true)
     } catch (error) {
       setSubmitError(
         error instanceof Error
           ? error.message
-          : "We couldn't send your request. Please email support@faithonfire.world.",
+          : "We couldn't send your message. Please email support@faithonfire.world.",
       )
     } finally {
       setIsSubmitting(false)
@@ -77,10 +76,10 @@ export function JoinForm() {
         <span className="gradient-fire flex size-14 items-center justify-center rounded-full text-white">
           <HugeiconsIcon icon={CheckmarkCircle02Icon} className="size-7" />
         </span>
-        <h3 className="text-2xl">You're in, brother.</h3>
+        <h3 className="text-2xl">Message received, brother.</h3>
         <p className="max-w-md text-sm leading-relaxed text-muted-foreground normal-case font-sans">
-          Your Faith on Fire journey starts now. Keep an eye on your inbox — we'll reach out with
-          next steps for the brotherhood within 24 hours.
+          Thanks for reaching out. We've got your message and will get back to you at the email you
+          provided within 24-48 hours.
         </p>
       </div>
     )
@@ -124,46 +123,33 @@ export function JoinForm() {
           {errors.email ? <p className="text-xs text-destructive">{errors.email}</p> : null}
         </div>
         <div className="flex flex-col gap-2">
-          <Label htmlFor="phone">Phone (optional)</Label>
-          <Input
-            id="phone"
-            type="tel"
-            value={values.phone}
-            onChange={(e) => update("phone", e.target.value)}
-          />
+          <Label htmlFor="topic">What's this about?</Label>
+          <Select value={values.topic} onValueChange={(value) => update("topic", value)}>
+            <SelectTrigger id="topic" className="w-full" aria-invalid={!!errors.topic}>
+              <SelectValue placeholder="Select a topic" />
+            </SelectTrigger>
+            <SelectContent>
+              {contactTopics.map((topic) => (
+                <SelectItem key={topic.value} value={topic.value}>
+                  {topic.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          {errors.topic ? <p className="text-xs text-destructive">{errors.topic}</p> : null}
         </div>
       </div>
 
       <div className="flex flex-col gap-2">
-        <Label htmlFor="believing">What are you believing God for in this season?</Label>
+        <Label htmlFor="message">How can we help?</Label>
         <Textarea
-          id="believing"
-          rows={4}
-          value={values.believing}
-          onChange={(e) => update("believing", e.target.value)}
-          aria-invalid={!!errors.believing}
+          id="message"
+          rows={6}
+          value={values.message}
+          onChange={(e) => update("message", e.target.value)}
+          aria-invalid={!!errors.message}
         />
-        {errors.believing ? <p className="text-xs text-destructive">{errors.believing}</p> : null}
-      </div>
-
-      <div className="flex flex-col gap-2">
-        <Label htmlFor="focusArea">Which area do you need most right now?</Label>
-        <Select
-          value={values.focusArea}
-          onValueChange={(value) => update("focusArea", value)}
-        >
-          <SelectTrigger id="focusArea" className="w-full" aria-invalid={!!errors.focusArea}>
-            <SelectValue placeholder="Select an area" />
-          </SelectTrigger>
-          <SelectContent>
-            {focusAreas.map((area) => (
-              <SelectItem key={area.value} value={area.value}>
-                {area.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        {errors.focusArea ? <p className="text-xs text-destructive">{errors.focusArea}</p> : null}
+        {errors.message ? <p className="text-xs text-destructive">{errors.message}</p> : null}
       </div>
 
       {submitError ? <p className="text-sm text-destructive">{submitError}</p> : null}
@@ -174,8 +160,8 @@ export function JoinForm() {
         className="gradient-fire mt-2 gap-2 text-white"
         disabled={isSubmitting}
       >
-        <HugeiconsIcon icon={FireIcon} className="size-4" />
-        {isSubmitting ? "Sending..." : "Start My Faith on Fire Journey"}
+        <HugeiconsIcon icon={Mail01Icon} className="size-4" />
+        {isSubmitting ? "Sending..." : "Send Message"}
       </Button>
     </form>
   )

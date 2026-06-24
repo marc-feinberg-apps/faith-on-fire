@@ -7,7 +7,7 @@ export function FireCtaSection({
   title,
   description,
   ctaLabel,
-  ctaHref = "/join",
+  ctaHref = "/mastermind",
 }: {
   eyebrow?: string
   title: string

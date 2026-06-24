@@ -2,38 +2,38 @@ import { createFileRoute } from "@tanstack/react-router"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Mail01Icon, Link01Icon } from "@hugeicons/core-free-icons"
 
-import { JoinForm } from "@/components/join-form"
+import { ContactForm } from "@/components/contact-form"
 import { siteConfig } from "@/data/site"
 
-export const Route = createFileRoute("/join")({
+export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Join | Faith on Fire" },
+      { title: "Contact | Faith on Fire" },
       {
         name: "description",
         content:
-          "Start your Faith on Fire journey today. Tell us what you're believing God for and which area you need most — Return, Restore, Reignite, or Brotherhood.",
+          "Need help or have a question? Reach the Faith on Fire team — we'll get back to you about your course, membership, billing, or anything else within 24-48 hours.",
       },
     ],
   }),
-  component: JoinPage,
+  component: ContactPage,
 })
 
-function JoinPage() {
+function ContactPage() {
   return (
     <section className="relative overflow-hidden py-20 sm:py-28">
       <div className="absolute inset-0 gradient-warm" />
       <div className="relative z-10 mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-[1fr_1.2fr] md:items-start">
         <div className="flex flex-col gap-6">
           <span className="font-heading text-sm font-semibold tracking-[0.2em] text-[var(--fire-red)]">
-            Join Faith on Fire
+            Get in Touch
           </span>
           <h1 className="text-4xl leading-[1.1] text-foreground sm:text-5xl">
-            Come into the Brotherhood and stay on fire together.
+            Questions? We're here to help.
           </h1>
           <p className="text-base leading-relaxed text-muted-foreground normal-case font-sans sm:text-lg">
-            This is for every man ready to return, rebuild, and run his race through the Faith on
-            Fire Blueprint and the Brotherhood — our Weekly Mastermind. The work continues here.
+            Whether you need help with your course or membership, have a billing question, or just
+            want to reach the team — send us a message and we'll get back to you within 24-48 hours.
           </p>
 
           <div className="mt-4 flex flex-col gap-3 rounded-2xl bg-card p-6 ring-1 ring-foreground/10">
@@ -55,7 +55,7 @@ function JoinPage() {
         </div>
 
         <div className="rounded-3xl bg-white p-7 shadow-xl shadow-foreground/5 ring-1 ring-foreground/10 sm:p-10">
-          <JoinForm />
+          <ContactForm />
         </div>
       </div>
     </section>

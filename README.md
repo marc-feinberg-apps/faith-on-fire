@@ -116,10 +116,10 @@ Workbook. Edit that file to update copy without touching component code.
 
 ## Forms
 
-The Join page (`/join`) form (`src/components/join-form.tsx`) is fully
+The Contact page (`/contact`) form (`src/components/contact-form.tsx`) is fully
 client-side validated with Zod, then submits to a TanStack Start server
-function (`src/server/join.ts`) that emails the request through Resend. The
-email is sent to `RESEND_JOIN_TO_EMAIL` and uses the applicant's email as the
+function (`src/server/contact.ts`) that emails the message through Resend. The
+email is sent to `RESEND_CONTACT_TO_EMAIL` and uses the sender's email as the
 reply-to address.
 
 ## Environment
@@ -130,12 +130,12 @@ The e-book popup purchase button reads the SamCart checkout URL from:
 VITE_SAMCART_EBOOK_URL=https://samcart.com/placeholder-faith-on-fire-ebook
 RESEND_API_KEY=
 RESEND_FROM_EMAIL="Faith on Fire <support@faithonfire.world>"
-RESEND_JOIN_TO_EMAIL=support@faithonfire.world
+RESEND_CONTACT_TO_EMAIL=support@faithonfire.world
 ```
 
 Set this in your local `.env` file and in Netlify environment variables when
 the real SamCart link and Resend account are available. `RESEND_API_KEY` and
-`RESEND_FROM_EMAIL` are required before the Join form can send email.
+`RESEND_FROM_EMAIL` are required before the Contact form can send email.
 
 ## SEO
 

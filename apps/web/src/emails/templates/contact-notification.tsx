@@ -14,35 +14,32 @@ function Field({ label: fieldLabel, value: fieldValue }: { label: string; value:
   )
 }
 
-export function JoinNotificationEmail({
+export function ContactNotificationEmail({
   fullName,
   email,
-  phone,
-  focusArea,
+  topic,
   submittedAt,
-  believing,
+  message,
 }: {
   fullName: string
   email: string
-  phone: string
-  focusArea: string
+  topic: string
   submittedAt: string
-  believing: string
+  message: string
 }) {
   return (
-    <EmailLayout previewText={`New Faith on Fire join request from ${fullName}`}>
+    <EmailLayout previewText={`New contact message from ${fullName}`}>
       <IllustrationBox />
-      <Text style={heading}>New Join Request</Text>
+      <Text style={heading}>New Contact Message</Text>
       <Section>
         <Field label="Name" value={fullName} />
         <Field label="Email" value={email} />
-        <Field label="Phone" value={phone} />
-        <Field label="Focus area" value={focusArea} />
+        <Field label="Topic" value={topic} />
         <Field label="Submitted" value={submittedAt} />
       </Section>
       <Hr style={{ borderColor: brand.border, margin: "20px 0" }} />
-      <Text style={label}>What they are believing God for</Text>
-      <Text style={{ ...paragraph, whiteSpace: "pre-line" as const }}>{believing}</Text>
+      <Text style={label}>Message</Text>
+      <Text style={{ ...paragraph, whiteSpace: "pre-line" as const }}>{message}</Text>
     </EmailLayout>
   )
 }

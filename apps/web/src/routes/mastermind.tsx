@@ -1,10 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { CheckmarkCircle02Icon, Cancel01Icon } from "@hugeicons/core-free-icons"
+import { CheckmarkCircle02Icon, Cancel01Icon, FireIcon } from "@hugeicons/core-free-icons"
 
 import { SectionHeading } from "@/components/section-heading"
 import { GradientSection } from "@/components/gradient-section"
-import { FireCtaSection } from "@/components/fire-cta-section"
 import { BuyButton } from "@/components/buy-button"
 import { FaqSection } from "@/components/faq-section"
 import { TestimonialVideoGrid } from "@/components/testimonial-marquee"
@@ -211,12 +210,32 @@ function MastermindPage() {
 
       <FaqSection items={mastermindFaqs} variant="cream" />
 
-      <FireCtaSection
-        title="Accountability, not performance. Honesty, not hiding."
-        description="If you're ready for discipline instead of drift, your brothers are waiting."
-        ctaLabel="Find Your People"
-        ctaHref="/join"
-      />
+      <section className="relative overflow-hidden py-24 sm:py-32">
+        <div className="absolute inset-0 gradient-ember" />
+        <div
+          className="absolute -top-32 left-1/2 size-[600px] -translate-x-1/2 rounded-full opacity-30 blur-3xl"
+          style={{
+            backgroundImage: "radial-gradient(closest-side, var(--flame-orange), transparent)",
+          }}
+        />
+        <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 text-center">
+          <div className="flex items-center gap-2 text-[var(--sun-gold)]">
+            <HugeiconsIcon icon={FireIcon} className="size-5" strokeWidth={2} />
+            <span className="font-heading text-sm font-semibold tracking-[0.2em]">
+              The Fire Is Burning
+            </span>
+          </div>
+          <h2 className="text-4xl leading-[1.05] text-white sm:text-5xl md:text-6xl">
+            Accountability, not performance. Honesty, not hiding.
+          </h2>
+          <p className="max-w-xl text-lg leading-relaxed text-white/75 normal-case font-sans">
+            If you're ready for discipline instead of drift, your brothers are waiting.
+          </p>
+          <div className="mt-2">
+            <BuyButton product="mastermind" tone="light">Find Your People</BuyButton>
+          </div>
+        </div>
+      </section>
     </>
   )
 }

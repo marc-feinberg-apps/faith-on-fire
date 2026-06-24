@@ -1,16 +1,16 @@
 import { createServerFn } from "@tanstack/react-start"
 import { Resend } from "resend"
 
-import { JoinNotificationEmail } from "@/emails/templates/join-notification"
-import { getFocusAreaLabel, joinFormSchema } from "@/lib/join-form"
+import { ContactNotificationEmail } from "@/emails/templates/contact-notification"
+import { contactFormSchema, getContactTopicLabel } from "@/lib/contact-form"
 import { renderEmail } from "@/server/email-render"
 
-export const submitJoinRequest = createServerFn({ method: "POST" })
-  .validator(joinFormSchema)
+export const submitContactRequest = createServerFn({ method: "POST" })
+  .validator(contactFormSchema)
   .handler(async ({ data }) => {
     const apiKey = process.env.RESEND_API_KEY
     const from = process.env.RESEND_FROM_EMAIL
-    const to = process.env.RESEND_JOIN_TO_EMAIL ?? "support@faithonfire.world"
+    const to = process.env.RESEND_CONTACT_TO_EMAIL ?? "support@faithonfire.world"
 
     if (!apiKey || !from) {
       throw new Error("Email is not configured yet.")
@@ -18,8 +18,7 @@ export const submitJoinRequest = createServerFn({ method: "POST" })
 
     const resend = new Resend(apiKey)
     const fullName = `${data.firstName} ${data.lastName}`.trim()
-    const focusArea = getFocusAreaLabel(data.focusArea)
-    const phone = data.phone?.trim() || "Not provided"
+    const topic = getContactTopicLabel(data.topic)
     const submittedAt = new Date().toLocaleString("en-US", {
       dateStyle: "medium",
       timeStyle: "short",
@@ -27,15 +26,14 @@ export const submitJoinRequest = createServerFn({ method: "POST" })
     })
 
     const { subject, text, html } = await renderEmail(
-      JoinNotificationEmail({
+      ContactNotificationEmail({
         fullName,
         email: data.email,
-        phone,
-        focusArea,
+        topic,
         submittedAt,
-        believing: data.believing,
+        message: data.message,
       }),
-      `New Faith on Fire join request from ${fullName}`,
+      `New contact message from ${fullName} — ${topic}`,
     )
 
     const { error } = await resend.emails.send({

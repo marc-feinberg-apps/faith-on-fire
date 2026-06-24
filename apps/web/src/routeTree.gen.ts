@@ -14,9 +14,9 @@ import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as MastermindRouteImport } from './routes/mastermind'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as JoinRouteImport } from './routes/join'
 import { Route as EbookRouteImport } from './routes/ebook'
 import { Route as CourseRouteImport } from './routes/course'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CommunityRouteImport } from './routes/community'
 import { Route as BooksRouteImport } from './routes/books'
 import { Route as BlueprintRouteImport } from './routes/blueprint'
@@ -56,11 +56,6 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const JoinRoute = JoinRouteImport.update({
-  id: '/join',
-  path: '/join',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const EbookRoute = EbookRouteImport.update({
   id: '/ebook',
   path: '/ebook',
@@ -69,6 +64,11 @@ const EbookRoute = EbookRouteImport.update({
 const CourseRoute = CourseRouteImport.update({
   id: '/course',
   path: '/course',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CommunityRoute = CommunityRouteImport.update({
@@ -143,9 +143,9 @@ export interface FileRoutesByFullPath {
   '/blueprint': typeof BlueprintRoute
   '/books': typeof BooksRoute
   '/community': typeof CommunityRoute
+  '/contact': typeof ContactRoute
   '/course': typeof CourseRoute
   '/ebook': typeof EbookRoute
-  '/join': typeof JoinRoute
   '/login': typeof LoginRoute
   '/mastermind': typeof MastermindRoute
   '/reset-password': typeof ResetPasswordRoute
@@ -165,9 +165,9 @@ export interface FileRoutesByTo {
   '/blueprint': typeof BlueprintRoute
   '/books': typeof BooksRoute
   '/community': typeof CommunityRoute
+  '/contact': typeof ContactRoute
   '/course': typeof CourseRoute
   '/ebook': typeof EbookRoute
-  '/join': typeof JoinRoute
   '/login': typeof LoginRoute
   '/mastermind': typeof MastermindRoute
   '/reset-password': typeof ResetPasswordRoute
@@ -189,9 +189,9 @@ export interface FileRoutesById {
   '/blueprint': typeof BlueprintRoute
   '/books': typeof BooksRoute
   '/community': typeof CommunityRoute
+  '/contact': typeof ContactRoute
   '/course': typeof CourseRoute
   '/ebook': typeof EbookRoute
-  '/join': typeof JoinRoute
   '/login': typeof LoginRoute
   '/mastermind': typeof MastermindRoute
   '/reset-password': typeof ResetPasswordRoute
@@ -213,9 +213,9 @@ export interface FileRouteTypes {
     | '/blueprint'
     | '/books'
     | '/community'
+    | '/contact'
     | '/course'
     | '/ebook'
-    | '/join'
     | '/login'
     | '/mastermind'
     | '/reset-password'
@@ -235,9 +235,9 @@ export interface FileRouteTypes {
     | '/blueprint'
     | '/books'
     | '/community'
+    | '/contact'
     | '/course'
     | '/ebook'
-    | '/join'
     | '/login'
     | '/mastermind'
     | '/reset-password'
@@ -258,9 +258,9 @@ export interface FileRouteTypes {
     | '/blueprint'
     | '/books'
     | '/community'
+    | '/contact'
     | '/course'
     | '/ebook'
-    | '/join'
     | '/login'
     | '/mastermind'
     | '/reset-password'
@@ -282,9 +282,9 @@ export interface RootRouteChildren {
   BlueprintRoute: typeof BlueprintRoute
   BooksRoute: typeof BooksRoute
   CommunityRoute: typeof CommunityRoute
+  ContactRoute: typeof ContactRoute
   CourseRoute: typeof CourseRoute
   EbookRoute: typeof EbookRoute
-  JoinRoute: typeof JoinRoute
   LoginRoute: typeof LoginRoute
   MastermindRoute: typeof MastermindRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
@@ -332,13 +332,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/join': {
-      id: '/join'
-      path: '/join'
-      fullPath: '/join'
-      preLoaderRoute: typeof JoinRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/ebook': {
       id: '/ebook'
       path: '/ebook'
@@ -351,6 +344,13 @@ declare module '@tanstack/react-router' {
       path: '/course'
       fullPath: '/course'
       preLoaderRoute: typeof CourseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/community': {
@@ -472,9 +472,9 @@ const rootRouteChildren: RootRouteChildren = {
   BlueprintRoute: BlueprintRoute,
   BooksRoute: BooksRoute,
   CommunityRoute: CommunityRoute,
+  ContactRoute: ContactRoute,
   CourseRoute: CourseRoute,
   EbookRoute: EbookRoute,
-  JoinRoute: JoinRoute,
   LoginRoute: LoginRoute,
   MastermindRoute: MastermindRoute,
   ResetPasswordRoute: ResetPasswordRoute,
