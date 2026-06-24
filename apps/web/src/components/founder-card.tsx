@@ -22,7 +22,7 @@ export function FounderCard() {
         </div>
       </div>
       <div className="flex flex-col gap-4">
-        <HugeiconsIcon icon={QuoteDownIcon} className="size-7 text-[var(--flame-orange)]" />
+        <HugeiconsIcon icon={QuoteDownIcon} className="size-7 text-[var(--flame-orange)]" fill="currentColor" />
         <p className="text-xl leading-relaxed text-foreground normal-case font-sans italic">
           “{founder.quote}”
         </p>

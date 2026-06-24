@@ -66,7 +66,7 @@ function EbookPage() {
               <ExternalCtaButton href={ebookPurchaseUrl}>Get the E-book</ExternalCtaButton>
             )}
             <p className="font-heading text-sm text-white/60 normal-case">
-              {pricing.ebook.priceDisplay} · {pricing.ebook.guarantee}
+              {pricing.ebook.guarantee}
             </p>
           </div>
         </div>
@@ -150,7 +150,7 @@ function EbookPage() {
             <ExternalCtaButton href={ebookPurchaseUrl}>Get the E-book</ExternalCtaButton>
           )}
           <p className="font-heading text-sm text-muted-foreground normal-case">
-            {pricing.ebook.priceDisplay} · {pricing.ebook.guarantee}
+            {pricing.ebook.guarantee}
           </p>
         </div>
       </GradientSection>

@@ -8,7 +8,7 @@ import {
 } from "@hugeicons/core-free-icons"
 
 import { SiteIcon } from "@/components/site-icon"
-import { offers, pricing } from "@/data/site"
+import { offers } from "@/data/site"
 
 const introVideoUrl =
   import.meta.env.VITE_INTRO_VIDEO_URL || "/assets/video/intro-placeholder.mp4"
@@ -53,8 +53,7 @@ export function IntroVideoSection() {
           Return. Restore. Reignite.
         </h1>
         <p className="max-w-2xl text-base leading-relaxed text-white/75 normal-case font-sans sm:text-lg">
-          Faith on Fire helps men return to God, restore relationships, and reignite their purpose —
-          through the e-book, the course, and the Brotherhood, our weekly mastermind.
+          Helping men return to God, restore relationships, and reignite their purpose in life.
         </p>
       </div>
 
@@ -137,7 +136,7 @@ export function IntroVideoSection() {
               <p className="relative mt-2 flex-1 text-sm leading-snug text-white/70 normal-case font-sans">
                 {card.description}
               </p>
-              <span className="relative mt-3 flex items-center justify-between gap-2">
+              <span className="relative mt-3 flex items-center gap-2">
                 <span className="inline-flex items-center gap-1.5 font-heading text-sm font-bold tracking-wide text-white uppercase transition-colors group-hover/card:text-[var(--sun-gold)]">
                   {card.ctaLabel}
                   <HugeiconsIcon
@@ -145,9 +144,6 @@ export function IntroVideoSection() {
                     className="size-4 transition-transform group-hover/card:translate-x-1"
                     strokeWidth={2.5}
                   />
-                </span>
-                <span className="shrink-0 font-heading text-sm font-bold text-[var(--sun-gold)]">
-                  {pricing[card.key].priceDisplay}
                 </span>
               </span>
             </>

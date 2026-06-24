@@ -68,7 +68,7 @@ function CoursePage() {
           <div className="mt-2 flex flex-col items-center gap-2">
             <BuyButton product="course" tone="light">Buy the Course</BuyButton>
             <p className="font-heading text-sm text-white/60 normal-case">
-              {pricing.course.priceDisplay} · {pricing.course.guarantee}
+              {pricing.course.guarantee}
             </p>
           </div>
         </div>
@@ -179,7 +179,7 @@ function CoursePage() {
           />
           <BuyButton product="course">Buy the Course</BuyButton>
           <p className="font-heading text-sm text-muted-foreground normal-case">
-            {pricing.course.priceDisplay} · {pricing.course.guarantee}
+            {pricing.course.guarantee}
           </p>
         </div>
       </GradientSection>

@@ -553,18 +553,6 @@ export const testimonials = [
     videoUrl: "https://www.youtube.com/watch?v=_Lp_VW6zr88",
     videoId: "_Lp_VW6zr88",
   },
-  {
-    quote: "He's so accessible, so personal, so loving.",
-    name: "Natalia Maldonado, Lifestyle Entrepreneur",
-    videoUrl: "https://www.youtube.com/watch?v=i_cLPK9u-U8",
-    videoId: "i_cLPK9u-U8",
-  },
-  {
-    quote: "He will help to push your envelope so you can achieve your goals.",
-    name: "Debra Kagan, Womens Mojo Specialist",
-    videoUrl: "https://www.youtube.com/watch?v=WZgi9mxViho",
-    videoId: "WZgi9mxViho",
-  },
 ]
 
 export const communityForWho = [

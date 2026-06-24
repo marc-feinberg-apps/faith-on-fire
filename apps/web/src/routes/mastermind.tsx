@@ -53,7 +53,7 @@ function MastermindPage() {
             <BuyButton product="mastermind" tone="light">Join the Mastermind</BuyButton>
           </div>
           <p className="font-heading text-sm text-white/60 normal-case">
-            {pricing.mastermind.priceDisplay} · {pricing.mastermind.guarantee}
+            {pricing.mastermind.guarantee}
           </p>
         </div>
       </section>
@@ -192,7 +192,7 @@ function MastermindPage() {
           />
           <BuyButton product="mastermind">Join the Mastermind</BuyButton>
           <p className="font-heading text-sm text-muted-foreground normal-case">
-            {pricing.mastermind.priceDisplay} · {pricing.mastermind.guarantee}
+            {pricing.mastermind.guarantee}
           </p>
         </div>
       </GradientSection>

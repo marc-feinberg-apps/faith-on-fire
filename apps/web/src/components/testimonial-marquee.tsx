@@ -22,10 +22,14 @@ function TestimonialVideoCard({ quote, name, videoId, videoStart }: Testimonial)
     embedParams.set("start", String(videoStart))
   }
 
+  const [personName, ...titleParts] = name.split(",")
+  const title = titleParts.join(",").trim()
+
   return (
-    <Card className="h-full gap-4 overflow-hidden border border-foreground/10 bg-card p-0 shadow-sm">
-      <CardContent className="flex h-full flex-col gap-4 p-5">
-        <div className="overflow-hidden rounded-lg bg-[var(--charcoal)]">
+    <Card className="group h-full gap-0 overflow-hidden rounded-2xl border border-foreground/10 bg-card p-0 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[var(--ember)]/10">
+      <div className="h-1.5 w-full bg-gradient-to-r from-[var(--ember)] via-[var(--sun-gold)] to-[var(--ember)]" />
+      <CardContent className="flex h-full flex-col gap-5 p-6">
+        <div className="overflow-hidden rounded-xl bg-[var(--charcoal)] shadow-inner">
           {isPlaying ? (
             <iframe
               src={`https://www.youtube-nocookie.com/embed/${videoId}?${embedParams.toString()}`}
@@ -39,33 +43,47 @@ function TestimonialVideoCard({ quote, name, videoId, videoStart }: Testimonial)
             <button
               type="button"
               onClick={() => setIsPlaying(true)}
-              className="group relative block aspect-video w-full overflow-hidden text-left focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/50"
+              className="group/play relative block aspect-video w-full overflow-hidden text-left focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/50"
               aria-label={`Play ${name} testimonial video`}
             >
               <img
                 src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
                 alt=""
-                className="h-full w-full object-cover opacity-90 transition-transform duration-200 group-hover:scale-105"
+                className="h-full w-full object-cover transition-transform duration-300 group-hover/play:scale-105"
                 loading="lazy"
               />
-              <span className="absolute inset-0 bg-black/10" aria-hidden="true" />
-              <span className="absolute left-3 bottom-3 flex items-center gap-2 rounded-full bg-black/70 px-2.5 py-1.5 text-xs font-semibold text-white shadow-sm">
-                <span
-                  className="h-0 w-0 border-y-[6px] border-l-[10px] border-y-transparent border-l-current"
-                  aria-hidden="true"
-                />
-                Play
+              <span
+                className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/30 transition-colors duration-300 group-hover/play:from-black/80"
+                aria-hidden="true"
+              />
+              <span className="absolute inset-0 flex items-center justify-center">
+                <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/95 shadow-lg transition-transform duration-300 group-hover/play:scale-110">
+                  <span
+                    className="ml-0.5 h-0 w-0 border-y-[9px] border-l-[15px] border-y-transparent border-l-[var(--ember)]"
+                    aria-hidden="true"
+                  />
+                </span>
               </span>
             </button>
           )}
         </div>
         <blockquote className="flex flex-1 flex-col gap-3">
-          <p className="text-sm leading-relaxed text-foreground normal-case font-sans italic">
-            “{quote}”
+          <span className="font-heading text-3xl leading-none text-[var(--sun-gold)]" aria-hidden="true">
+            “
+          </span>
+          <p className="-mt-4 text-sm leading-relaxed text-foreground normal-case font-sans italic">
+            {quote}
           </p>
-          <cite className="font-heading text-xs font-semibold not-italic text-muted-foreground">
-            {name}
-          </cite>
+          <div className="mt-auto flex flex-col border-t border-foreground/10 pt-3">
+            <cite className="font-heading text-sm font-semibold not-italic text-foreground">
+              {personName}
+            </cite>
+            {title && (
+              <span className="text-xs font-medium uppercase tracking-wide text-[var(--ember)]">
+                {title}
+              </span>
+            )}
+          </div>
         </blockquote>
       </CardContent>
     </Card>
@@ -74,7 +92,7 @@ function TestimonialVideoCard({ quote, name, videoId, videoStart }: Testimonial)
 
 export function TestimonialVideoGrid({ testimonials }: { testimonials: Testimonial[] }) {
   return (
-    <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+    <div className="mx-auto grid max-w-4xl gap-6 sm:grid-cols-2">
       {testimonials.map((testimonial) => (
         <TestimonialVideoCard key={testimonial.videoId} {...testimonial} />
       ))}
