@@ -114,43 +114,10 @@ export function IntroVideoSection() {
       </div>
 
       {/* three offer cards */}
-      <div className="relative z-10 mx-auto grid w-full max-w-4xl grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
+      <div className="relative z-10 mx-auto grid w-full max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-5">
         {offers.map((card, i) => {
-          const inner = (
-            <>
-              {/* hover glow */}
-              <div className="gradient-fire pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover/card:opacity-10" />
-              <div className="relative flex items-start gap-3">
-                <span className="flex size-11 shrink-0 items-center justify-center rounded-xl gradient-fire text-white shadow-lg shadow-[var(--fire-red)]/30 transition-transform duration-300 group-hover/card:scale-110 group-hover/card:-rotate-6">
-                  <SiteIcon name={card.icon} className="size-5" />
-                </span>
-                <div className="min-w-0">
-                  <span className="font-heading text-[0.65rem] font-semibold tracking-[0.18em] text-[var(--sun-gold)] uppercase">
-                    {card.eyebrow}
-                  </span>
-                  <h3 className="font-heading text-base leading-tight font-bold text-white sm:text-lg">
-                    {card.title}
-                  </h3>
-                </div>
-              </div>
-              <p className="relative mt-2 flex-1 text-sm leading-snug text-white/70 normal-case font-sans">
-                {card.description}
-              </p>
-              <span className="relative mt-3 flex items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 font-heading text-sm font-bold tracking-wide text-white uppercase transition-colors group-hover/card:text-[var(--sun-gold)]">
-                  {card.ctaLabel}
-                  <HugeiconsIcon
-                    icon={ArrowRight01Icon}
-                    className="size-4 transition-transform group-hover/card:translate-x-1"
-                    strokeWidth={2.5}
-                  />
-                </span>
-              </span>
-            </>
-          )
-
           const cardClass =
-            "animate-fade-in-up group/card relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.06] p-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--sun-gold)]/40 hover:bg-white/[0.1] hover:shadow-xl hover:shadow-black/40 sm:p-5"
+            "animate-fade-in-up group/card relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.06] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--sun-gold)]/40 hover:bg-white/[0.1] hover:shadow-xl hover:shadow-black/40"
 
           return (
             <Link
@@ -159,7 +126,58 @@ export function IntroVideoSection() {
               className={cardClass}
               style={{ animationDelay: `${0.15 + i * 0.12}s` }}
             >
-              {inner}
+              {/* image — every card shares the same aspect ratio so the row stays uniform */}
+              <div className="relative aspect-[4/5] w-full overflow-hidden">
+                {card.image ? (
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    style={{ objectPosition: card.imagePosition }}
+                    className="absolute inset-0 size-full object-cover transition-transform duration-500 group-hover/card:scale-105"
+                  />
+                ) : (
+                  <div className="gradient-fire absolute inset-0 flex items-center justify-center">
+                    <SiteIcon name={card.icon} className="size-14 text-white/85" />
+                  </div>
+                )}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
+                {!card.image && (
+                  <span className="absolute top-3 right-3 rounded-full bg-black/50 px-2.5 py-1 font-heading text-[0.6rem] font-semibold tracking-[0.15em] text-white/80 uppercase ring-1 ring-white/20">
+                    Coming Soon
+                  </span>
+                )}
+                <div className="absolute inset-x-0 bottom-0 flex items-end gap-3 p-4">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-xl gradient-fire text-white shadow-lg shadow-[var(--fire-red)]/30 ring-1 ring-white/20 transition-transform duration-300 group-hover/card:scale-110 group-hover/card:-rotate-6">
+                    <SiteIcon name={card.icon} className="size-5" />
+                  </span>
+                  <div className="min-w-0">
+                    <span className="font-heading text-[0.65rem] font-semibold tracking-[0.18em] text-[var(--sun-gold)] uppercase">
+                      {card.eyebrow}
+                    </span>
+                    <h3 className="font-heading text-base leading-tight font-bold text-white sm:text-lg">
+                      {card.title}
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              {/* content */}
+              <div className="relative flex flex-1 flex-col gap-3 p-4 sm:p-5">
+                <div className="gradient-fire pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover/card:opacity-10" />
+                <p className="relative flex-1 text-sm leading-snug text-white/70 normal-case font-sans">
+                  {card.description}
+                </p>
+                <span className="relative flex items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 font-heading text-sm font-bold tracking-wide text-white uppercase transition-colors group-hover/card:text-[var(--sun-gold)]">
+                    {card.ctaLabel}
+                    <HugeiconsIcon
+                      icon={ArrowRight01Icon}
+                      className="size-4 transition-transform group-hover/card:translate-x-1"
+                      strokeWidth={2.5}
+                    />
+                  </span>
+                </span>
+              </div>
             </Link>
           )
         })}

@@ -1,3 +1,6 @@
+import { publicStorageUrl } from "@/lib/supabase/storage"
+import { storageAssets } from "@/data/storage-assets"
+
 export const siteConfig = {
   name: "Faith on Fire",
   tagline:
@@ -18,8 +21,20 @@ export const navLinks = [
   { label: "Founder", href: "/about-marc" },
 ]
 
+export const ebookPurchaseUrl =
+  import.meta.env.VITE_SAMCART_EBOOK_URL ||
+  "https://samcart.com/placeholder-faith-on-fire-ebook"
+
+export const ebookCoverUrl = publicStorageUrl(storageAssets.ebookCover)
+
+export const courseCoverUrl = publicStorageUrl(storageAssets.courseCover)
+
+export const mastermindZoomUrl = publicStorageUrl(storageAssets.mastermindZoom)
+
 // The three things Faith on Fire sells. Single source of truth for the
-// homepage offer cards and any cross-sell grids.
+// homepage offer cards and any cross-sell grids. `image` is null for offers
+// that don't have real artwork yet — the UI falls back to a styled icon
+// placeholder so every card keeps the same aspect ratio.
 export const offers = [
   {
     key: "ebook",
@@ -29,6 +44,8 @@ export const offers = [
     description: "Start the Faith on Fire Blueprint today.",
     ctaLabel: "Get the E-book",
     href: "/ebook",
+    image: ebookCoverUrl,
+    imagePosition: "center",
   },
   {
     key: "course",
@@ -38,6 +55,11 @@ export const offers = [
     description: "The 10-module roadmap to return, restore, reignite.",
     ctaLabel: "Explore the Course",
     href: "/course",
+    image: courseCoverUrl,
+    // The source photo is a wide landscape with Marc positioned right of
+    // center — shift the crop focal point so his face stays in frame on the
+    // narrower portrait card instead of centering on the background.
+    imagePosition: "97% center",
   },
   {
     key: "mastermind",
@@ -47,16 +69,12 @@ export const offers = [
     description: "The Brotherhood — real accountability. Brothers for life.",
     ctaLabel: "Join the Mastermind",
     href: "/mastermind",
+    image: mastermindZoomUrl as string | null,
+    imagePosition: "center 70%",
   },
 ] as const
 
-export const ebookPurchaseUrl =
-  import.meta.env.VITE_SAMCART_EBOOK_URL ||
-  "https://samcart.com/placeholder-faith-on-fire-ebook"
-
-export const ebookCoverUrl = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/public-files/faith-on-fire-ebook-cover.png`
-
-export const courseCoverUrl = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/public-files/marc-video-course-picture-no-text.png`
+export const pillarImageUrl = publicStorageUrl(storageAssets.pillarShared)
 
 // Manually maintained to match the live Stripe/SamCart prices — shown next to
 // every buy CTA so a man knows the cost and the guarantee before he clicks.
@@ -149,6 +167,7 @@ export const problemCards = [
     key: "isolation",
     title: "Isolation",
     stat: "34%",
+    image: publicStorageUrl(storageAssets.problemIsolation),
     description:
       "A lone sheep is easy prey. Isolation is one of the enemy's oldest weapons — the man who fell hard almost always fell alone.",
   },
@@ -156,6 +175,7 @@ export const problemCards = [
     key: "guilt-shame",
     title: "Guilt & Shame",
     stat: "28%",
+    image: publicStorageUrl(storageAssets.problemGuiltShame),
     description:
       "Old failures and regrets linger in the mirror, whispering that you'll always be defined by your lowest moment. That whisper is a lie.",
   },
@@ -163,6 +183,7 @@ export const problemCards = [
     key: "lack-of-direction",
     title: "Lack of Direction",
     stat: "17%",
+    image: publicStorageUrl(storageAssets.problemLackOfDirection),
     description:
       "The noise of life, the weight of sin, and the distraction of survival have buried your assignment. It hasn't disappeared. It's waiting.",
   },
@@ -170,6 +191,7 @@ export const problemCards = [
     key: "forgiveness",
     title: "Forgiveness Struggles",
     stat: "12%",
+    image: publicStorageUrl(storageAssets.problemForgiveness),
     description:
       "Unforgiveness is a prison you built and locked yourself — the person you haven't forgiven is living free while you stay in chains.",
   },
@@ -177,6 +199,7 @@ export const problemCards = [
     key: "other",
     title: "Other",
     stat: "9%",
+    image: publicStorageUrl(storageAssets.problemOther),
     description:
       "Other struggles often trace back to the same ache: the God-shaped void that nothing else can truly fill.",
   },

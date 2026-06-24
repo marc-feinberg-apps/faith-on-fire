@@ -71,11 +71,15 @@ function ProblemSection() {
       />
       <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
         {problemCards.map((card) => (
-          <Card key={card.key} className="border-none p-0 ring-1 ring-foreground/10">
+          <Card key={card.key} className="overflow-hidden border-none p-0 ring-1 ring-foreground/10">
+            <div className="h-40 w-full">
+              <img
+                src={card.image}
+                alt={card.title}
+                className="h-full w-full object-cover"
+              />
+            </div>
             <CardContent className="flex flex-col gap-2 p-6">
-              <span className="text-gradient-fire font-heading text-3xl font-bold">
-                {card.stat}
-              </span>
               <h3 className="text-lg">{card.title}</h3>
               <p className="text-sm leading-relaxed text-muted-foreground normal-case font-sans">
                 {card.description}
