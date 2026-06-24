@@ -54,6 +54,10 @@ export const ebookPurchaseUrl =
   import.meta.env.VITE_SAMCART_EBOOK_URL ||
   "https://samcart.com/placeholder-faith-on-fire-ebook"
 
+export const ebookCoverUrl = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/public-files/faith-on-fire-ebook-cover.png`
+
+export const courseCoverUrl = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/public-files/marc-video-course-picture-no-text.png`
+
 // Manually maintained to match the live Stripe/SamCart prices — shown next to
 // every buy CTA so a man knows the cost and the guarantee before he clicks.
 export const pricing = {

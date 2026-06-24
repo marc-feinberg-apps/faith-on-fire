@@ -12,6 +12,7 @@ import { Card, CardContent } from "@workspace/ui/components/card"
 import {
   blueprintModules,
   costOfStayingAway,
+  ebookCoverUrl,
   ebookPurchaseUrl,
   pillars,
   pricing,
@@ -48,26 +49,33 @@ function EbookPage() {
               "radial-gradient(closest-side, var(--flame-orange), transparent)",
           }}
         />
-        <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 text-center">
-          <span className="font-heading text-sm font-semibold tracking-[0.2em] text-[var(--sun-gold)]">
-            The Faith on Fire E-book
-          </span>
-          <h1 className="text-4xl leading-[1.1] text-white sm:text-5xl md:text-6xl">
-            Your roadmap back to God starts here.
-          </h1>
-          <p className="text-lg leading-relaxed text-white/80 normal-case font-sans">
-            The Blueprint e-book names the patterns that pull men away from God — and walks you
-            through the three pillars that bring you home: Return, Restore, Reignite.
-          </p>
-          <div className="mt-2 flex flex-col items-center gap-2">
-            {access.hasEbook ? (
-              <OwnedNotice tone="light">You already have the E-book</OwnedNotice>
-            ) : (
-              <ExternalCtaButton href={ebookPurchaseUrl}>Get the E-book</ExternalCtaButton>
-            )}
-            <p className="font-heading text-sm text-white/60 normal-case">
-              {pricing.ebook.guarantee}
+        <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center gap-10 px-6 text-center lg:flex-row lg:items-center lg:gap-12 lg:text-left">
+          <img
+            src={ebookCoverUrl}
+            alt="The Faith on Fire Blueprint e-book cover"
+            className="w-56 shrink-0 rounded-lg shadow-2xl sm:w-64 lg:w-72"
+          />
+          <div className="flex flex-col items-center gap-6 lg:items-start">
+            <span className="font-heading text-sm font-semibold tracking-[0.2em] text-[var(--sun-gold)]">
+              The Faith on Fire E-book
+            </span>
+            <h1 className="text-4xl leading-[1.1] text-white sm:text-5xl md:text-6xl">
+              Your roadmap back to God starts here.
+            </h1>
+            <p className="text-lg leading-relaxed text-white/80 normal-case font-sans">
+              The Blueprint e-book names the patterns that pull men away from God — and walks you
+              through the three pillars that bring you home: Return, Restore, Reignite.
             </p>
+            <div className="mt-2 flex flex-col items-center gap-2 lg:items-start">
+              {access.hasEbook ? (
+                <OwnedNotice tone="light">You already have the E-book</OwnedNotice>
+              ) : (
+                <ExternalCtaButton href={ebookPurchaseUrl}>Get the E-book</ExternalCtaButton>
+              )}
+              <p className="font-heading text-sm text-white/60 normal-case">
+                {pricing.ebook.guarantee}
+              </p>
+            </div>
           </div>
         </div>
       </section>

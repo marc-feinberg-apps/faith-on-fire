@@ -12,6 +12,7 @@ import { Badge } from "@workspace/ui/components/badge"
 import {
   blueprintModules,
   commitmentLetters,
+  courseCoverUrl,
   courseFaqs,
   moduleTools,
   pricing,
@@ -50,7 +51,23 @@ function CoursePage() {
   return (
     <>
       <section className="relative overflow-hidden py-20 sm:py-28">
-        <div className="absolute inset-0 gradient-ember" />
+        <div
+          className="absolute inset-0 bg-cover"
+          style={{ backgroundImage: `url(${courseCoverUrl})`, backgroundPosition: "80% center" }}
+        />
+        <div className="absolute inset-0 gradient-ember opacity-80" />
+        <div
+          className="absolute -top-32 left-1/2 size-[600px] -translate-x-1/2 rounded-full opacity-40 blur-3xl"
+          style={{
+            backgroundImage: "radial-gradient(closest-side, var(--flame-orange), transparent)",
+          }}
+        />
+        <div
+          className="absolute inset-x-0 bottom-0 h-1/2"
+          style={{
+            backgroundImage: "linear-gradient(to top, var(--ember-dark), transparent)",
+          }}
+        />
         <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 text-center">
           <Badge className="gradient-fire border-none px-4 py-1.5 text-sm font-semibold tracking-[0.15em] text-white">
             THE FAITH ON FIRE COURSE · 10 MODULES
