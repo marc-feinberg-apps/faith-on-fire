@@ -31,6 +31,8 @@ export const courseCoverUrl = publicStorageUrl(storageAssets.courseCover)
 
 export const mastermindZoomUrl = publicStorageUrl(storageAssets.mastermindZoom)
 
+export const introVideoUrl = publicStorageUrl(storageAssets.introVideo)
+
 // The three things Faith on Fire sells. Single source of truth for the
 // homepage offer cards and any cross-sell grids. `image` is null for offers
 // that don't have real artwork yet — the UI falls back to a styled icon

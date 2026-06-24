@@ -12,4 +12,5 @@ export const storageAssets = {
   problemLackOfDirection: "percentages/lack-of-direction.jpg",
   problemForgiveness: "percentages/forgiveness-struggle.jpg",
   problemOther: "percentages/others.jpg",
+  introVideo: "intro-video.mp4",
 } as const

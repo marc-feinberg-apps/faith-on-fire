@@ -8,10 +8,7 @@ import {
 } from "@hugeicons/core-free-icons"
 
 import { SiteIcon } from "@/components/site-icon"
-import { offers } from "@/data/site"
-
-const introVideoUrl =
-  import.meta.env.VITE_INTRO_VIDEO_URL || "/assets/video/intro-placeholder.mp4"
+import { introVideoUrl, offers } from "@/data/site"
 
 export function IntroVideoSection() {
   const videoRef = useRef<HTMLVideoElement>(null)
