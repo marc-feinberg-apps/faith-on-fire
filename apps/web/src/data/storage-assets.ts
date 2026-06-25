@@ -4,7 +4,7 @@
 // in one place instead of repeating the storage URL shape per asset.
 export const storageAssets = {
   ebookCover: "faith-on-fire-ebook-cover.png",
-  courseCover: "marc-video-course-picture-no-text.png",
+  courseCover: "course-blueprint.webp",
   mastermindZoom: "mastermind-zoom.png",
   pillarShared: "pillars/pillar-2.jpg",
   problemIsolation: "percentages/isolation.webp",
