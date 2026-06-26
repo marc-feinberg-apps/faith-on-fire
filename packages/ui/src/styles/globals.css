@@ -222,7 +222,7 @@
     background-image: linear-gradient(160deg, var(--ember-dark) 0%, color-mix(in srgb, var(--fire-red) 55%, var(--ember-dark)) 100%);
   }
   .gradient-warm {
-    background-image: linear-gradient(180deg, var(--warm-cream) 0%, hsl(0 0% 100%) 100%);
+    background-image: linear-gradient(180deg, var(--warm-cream) 0%, var(--background) 100%);
   }
   .text-gradient-fire {
     background-image: linear-gradient(135deg, var(--fire-red) 0%, var(--sun-gold) 100%);

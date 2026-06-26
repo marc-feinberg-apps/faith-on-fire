@@ -41,7 +41,7 @@ function DashboardPage() {
       icon: Compass01Icon,
       eyebrow: "The Course",
       title: "Your Course Library",
-      description: "All 10 modules of the Faith on Fire Blueprint — watch at your own pace.",
+      description: "All 11 modules of the Faith on Fire Blueprint — unlock one a day.",
       owned: access.hasCourse,
       upsellTo: "/course",
     },

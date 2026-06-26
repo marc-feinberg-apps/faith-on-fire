@@ -54,7 +54,7 @@ export const offers = [
     icon: "Compass01Icon",
     eyebrow: "The Course",
     title: "The Blueprint",
-    description: "The 10-module roadmap to return, restore, reignite.",
+    description: "The 11-module roadmap to return, restore, reignite.",
     ctaLabel: "Explore the Course",
     href: "/course",
     image: courseCoverUrl,
@@ -455,6 +455,24 @@ export const blueprintModules = [
     toolDescription:
       "Write the man you were when you started, tell him what you found, and name how you will serve other men next.",
   },
+  // TODO: replace placeholder module 11 copy with the real bonus-session content.
+  // This is wired to course_11.mp4 in the member library; titles/teaching below
+  // are stand-ins so the module renders end-to-end.
+  {
+    number: 11,
+    slug: "bonus-session",
+    title: "Bonus Session",
+    subtitle: "A Final Word to Carry With You",
+    keyTeaching:
+      "Placeholder teaching for the bonus session. Replace this with the real key teaching for module 11.",
+    reflectionPreview:
+      "Placeholder reflection questions for the bonus session. Replace with the real prompts.",
+    declaration: "Placeholder declaration for the bonus session.",
+    actionStep: "Placeholder action step for the bonus session.",
+    tool: "Bonus Session Worksheet",
+    toolDescription:
+      "Placeholder tool description for the bonus session. Replace with the real workbook tool.",
+  },
 ]
 
 export const moduleTools = blueprintModules.map((module) => ({
@@ -704,6 +722,7 @@ const lessonDurations: Record<number, string> = {
   8: "19 min",
   9: "13 min",
   10: "22 min",
+  11: "20 min",
 }
 
 export const courseLessons = blueprintModules.map((module) => ({

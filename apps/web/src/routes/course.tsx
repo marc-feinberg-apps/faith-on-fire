@@ -23,9 +23,9 @@ import {
 } from "@/data/site"
 import type { SiteIconName } from "@/components/site-icon"
 
-const courseTitle = "The Faith on Fire Course — 10 Modules to Return, Restore, Reignite"
+const courseTitle = "The Faith on Fire Course — 11 Modules to Return, Restore, Reignite"
 const courseDescription =
-  "The Faith on Fire Course — 10 modules from Wake-Up Call to The Invitation, with commitment letters, scripture anchors, and the full workbook toolset."
+  "The Faith on Fire Course — 11 modules from Wake-Up Call to The Invitation, with commitment letters, scripture anchors, and the full workbook toolset."
 
 export const Route = createFileRoute("/course")({
   head: () => ({
@@ -70,7 +70,7 @@ function CoursePage() {
         />
         <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 text-center">
           <Badge className="gradient-fire border-none px-4 py-1.5 text-sm font-semibold tracking-[0.15em] text-white">
-            THE FAITH ON FIRE COURSE · 10 MODULES
+            THE FAITH ON FIRE COURSE · 11 MODULES
           </Badge>
           <h1 className="text-4xl leading-[1.1] text-white sm:text-5xl md:text-6xl">
             This is not passive content.
@@ -93,7 +93,7 @@ function CoursePage() {
 
       <GradientSection variant="cream">
         <SectionHeading
-          eyebrow="10 Modules"
+          eyebrow="11 Modules"
           title="The Roadmap, Module by Module"
           description="From the wake-up call to the invitation — each module follows the workbook structure of Key Teaching, Reflection Questions, Declaration, and This Week's Action Step."
         />
@@ -191,8 +191,8 @@ function CoursePage() {
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
           <SectionHeading
             eyebrow="Get The Course"
-            title="Get instant access to all 10 modules."
-            description="All 10 modules, the commitment letters, the workbook tools, and the scripture anchors — yours to keep."
+            title="Get instant access to all 11 modules."
+            description="All 11 modules, the commitment letters, the workbook tools, and the scripture anchors — yours to keep."
           />
           <BuyButton product="course">Buy the Course</BuyButton>
           <p className="font-heading text-sm text-muted-foreground normal-case">
