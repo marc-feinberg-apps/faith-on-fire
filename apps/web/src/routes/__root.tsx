@@ -1,9 +1,13 @@
-import { HeadContent, Outlet, Scripts, createRootRouteWithContext } from "@tanstack/react-router"
+import { HeadContent, Link, Outlet, Scripts, createRootRouteWithContext } from "@tanstack/react-router"
 
 import appCss from "@workspace/ui/globals.css?url"
+import { Toaster } from "@workspace/ui/components/sonner"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { EbookPopup } from "@/components/ebook-popup"
+import { RouteProgress } from "@/components/route-progress"
+import { RouteError } from "@/components/route-error"
+import { CtaButton } from "@/components/cta-button"
 import { siteConfig } from "@/data/site"
 import { getCurrentUser } from "@/server/auth"
 import { getMyAccess } from "@/server/member"
@@ -126,13 +130,29 @@ export const Route = createRootRouteWithContext<{ auth: AuthContext; access: Acc
     ],
   }),
   notFoundComponent: () => (
-    <main className="flex min-h-[60vh] flex-col items-center justify-center gap-4 p-6 text-center">
-      <h1 className="text-4xl">404</h1>
-      <p className="text-muted-foreground">
-        The requested page could not be found.
-      </p>
+    <main className="flex min-h-[60vh] flex-col items-center justify-center gap-6 px-6 py-20 text-center">
+      <p className="font-heading text-7xl font-bold text-gradient-fire">404</p>
+      <div className="space-y-2">
+        <h1 className="text-3xl text-foreground">This page wandered off</h1>
+        <p className="mx-auto max-w-md text-sm leading-relaxed text-muted-foreground normal-case font-sans">
+          The page you're looking for doesn't exist or has moved. Let's get you back on solid
+          ground.
+        </p>
+      </div>
+      <div className="flex flex-col items-center gap-3 sm:flex-row">
+        <CtaButton href="/" size="default">
+          Back to home
+        </CtaButton>
+        <Link
+          to="/contact"
+          className="text-xs font-medium text-muted-foreground underline-offset-4 transition-colors hover:text-[var(--fire-red)] hover:underline"
+        >
+          Contact support
+        </Link>
+      </div>
     </main>
   ),
+  errorComponent: RouteError,
   component: RootLayout,
   shellComponent: RootDocument,
 })
@@ -140,12 +160,20 @@ export const Route = createRootRouteWithContext<{ auth: AuthContext; access: Acc
 function RootLayout() {
   return (
     <div className="flex min-h-svh flex-col">
+      <RouteProgress />
+      <a
+        href="#main"
+        className="sr-only z-[110] rounded-lg bg-foreground px-4 py-2 font-heading text-sm font-semibold text-background focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:ring-2 focus:ring-[var(--fire-red)]"
+      >
+        Skip to content
+      </a>
       <SiteHeader />
-      <main className="flex-1">
+      <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
         <Outlet />
       </main>
       <SiteFooter />
       <EbookPopup />
+      <Toaster />
     </div>
   )
 }

@@ -3,6 +3,7 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { Mail01Icon, CheckmarkCircle02Icon } from "@hugeicons/core-free-icons"
 
 import { Button } from "@workspace/ui/components/button"
+import { toast } from "@workspace/ui/components/sonner"
 import { Input } from "@workspace/ui/components/input"
 import { Label } from "@workspace/ui/components/label"
 import { Textarea } from "@workspace/ui/components/textarea"
@@ -60,11 +61,12 @@ export function ContactForm() {
       await submitContactRequest({ data: result.data })
       setSubmitted(true)
     } catch (error) {
-      setSubmitError(
+      const message =
         error instanceof Error
           ? error.message
-          : "We couldn't send your message. Please email support@faithonfire.world.",
-      )
+          : "We couldn't send your message. Please email support@faithonfire.world."
+      setSubmitError(message)
+      toast.error("Your message didn't send.", { description: message })
     } finally {
       setIsSubmitting(false)
     }
@@ -152,15 +154,19 @@ export function ContactForm() {
         {errors.message ? <p className="text-xs text-destructive">{errors.message}</p> : null}
       </div>
 
-      {submitError ? <p className="text-sm text-destructive">{submitError}</p> : null}
+      {submitError ? (
+        <p role="alert" aria-live="polite" className="text-sm text-destructive">
+          {submitError}
+        </p>
+      ) : null}
 
       <Button
         type="submit"
         size="lg"
         className="gradient-fire mt-2 gap-2 text-white"
-        disabled={isSubmitting}
+        loading={isSubmitting}
       >
-        <HugeiconsIcon icon={Mail01Icon} className="size-4" />
+        {isSubmitting ? null : <HugeiconsIcon icon={Mail01Icon} className="size-4" />}
         {isSubmitting ? "Sending..." : "Send Message"}
       </Button>
     </form>

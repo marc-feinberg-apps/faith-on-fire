@@ -5,6 +5,7 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { Logout01Icon } from "@hugeicons/core-free-icons"
 
 import { Button } from "@workspace/ui/components/button"
+import { toast } from "@workspace/ui/components/sonner"
 import { signOut } from "@/server/auth"
 import { ChangePasswordForm } from "@/components/change-password-form"
 
@@ -23,8 +24,14 @@ function AccountPage() {
 
   async function handleSignOut() {
     setIsSigningOut(true)
-    await signOutFn()
-    await navigate({ to: "/" })
+    try {
+      await signOutFn()
+      toast.success("Signed out.", { description: "You've been securely logged out." })
+      await navigate({ to: "/" })
+    } catch {
+      toast.error("We couldn't sign you out.", { description: "Please try again." })
+      setIsSigningOut(false)
+    }
   }
 
   return (
@@ -44,9 +51,9 @@ function AccountPage() {
             variant="outline"
             className="mt-8 gap-2"
             onClick={handleSignOut}
-            disabled={isSigningOut}
+            loading={isSigningOut}
           >
-            <HugeiconsIcon icon={Logout01Icon} className="size-4" />
+            {isSigningOut ? null : <HugeiconsIcon icon={Logout01Icon} className="size-4" />}
             {isSigningOut ? "Logging out..." : "Log Out"}
           </Button>
         </div>

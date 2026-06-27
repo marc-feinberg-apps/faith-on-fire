@@ -4,6 +4,8 @@ import { useServerFn } from "@tanstack/react-start"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { ArrowLeft01Icon, Calendar03Icon, CheckmarkCircle02Icon, Download04Icon } from "@hugeicons/core-free-icons"
 
+import { Skeleton } from "@workspace/ui/components/skeleton"
+import { toast } from "@workspace/ui/components/sonner"
 import { SectionHeading } from "@/components/section-heading"
 import { CourseLessonCard, CourseVideoModal } from "@/components/member/course-lesson-card"
 import type { CourseLesson, CourseLessonState } from "@/components/member/course-lesson-card"
@@ -34,8 +36,37 @@ export const Route = createFileRoute("/_authenticated/courses")({
   head: () => ({
     meta: [{ title: "Your Course | Faith on Fire" }],
   }),
+  pendingComponent: CoursesPending,
   component: CoursesPage,
 })
+
+// Holds the course-library layout while the loader fetches, so navigating in
+// shows the page taking shape instead of a blank or frozen screen.
+function CoursesPending() {
+  return (
+    <div className="bg-background">
+      <section className="relative overflow-hidden py-14 sm:py-20">
+        <div className="absolute inset-0 gradient-warm" />
+        <div className="relative z-10 mx-auto max-w-6xl px-6">
+          <Skeleton className="h-4 w-24" />
+          <div className="mt-6 flex flex-col gap-3">
+            <Skeleton className="h-4 w-56" />
+            <Skeleton className="h-10 w-80 max-w-full" />
+            <Skeleton className="h-4 w-full max-w-2xl" />
+          </div>
+        </div>
+      </section>
+      <section className="mx-auto max-w-6xl px-6 pb-10">
+        <Skeleton className="mb-6 h-20 w-full rounded-2xl" />
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <Skeleton key={i} className="h-64 w-full rounded-2xl" />
+          ))}
+        </div>
+      </section>
+    </div>
+  )
+}
 
 function lessonState(number: number, library: CourseLibraryState): CourseLessonState {
   if (library.unlocked.includes(number)) return "unlocked"
@@ -86,6 +117,7 @@ function CoursesPage() {
       }
     } catch {
       setUnlockError("We couldn't unlock this module. Please try again.")
+      toast.error("We couldn't unlock this module.", { description: "Please try again in a moment." })
     } finally {
       setUnlockingModule(null)
     }
@@ -124,7 +156,15 @@ function CoursesPage() {
         window.open(result.url, "_blank", "noopener")
         localStorage.setItem(WORKBOOK_DOWNLOADED_KEY, "1")
         setWorkbookDownloaded(true)
+      } else {
+        toast.error("We couldn't prepare your workbook.", {
+          description: "Please try again, or email support@faithonfire.world.",
+        })
       }
+    } catch {
+      toast.error("We couldn't prepare your workbook.", {
+        description: "Please try again, or email support@faithonfire.world.",
+      })
     } finally {
       setWorkbookLoading(false)
     }
