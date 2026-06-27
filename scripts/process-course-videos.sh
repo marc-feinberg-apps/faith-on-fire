@@ -68,15 +68,24 @@ process_video() {
     -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 "$src")
   log "Codec: $codec"
 
-  if [[ "$codec" == "h264" ]]; then
-    # Still ensure faststart even if already H.264
+  # Bitrate threshold: re-encode anything above 8 Mbps even if already H.264.
+  # CapCut exports at ~12 Mbps; CRF 22 targets ~3-5 Mbps for talking-head content.
+  local bitrate_kbps
+  bitrate_kbps=$(ffprobe -v error -select_streams v:0 \
+    -show_entries stream=bit_rate -of default=noprint_wrappers=1:nokey=1 "$src")
+  bitrate_kbps=${bitrate_kbps:-0}
+  bitrate_kbps=$((bitrate_kbps / 1000))
+  log "Bitrate: ${bitrate_kbps} kbps"
+
+  if [[ "$codec" == "h264" && "$bitrate_kbps" -lt 8000 ]]; then
+    # Low-bitrate H.264: just ensure faststart, no re-encode needed
     local atoms
     atoms=$(head -c 200000 "$src" | strings -n 4 | grep -oE "ftyp|moov|mdat" | head -3 | tr '\n' ' ')
     if echo "$atoms" | grep -q "moov" && [[ "$atoms" != *"mdat"*"moov"* ]]; then
-      skip "Already H.264 + faststart — skipping course_${n}.mp4"
+      skip "Already H.264 + faststart + low bitrate — skipping course_${n}.mp4"
       return
     fi
-    log "Already H.264 but missing faststart — remuxing only..."
+    log "H.264 + low bitrate but missing faststart — remuxing only..."
     ffmpeg -y -i "$src" -c copy -movflags +faststart "$out" -loglevel error -stats
   else
     log "Re-encoding HEVC → H.264 (CRF 22, faststart)..."
@@ -98,7 +107,7 @@ process_video() {
     -H "Authorization: Bearer $SERVICE_ROLE_KEY" \
     -H "Content-Type: video/mp4" \
     -H "x-upsert: true" \
-    --data-binary "@$out")
+    -T "$out")
 
   if [[ "$up_code" == "200" ]]; then
     ok "course_${n}.mp4 uploaded"
@@ -117,7 +126,7 @@ process_video() {
     -H "Authorization: Bearer $SERVICE_ROLE_KEY" \
     -H "Content-Type: image/jpeg" \
     -H "x-upsert: true" \
-    --data-binary "@$thumb")
+    -T "$thumb")
   if [[ "$thumb_code" == "200" ]]; then
     ok "course_${n}.mp4 + thumbnail done"
   else
