@@ -2,6 +2,8 @@ import * as React from "react"
 import { cva  } from "class-variance-authority"
 import type {VariantProps} from "class-variance-authority";
 import { Slot } from "radix-ui"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { Loading03Icon } from "@hugeicons/core-free-icons"
 
 import { cn } from "@workspace/ui/lib/utils"
 
@@ -47,21 +49,39 @@ function Button({
   variant = "default",
   size = "default",
   asChild = false,
+  loading = false,
+  disabled,
+  children,
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean
+    /** Show an inline spinner and disable the button while an action runs. */
+    loading?: boolean
   }) {
   const Comp = asChild ? Slot.Root : "button"
 
+  // With asChild the child must stay a single element, so the spinner is only
+  // injected for plain buttons. Either way `loading` implies disabled.
   return (
     <Comp
       data-slot="button"
       data-variant={variant}
       data-size={size}
       className={cn(buttonVariants({ variant, size, className }))}
+      disabled={asChild ? undefined : disabled || loading}
+      aria-busy={loading || undefined}
       {...props}
-    />
+    >
+      {asChild ? (
+        children
+      ) : (
+        <>
+          {loading ? <HugeiconsIcon icon={Loading03Icon} className="animate-spin" /> : null}
+          {children}
+        </>
+      )}
+    </Comp>
   )
 }
 

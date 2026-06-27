@@ -138,6 +138,34 @@
     --sidebar-ring: hsl(18 96% 55%);
 }
 
+/* Respect users who ask for less motion: neutralize the looping/decorative
+   animations and collapse transitions so nothing slides, pulses, or scales.
+   Opacity-based reveals are forced to their visible end-state. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-fade-in-up {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+  .animate-marquee-up,
+  .animate-marquee-down,
+  .animate-marquee-left,
+  .animate-marquee-right,
+  .animate-sound-ring,
+  .animate-sound-bob,
+  .animate-pulse,
+  .animate-spin {
+    animation: none !important;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

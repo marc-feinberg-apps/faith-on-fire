@@ -33,7 +33,7 @@ export function SiteHeader() {
             <Link
               key={link.href}
               to={link.href}
-              className="font-heading text-sm font-medium tracking-wide transition-colors hover:text-[var(--fire-red)]"
+              className="rounded font-heading text-sm font-medium tracking-wide transition-colors hover:text-[var(--fire-red)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--fire-red)] focus-visible:ring-offset-4 focus-visible:ring-offset-background"
               activeProps={{ className: "text-[var(--fire-red)]" }}
               inactiveProps={{ className: "text-foreground/80" }}
             >

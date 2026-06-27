@@ -64,9 +64,14 @@ export function LoginForm({ redirect }: { redirect?: string }) {
           value={values.email}
           onChange={(e) => update("email", e.target.value)}
           aria-invalid={!!errors.email}
+          aria-describedby={errors.email ? "email-error" : undefined}
           placeholder="you@example.com"
         />
-        {errors.email ? <p className="text-xs text-destructive">{errors.email}</p> : null}
+        {errors.email ? (
+          <p id="email-error" className="text-xs text-destructive">
+            {errors.email}
+          </p>
+        ) : null}
       </div>
 
       <div className="flex flex-col gap-2">
@@ -86,6 +91,7 @@ export function LoginForm({ redirect }: { redirect?: string }) {
             value={values.password}
             onChange={(e) => update("password", e.target.value)}
             aria-invalid={!!errors.password}
+            aria-describedby={errors.password ? "password-error" : undefined}
             className="pr-10"
           />
           <button
@@ -97,18 +103,26 @@ export function LoginForm({ redirect }: { redirect?: string }) {
             <HugeiconsIcon icon={showPassword ? EyeOffIcon : EyeIcon} className="size-4" />
           </button>
         </div>
-        {errors.password ? <p className="text-xs text-destructive">{errors.password}</p> : null}
+        {errors.password ? (
+          <p id="password-error" className="text-xs text-destructive">
+            {errors.password}
+          </p>
+        ) : null}
       </div>
 
-      {submitError ? <p className="text-sm text-destructive">{submitError}</p> : null}
+      {submitError ? (
+        <p role="alert" aria-live="polite" className="text-sm text-destructive">
+          {submitError}
+        </p>
+      ) : null}
 
       <Button
         type="submit"
         size="lg"
         className="gradient-fire gap-2 text-white"
-        disabled={isSubmitting}
+        loading={isSubmitting}
       >
-        <HugeiconsIcon icon={LockIcon} className="size-4" />
+        {isSubmitting ? null : <HugeiconsIcon icon={LockIcon} className="size-4" />}
         {isSubmitting ? "Logging in..." : "Log In"}
       </Button>
     </form>

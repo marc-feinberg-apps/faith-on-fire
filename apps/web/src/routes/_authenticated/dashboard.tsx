@@ -13,6 +13,7 @@ import {
 } from "@hugeicons/core-free-icons"
 
 import { Card, CardContent } from "@workspace/ui/components/card"
+import { toast } from "@workspace/ui/components/sonner"
 import { getEbookDownloadUrl } from "@/server/member"
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
@@ -133,9 +134,11 @@ function EbookCard() {
         window.open(result.url, "_blank", "noopener,noreferrer")
       } else {
         setError("We couldn't generate your download link. Please try again.")
+        toast.error("Download link unavailable.", { description: "Please try again in a moment." })
       }
     } catch {
       setError("We couldn't generate your download link. Please try again.")
+      toast.error("Download link unavailable.", { description: "Please try again in a moment." })
     } finally {
       setIsLoading(false)
     }

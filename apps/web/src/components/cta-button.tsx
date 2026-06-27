@@ -17,10 +17,10 @@ export function CtaButton({
   className?: string
 }) {
   const base =
-    "group inline-flex items-center justify-center gap-2 rounded-full font-heading font-semibold uppercase tracking-wide transition-all duration-200 normal-case"
+    "group inline-flex items-center justify-center gap-2 rounded-full font-heading font-semibold uppercase tracking-wide transition-all duration-200 normal-case focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--fire-red)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
   const sizes = size === "lg" ? "px-8 py-4 text-base" : "px-6 py-3 text-sm"
   const variants = {
-    fire: "gradient-fire text-white shadow-lg shadow-[var(--fire-red)]/25 hover:scale-[1.03] hover:shadow-xl hover:shadow-[var(--fire-red)]/35",
+    fire: "gradient-fire text-white shadow-lg shadow-[var(--fire-red)]/25 hover:scale-[1.03] motion-reduce:hover:scale-100 hover:shadow-xl hover:shadow-[var(--fire-red)]/35",
     outline:
       "border-2 border-foreground/15 text-foreground hover:border-[var(--fire-red)] hover:text-[var(--fire-red)]",
     "ghost-light":

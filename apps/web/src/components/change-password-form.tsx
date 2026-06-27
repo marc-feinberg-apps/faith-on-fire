@@ -4,6 +4,7 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { LockKeyIcon, CheckmarkCircle02Icon } from "@hugeicons/core-free-icons"
 
 import { Button } from "@workspace/ui/components/button"
+import { toast } from "@workspace/ui/components/sonner"
 import { Input } from "@workspace/ui/components/input"
 import { Label } from "@workspace/ui/components/label"
 import { changePasswordSchema } from "@/lib/auth-form"
@@ -57,10 +58,11 @@ export function ChangePasswordForm() {
       await changePasswordFn({ data: result.data })
       setValues(EMPTY)
       setSuccess(true)
+      toast.success("Password updated.", { description: "Use your new password next time you sign in." })
     } catch (error) {
-      setSubmitError(
-        error instanceof Error ? error.message : "We couldn't update your password.",
-      )
+      const message = error instanceof Error ? error.message : "We couldn't update your password."
+      setSubmitError(message)
+      toast.error("Password not updated.", { description: message })
     } finally {
       setIsSubmitting(false)
     }
@@ -77,9 +79,12 @@ export function ChangePasswordForm() {
           value={values.currentPassword}
           onChange={(e) => update("currentPassword", e.target.value)}
           aria-invalid={!!errors.currentPassword}
+          aria-describedby={errors.currentPassword ? "currentPassword-error" : undefined}
         />
         {errors.currentPassword ? (
-          <p className="text-xs text-destructive">{errors.currentPassword}</p>
+          <p id="currentPassword-error" className="text-xs text-destructive">
+            {errors.currentPassword}
+          </p>
         ) : null}
       </div>
 
@@ -92,9 +97,12 @@ export function ChangePasswordForm() {
           value={values.password}
           onChange={(e) => update("password", e.target.value)}
           aria-invalid={!!errors.password}
+          aria-describedby={errors.password ? "password-error" : undefined}
         />
         {errors.password ? (
-          <p className="text-xs text-destructive">{errors.password}</p>
+          <p id="password-error" className="text-xs text-destructive">
+            {errors.password}
+          </p>
         ) : null}
       </div>
 
@@ -107,13 +115,20 @@ export function ChangePasswordForm() {
           value={values.confirmPassword}
           onChange={(e) => update("confirmPassword", e.target.value)}
           aria-invalid={!!errors.confirmPassword}
+          aria-describedby={errors.confirmPassword ? "confirmPassword-error" : undefined}
         />
         {errors.confirmPassword ? (
-          <p className="text-xs text-destructive">{errors.confirmPassword}</p>
+          <p id="confirmPassword-error" className="text-xs text-destructive">
+            {errors.confirmPassword}
+          </p>
         ) : null}
       </div>
 
-      {submitError ? <p className="text-sm text-destructive">{submitError}</p> : null}
+      {submitError ? (
+        <p role="alert" aria-live="polite" className="text-sm text-destructive">
+          {submitError}
+        </p>
+      ) : null}
       {success ? (
         <p className="flex items-center gap-2 text-sm font-medium text-[var(--fire-red)]">
           <HugeiconsIcon icon={CheckmarkCircle02Icon} className="size-4" />
@@ -124,9 +139,9 @@ export function ChangePasswordForm() {
       <Button
         type="submit"
         className="gradient-fire gap-2 self-start text-white"
-        disabled={isSubmitting}
+        loading={isSubmitting}
       >
-        <HugeiconsIcon icon={LockKeyIcon} className="size-4" />
+        {isSubmitting ? null : <HugeiconsIcon icon={LockKeyIcon} className="size-4" />}
         {isSubmitting ? "Updating..." : "Update Password"}
       </Button>
     </form>
