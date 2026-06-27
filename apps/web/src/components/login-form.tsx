@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useServerFn } from "@tanstack/react-start"
 import { Link, useNavigate } from "@tanstack/react-router"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { LockIcon } from "@hugeicons/core-free-icons"
+import { LockIcon, EyeIcon, EyeOffIcon } from "@hugeicons/core-free-icons"
 
 import { Button } from "@workspace/ui/components/button"
 import { Input } from "@workspace/ui/components/input"
@@ -20,6 +20,7 @@ export function LoginForm({ redirect }: { redirect?: string }) {
   const [errors, setErrors] = useState<FormErrors>({})
   const [submitError, setSubmitError] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
 
   function update<TKey extends keyof LoginValues>(key: TKey, value: LoginValues[TKey]) {
     setValues((prev) => ({ ...prev, [key]: value }))
@@ -78,13 +79,24 @@ export function LoginForm({ redirect }: { redirect?: string }) {
             Forgot password?
           </Link>
         </div>
-        <Input
-          id="password"
-          type="password"
-          value={values.password}
-          onChange={(e) => update("password", e.target.value)}
-          aria-invalid={!!errors.password}
-        />
+        <div className="relative">
+          <Input
+            id="password"
+            type={showPassword ? "text" : "password"}
+            value={values.password}
+            onChange={(e) => update("password", e.target.value)}
+            aria-invalid={!!errors.password}
+            className="pr-10"
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword((v) => !v)}
+            className="absolute inset-y-0 right-3 flex items-center text-muted-foreground transition-colors hover:text-foreground"
+            aria-label={showPassword ? "Hide password" : "Show password"}
+          >
+            <HugeiconsIcon icon={showPassword ? EyeOffIcon : EyeIcon} className="size-4" />
+          </button>
+        </div>
         {errors.password ? <p className="text-xs text-destructive">{errors.password}</p> : null}
       </div>
 

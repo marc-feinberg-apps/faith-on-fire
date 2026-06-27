@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router"
+import { createFileRoute, Link } from "@tanstack/react-router"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { CheckmarkCircle02Icon, Alert02Icon } from "@hugeicons/core-free-icons"
 import { z } from "zod"
@@ -42,6 +42,12 @@ function PurchaseSuccessPage() {
                 Thanks for joining {productLabel}. Check {email ?? "your email"} for your login
                 details — they'll arrive within a few minutes.
               </p>
+              <Link
+                to="/login"
+                className="gradient-fire mt-2 inline-flex w-full items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
+              >
+                Go to Login
+              </Link>
             </div>
           ) : (
             <div className="flex flex-col items-center gap-4">

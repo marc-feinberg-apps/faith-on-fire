@@ -21,9 +21,9 @@ export const navLinks = [
   { label: "Founder", href: "/about-marc" },
 ]
 
-export const ebookPurchaseUrl =
-  import.meta.env.VITE_SAMCART_EBOOK_URL ||
-  "https://samcart.com/placeholder-faith-on-fire-ebook"
+// SamCart checkout link for the e-book. Empty when unset so the buy button can
+// render a disabled state instead of linking buyers to a dead/placeholder URL.
+export const ebookPurchaseUrl = import.meta.env.VITE_SAMCART_EBOOK_URL ?? ""
 
 export const ebookCoverUrl = publicStorageUrl(storageAssets.ebookCover)
 
@@ -709,20 +709,18 @@ export const mastermindFaqs = [
 // ── Member areas (authenticated) ────────────────────────────────────────────
 
 // Placeholder run-times so each module reads like a real video lesson. The
-// member course library is built from `blueprintModules`; this just supplies a
-// duration per module number until real videos are wired up.
 const lessonDurations: Record<number, string> = {
-  1: "14 min",
-  2: "18 min",
-  3: "16 min",
-  4: "12 min",
-  5: "21 min",
-  6: "17 min",
-  7: "15 min",
-  8: "19 min",
+  1: "11 min",
+  2: "11 min",
+  3: "12 min",
+  4: "18 min",
+  5: "14 min",
+  6: "13 min",
+  7: "12 min",
+  8: "10 min",
   9: "13 min",
-  10: "22 min",
-  11: "20 min",
+  10: "10 min",
+  11: "8 min",
 }
 
 export const courseLessons = blueprintModules.map((module) => ({

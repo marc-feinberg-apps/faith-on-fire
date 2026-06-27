@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@workspace/ui/components/card"
 import { cn } from "@workspace/ui/lib/utils"
-import { pillarImageUrl, type pillars } from "@/data/site"
+import { pillarImageUrl  } from "@/data/site"
+import type {pillars} from "@/data/site";
 
 const accentByIndex = ["gradient-fire", "gradient-flame", "gradient-flame", "gradient-ember"]
 

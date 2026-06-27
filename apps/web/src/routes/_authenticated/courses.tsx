@@ -1,6 +1,4 @@
 import { useState } from "react"
-
-const WORKBOOK_DOWNLOADED_KEY = "fof:workbook-downloaded"
 import { createFileRoute, redirect, Link } from "@tanstack/react-router"
 import { useServerFn } from "@tanstack/react-start"
 import { HugeiconsIcon } from "@hugeicons/react"
@@ -19,6 +17,8 @@ import {
 } from "@/server/member"
 import type { CourseLibraryState } from "@/server/member"
 import { courseLessons } from "@/data/site"
+
+const WORKBOOK_DOWNLOADED_KEY = "fof:workbook-downloaded"
 
 export const Route = createFileRoute("/_authenticated/courses")({
   // Strict per-product gate: course content requires an active course purchase.

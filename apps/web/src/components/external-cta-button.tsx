@@ -28,6 +28,20 @@ export function ExternalCtaButton({
       "border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/60",
   }
 
+  // No destination configured (e.g. the SamCart URL env var is unset): render a
+  // disabled button rather than an anchor to nowhere.
+  if (!href) {
+    return (
+      <button
+        type="button"
+        disabled
+        className={cn(base, sizes, variants[variant], "cursor-not-allowed opacity-60", className)}
+      >
+        {children}
+      </button>
+    )
+  }
+
   return (
     <a
       href={href}

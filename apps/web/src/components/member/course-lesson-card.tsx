@@ -71,7 +71,7 @@ export function CourseLessonCard({
           alt=""
           aria-hidden="true"
           className="absolute inset-0 size-full object-cover"
-          onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none" }}
+          onError={(e) => { (e.currentTarget).style.display = "none" }}
         />
         <div className={`absolute inset-0 ${isLocked ? "bg-black/60" : "bg-black/30"}`} />
 
