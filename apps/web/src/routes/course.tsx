@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router"
 import { SectionHeading } from "@/components/section-heading"
 import { GradientSection } from "@/components/gradient-section"
 import { ModuleCard } from "@/components/module-card"
-import { ResourceCard } from "@/components/resource-card"
 import { FireCtaSection } from "@/components/fire-cta-section"
 import { BuyButton } from "@/components/buy-button"
 import { FaqSection } from "@/components/faq-section"
@@ -11,17 +10,13 @@ import { Card, CardContent } from "@workspace/ui/components/card"
 import { Badge } from "@workspace/ui/components/badge"
 import {
   blueprintModules,
-  commitmentLetters,
   courseCoverUrl,
   courseFaqs,
-  moduleTools,
   pricing,
-  resources,
   scriptureAnchors,
   siteConfig,
   testimonials,
 } from "@/data/site"
-import type { SiteIconName } from "@/components/site-icon"
 
 const courseTitle = "The Faith on Fire Course — 11 Modules to Return, Restore, Reignite"
 const courseDescription =
@@ -100,66 +95,6 @@ function CoursePage() {
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {blueprintModules.map((module) => (
             <ModuleCard key={module.slug} module={module} />
-          ))}
-        </div>
-      </GradientSection>
-
-      <GradientSection variant="white">
-        <SectionHeading
-          eyebrow="Commitment Letters"
-          title="Three signed moments of decision"
-          description="The workbook anchors each pillar with a letter read aloud and signed before a witness, so the course moves from reflection into obedience."
-        />
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {commitmentLetters.map((letter) => (
-            <Card key={letter.title} className="border-none p-0 ring-1 ring-foreground/10">
-              <CardContent className="flex h-full flex-col gap-3 p-6">
-                <span className="font-heading text-xs font-semibold tracking-[0.2em] text-[var(--fire-red)]">
-                  {letter.pillar}
-                </span>
-                <h3 className="text-lg">{letter.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground normal-case font-sans">
-                  {letter.description}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </GradientSection>
-
-      <GradientSection variant="cream">
-        <SectionHeading
-          eyebrow="Workbook Tools"
-          title="Practical tools, organized by module"
-          description="Every tool below is included inside the Faith on Fire Workbook, so the resources match the module sequence you walk through."
-        />
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {resources.map((resource) => (
-            <ResourceCard
-              key={resource.title}
-              title={resource.title}
-              description={resource.description}
-              icon={resource.icon as SiteIconName}
-            />
-          ))}
-        </div>
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {moduleTools.map((tool) => (
-            <Card
-              key={`${tool.module}-${tool.title}`}
-              className="border-none p-0 ring-1 ring-foreground/10"
-            >
-              <CardContent className="flex h-full flex-col gap-3 p-6">
-                <div className="flex flex-wrap items-center gap-2">
-                  <Badge variant="outline">{tool.module}</Badge>
-                  <Badge className="gradient-fire border-none text-white">{tool.source}</Badge>
-                </div>
-                <h3 className="text-lg">{tool.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground normal-case font-sans">
-                  {tool.description}
-                </p>
-              </CardContent>
-            </Card>
           ))}
         </div>
       </GradientSection>

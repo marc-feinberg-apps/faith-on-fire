@@ -208,10 +208,11 @@ function CoursesPage() {
         ) : null}
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {courseLessons.map((lesson) => (
+          {courseLessons.map((lesson, index) => (
             <CourseLessonCard
               key={lesson.slug}
               lesson={lesson}
+              prevLesson={courseLessons[index - 1]}
               state={lessonState(lesson.number, library)}
               isUnlocking={unlockingModule === lesson.number}
               onUnlock={() => handleUnlock(lesson)}

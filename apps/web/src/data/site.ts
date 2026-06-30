@@ -152,7 +152,7 @@ export const pillars = [
     subtitle: "Healing the Man in the Mirror & Rebuilding Relationships",
     description:
       "You cannot build a new life on an unhealed foundation. Restoration means making peace with the man in the mirror, releasing old shame, and rebuilding what drift has broken.",
-    verse: "“We are God's workmanship, created in Christ Jesus to do good works.” — Ephesians 2:10",
+    verse: "“We are God’s workmanship, created in Christ Jesus to do good works.” — Ephesians 2:10",
   },
   {
     key: "reignite",
@@ -293,11 +293,11 @@ export const experienceItems = [
 export const blueprintModules = [
   {
     number: 1,
-    slug: "wake-up-call",
-    title: "Wake-Up Call",
-    subtitle: "Why Your Disobedience Is Costing You More Than You Know",
+    slug: "welcome",
+    title: "Welcome to Faith on Fire",
+    subtitle: "An Orientation to the Three-Pillar Journey",
     keyTeaching:
-      "Spiritual drift doesn't happen overnight. It happens slowly — one compromise, one distraction, one silent morning at a time. Before we can move forward, we have to get honest about what staying away from God has actually cost us. Not to produce shame, but to produce hunger.",
+      "Spiritual drift doesn't happen overnight. It happens slowly — one compromise, one distraction, one silent morning at a time. Before we can move forward, we have to get honest about what staying away from God has actually cost us. Not to produce shame, but to produce hunger. This Blueprint is your roadmap: Return to God, Restore your Relationships, and Reignite your Purpose.",
     reflectionPreview:
       "When did you first notice the distance between you and God? What has spiritual drift cost you in your relationships, your peace, your sense of purpose?",
     declaration:
@@ -310,12 +310,28 @@ export const blueprintModules = [
   },
   {
     number: 2,
-    slug: "return",
-    title: "Return",
-    subtitle: "The Repentance That Changes Everything",
-    pillar: "Pillar #1",
+    slug: "the-drift",
+    title: "Pillar #1: Return to God | Module 1: The Drift",
+    subtitle: "Understanding How Spiritual Distance Happens and What It Costs",
     keyTeaching:
-      "Most men don't come back to God because they believe they've gone too far. That's the enemy's greatest lie. Repentance isn't a feeling — it's a decision. The moment you turn your face toward the Father and take one step in His direction, He runs to meet you.",
+      "Most men don't drift from God in one dramatic moment. They drift slowly — one compromise, one distraction, one silent morning at a time. Before you can return, you have to get honest about where you've been and what the distance has truly cost you. Not to produce shame, but to produce hunger for something better.",
+    reflectionPreview:
+      "When did the drift begin for you? What has the distance from God cost you — in your peace, your relationships, your sense of purpose?",
+    declaration:
+      "A one-paragraph statement naming the cost of your drift and declaring why you are ready to turn back to God.",
+    actionStep:
+      "Spend 10 minutes in silence. No phone, no music. Ask God one question: “Lord, where have I been?” Then write down what surfaces.",
+    tool: "Cost of Drift Inventory",
+    toolDescription:
+      "Name the specific costs of drift across your faith, family, finances, and purpose — and replace vague guilt with concrete repentance targets.",
+  },
+  {
+    number: 3,
+    slug: "three-steps-back-to-god",
+    title: "Pillar #1: Return to God | Module 2: The Three Steps Back to God",
+    subtitle: "The Powerful Path of Confession, Repentance, and Recommitment",
+    keyTeaching:
+      "Most men don't come back to God because they believe they've gone too far. That's the enemy's greatest lie. Repentance isn't a feeling — it's a decision. The moment you turn your face toward the Father and take one step in His direction, He runs to meet you. Confession. Repentance. Recommitment. Three steps, and the door is open.",
     reflectionPreview:
       "What has shame told you about your ability to return to God? Is that true? What would it feel like to be fully forgiven and fully restored?",
     declaration: "Your personal prayer of repentance, written in your own words. Make it real. Make it yours.",
@@ -326,15 +342,15 @@ export const blueprintModules = [
       "Walk through pride, sexual sin, anger, dishonesty, neglected relationships, addiction, and idolatry with a clear yes-or-no inventory.",
   },
   {
-    number: 3,
-    slug: "reconnect",
-    title: "Reconnect",
-    subtitle: "Prayer, The Word, and Praise as Daily Weapons",
+    number: 4,
+    slug: "new-daily-disciplines",
+    title: "Pillar #1: Return to God | Module 3: New Daily Disciplines",
+    subtitle: "Prayer, the Word, and Praise as the Weapons That Keep You Connected",
     keyTeaching:
-      "Reconnecting with God isn't complicated, but it is consistent. Prayer, the Word, and Praise aren't religious rituals — they're the weapons God gave you to stay spiritually strong. The men who stay on fire aren't the ones with the biggest mountaintop experience. They're the ones who showed up every single morning.",
+      "Returning to God is a decision. Staying close to God is a discipline. Prayer, the Word, and Praise aren't religious rituals — they're the daily weapons God gave you to stay spiritually strong. The men who stay on fire aren't the ones with the biggest mountaintop experience. They're the ones who show up every single morning.",
     reflectionPreview:
       "What does your current daily time with God actually look like? What would a realistic daily rhythm look like for your real life and schedule?",
-    declaration: "A commitment statement to God about your daily time with Him.",
+    declaration: "The Pillar #1 Return to God Commitment Letter — read aloud and signed before a witness.",
     actionStep:
       "Start a 7-day prayer journal. Each morning, write one thing you're asking God for and one thing you're thanking Him for.",
     tool: "Build Your Daily Rhythm",
@@ -342,48 +358,31 @@ export const blueprintModules = [
       "Set a prayer time, Scripture plan, praise practice, and non-negotiable quiet-time location for your real schedule.",
   },
   {
-    number: 4,
-    slug: "find-your-people",
-    title: "Find Your People",
-    subtitle: "You Were Never Meant to Do This Alone",
-    keyTeaching:
-      "Isolation is not strength. It's a trap. The enemy knows that a man alone is a man vulnerable. Every man who has fallen hard has one thing in common: he was doing life by himself. Brotherhood is not optional for a man on fire. It is essential.",
-    reflectionPreview:
-      "Who are the men currently in your life who sharpen you spiritually? What would it mean to have even one man who truly had your back spiritually?",
-    declaration: "The Pillar #1 Return Commitment Letter — read aloud and signed before a witness.",
-    actionStep:
-      "Reach out to one man this week — a text, a call, a coffee invite. Tell him you're going through something that's changing your life and you want him in it.",
-    tool: "My People Plan",
-    toolDescription:
-      "Identify two or three men to pursue, then schedule recurring check-ins where hard questions are permitted.",
-  },
-  {
     number: 5,
-    slug: "restore",
-    title: "Restore",
-    subtitle: "Making Peace With the Man in the Mirror",
-    pillar: "Pillar #2",
+    slug: "assess-the-damage",
+    title: "Pillar #2: Restore your Relationships | Module 1: Assess the Damage",
+    subtitle: "Getting Honest About What Drift Has Cost the People Closest to You",
     keyTeaching:
-      "You cannot build a new life on an unhealed foundation. Before your relationships can be restored, before your purpose can be reignited, you have to make peace with the man you see in the mirror — and hand him over to God.",
+      "You cannot build a new life on an unhealed foundation. Before your relationships can be restored, you have to get honest about the damage that has been done — not to produce guilt, but to produce a clear repair plan. The man who refuses to look at the wreckage is the man who never rebuilds.",
     reflectionPreview:
-      "What is the wound you have been carrying the longest? What does the fully restored version of you look like as a man, a father, a husband, a friend?",
-    declaration: "A covenant with yourself — a promise, with God's help, to release old regrets and step into your new identity.",
+      "Which relationships have suffered the most during your drift? What has your absence, anger, or avoidance cost the people who needed you most?",
+    declaration: "A covenant with yourself — a promise, with God's help, to face the damage honestly and begin the work of restoration.",
     actionStep:
       "Write a letter to the man you have been. Not to shame him, but to release him. Thank him for surviving, then tell him it's time to step aside.",
     tool: "Restoration Inventory",
     toolDescription:
-      "Score key relationships from 1-10, circle the lowest score, and use that as the starting point for restoration.",
+      "Score key relationships from 1-10, circle the lowest score, and use that as the starting point for restoration work.",
   },
   {
     number: 6,
-    slug: "forgiveness",
-    title: "Forgiveness",
-    subtitle: "You Are One Decision Away From Freedom",
+    slug: "repair-the-damage",
+    title: "Pillar #2: Restore your Relationships | Module 2: Repair the Damage",
+    subtitle: "Forgiveness, Restitution, and the Work of Rebuilding Trust",
     keyTeaching:
-      "Unforgiveness is not a moral failure. It's a prison — and the cruel irony is that you built it, you locked it, and you're the only one sitting inside it. Forgiveness isn't saying what happened was okay. It's saying you refuse to let what happened keep owning you.",
+      "Unforgiveness is not a moral failure. It's a prison — and the cruel irony is that you built it, you locked it, and you're the only one sitting inside it. Forgiveness isn't saying what happened was okay. It's saying you refuse to let what happened keep owning you. Repair begins with release.",
     reflectionPreview:
       "Who do you need to forgive that you haven't? What has unforgiveness cost you emotionally, physically, spiritually, relationally?",
-    declaration: "The Pillar #2 Restore Commitment Letter — read aloud and signed before a witness.",
+    declaration: "The Pillar #2 Restore your Relationships Commitment Letter — read aloud and signed before a witness.",
     actionStep:
       "Choose one person from your forgiveness list. Pray specifically for them every day this week, and watch what God does in your own heart.",
     tool: "Forgiveness List",
@@ -392,12 +391,27 @@ export const blueprintModules = [
   },
   {
     number: 7,
-    slug: "reignite",
-    title: "Reignite",
-    subtitle: "Come Into Alignment With Your God-given Assignment",
-    pillar: "Pillar #3",
+    slug: "return-to-power",
+    title: "Pillar #2: Restore your Relationships | Module 3: Return to Power",
+    subtitle: "Stepping Into the Man God Created You to Be — Healed, Whole, and Present",
     keyTeaching:
-      "Purpose is not something you find. It's something you align with. God didn't hide your assignment — the noise of life, the weight of sin, and the distraction of survival buried it. It's time to walk in it.",
+      "A restored man is a powerful man — not powerful in the world's sense, but in the spiritual sense. Healed, whole, present, and accountable. The enemy fears the man who has done the inner work, repaired the outer damage, and is now standing in his God-given identity. That man is you. Now stand in it.",
+    reflectionPreview:
+      "What does the fully restored version of you look like as a man, a father, a husband, a friend? Who are the men currently in your life who will hold you to that version?",
+    declaration: "Your New Man Declaration — a bold, specific statement of who you are and how you will live from this day forward.",
+    actionStep:
+      "Read your New Man Declaration out loud every morning for the next 30 days. Put it on your mirror, your phone, or your Bible.",
+    tool: "New Man Declaration",
+    toolDescription:
+      "Write a bold, specific statement of who you are, what you believe, and how you will live as a restored man from this day forward.",
+  },
+  {
+    number: 8,
+    slug: "profits-passion-and-purpose",
+    title: "Pillar #3: Reignite your Purpose | Module 1: Profits, Passion, and Purpose",
+    subtitle: "Discovering How Your Gifts, Income, and Calling Can Align",
+    keyTeaching:
+      "Purpose is not something you find. It's something you align with. God didn't hide your assignment — the noise of life, the weight of sin, and the distraction of survival buried it. When your passion, your gifts, and your financial stewardship align with your God-given calling, you're not just working — you're on mission.",
     reflectionPreview:
       "What do people consistently come to you for, without you advertising it? If money were not a factor, what would you spend your days doing for God and others?",
     declaration: "Your God-given assignment, written in one sentence — then spoken out loud to a brother.",
@@ -408,31 +422,15 @@ export const blueprintModules = [
       "Clarify when you feel most alive, whom you are called to serve, and the problem you were put here to help solve.",
   },
   {
-    number: 8,
-    slug: "the-new-man",
-    title: "The New Man",
-    subtitle: "Introducing the Version of You That Was There All Along",
-    keyTeaching:
-      "The New Man is not a stranger. He is who you were always meant to be before the world, the wounds, and the wrong choices layered over him. You are not becoming someone new. You are becoming someone true.",
-    reflectionPreview:
-      "What is the most significant shift that has happened in you through this process? What does the New Man's daily life look like, specifically?",
-    declaration: "Your New Man Declaration — a bold, specific statement of who you are and how you will live from this day forward.",
-    actionStep:
-      "Read your New Man Declaration out loud every morning for the next 30 days. Put it on your mirror, your phone, or your Bible.",
-    tool: "New Man Declaration",
-    toolDescription:
-      "Write a bold, specific statement of who you are, what you believe, and how you will live from this day forward.",
-  },
-  {
     number: 9,
-    slug: "stay-the-course",
-    title: "Stay the Course",
-    subtitle: "Keep the Fire Burning",
+    slug: "fan-the-flame",
+    title: "Pillar #3: Reignite your Purpose | Module 2: Fan the Flame",
+    subtitle: "The Habits, Rhythms, and Decisions That Keep Your Fire Burning",
     keyTeaching:
-      "The hardest part of transformation isn't the breakthrough. It's the Tuesday after. The men who stay transformed aren't the ones who never struggle — they're the ones who have a system that brings them back quickly when they do.",
+      "The hardest part of transformation isn't the breakthrough. It's the Tuesday after. The men who stay on fire aren't the ones who never struggle — they're the ones who have a system that brings them back quickly when they do. Fan the flame daily, or the fire goes cold.",
     reflectionPreview:
-      "What are your three biggest personal triggers for spiritual drift? What is your plan for getting back on track within 24 hours when you have a bad day?",
-    declaration: "Your daily fire plan — a practical commitment to keep walking with God and trusted brothers.",
+      "What are your three biggest personal triggers for spiritual drift? What is your plan for getting back on track within 24 hours when you have a hard day?",
+    declaration: "Your daily fire plan — a practical commitment to keep walking with God and trusted brothers no matter what.",
     actionStep:
       "Build your personal fire plan — daily non-negotiables, weekly anchors, early warning signs, and your 24-Hour Recovery Plan.",
     tool: "Daily Fire Plan",
@@ -441,37 +439,35 @@ export const blueprintModules = [
   },
   {
     number: 10,
-    slug: "the-invitation",
-    title: "The Invitation",
-    subtitle: "Come Into the Brotherhood and Stay on Fire Together",
+    slug: "the-mission-minded-man",
+    title: "Pillar #3: Reignite your Purpose | Module 3: The Mission-Minded Man",
+    subtitle: "Walking in Your God-given Assignment and Multiplying What You've Received",
     keyTeaching:
-      "You made it. Let that sink in. You started this as one man, and you're finishing it as another. But your story isn't meant to end here. It's meant to fuel someone else's beginning.",
+      "You made it. Let that sink in. You started this as one man, and you're finishing it as another. The Mission-Minded Man doesn't just live for himself — he leads others. He multiplies what he has received. Your story isn't meant to end here. It's meant to fuel someone else's beginning.",
     reflectionPreview:
       "What is the single most powerful thing God showed you through this process? Who in your life needs to go through it next?",
-    declaration: "A short letter to the man you were when you started. Tell him what you found. Tell him it was worth it.",
+    declaration: "The Pillar #3 Reignite your Purpose Commitment Letter — read aloud and signed before a witness.",
     actionStep:
       "Go to faithonfire.world and join the Weekly Mastermind / Brotherhood. Your breakthrough is in the work — and the work continues in brotherhood.",
     tool: "Letter to the Man You Were",
     toolDescription:
       "Write the man you were when you started, tell him what you found, and name how you will serve other men next.",
   },
-  // TODO: replace placeholder module 11 copy with the real bonus-session content.
-  // This is wired to course_11.mp4 in the member library; titles/teaching below
-  // are stand-ins so the module renders end-to-end.
   {
     number: 11,
-    slug: "bonus-session",
-    title: "Bonus Session",
-    subtitle: "A Final Word to Carry With You",
+    slug: "remain-connected",
+    title: "Remain Connected",
+    subtitle: "Staying Locked Into Brotherhood and Accountability for Life",
     keyTeaching:
-      "Placeholder teaching for the bonus session. Replace this with the real key teaching for module 11.",
+      "The journey doesn't end with a completed workbook. The men who stay transformed are the men who stay connected — to God, to brothers, and to their mission. Isolation is where drift begins again. Brotherhood is where fire is kept alive. Remain connected, and you remain on fire.",
     reflectionPreview:
-      "Placeholder reflection questions for the bonus session. Replace with the real prompts.",
-    declaration: "Placeholder declaration for the bonus session.",
-    actionStep: "Placeholder action step for the bonus session.",
-    tool: "Bonus Session Worksheet",
+      "What does staying connected look like in your real, everyday life? What rhythms, people, and communities will you commit to for the long haul?",
+    declaration: "A final commitment to remain connected to God, to brotherhood, and to your God-given mission — for life.",
+    actionStep:
+      "Identify one concrete step to deepen your brotherhood connection this week — a call, a coffee, a commitment to the weekly mastermind.",
+    tool: "Stay Connected Plan",
     toolDescription:
-      "Placeholder tool description for the bonus session. Replace with the real workbook tool.",
+      "Define your ongoing spiritual community, weekly check-in rhythms, and the one or two men who will hold you accountable for life.",
   },
 ]
 
@@ -484,22 +480,22 @@ export const moduleTools = blueprintModules.map((module) => ({
 
 export const commitmentLetters = [
   {
-    pillar: "Pillar #1 Return",
-    title: "Return Commitment Letter",
+    pillar: "Pillar #1: Return to God",
+    title: "Return to God Commitment Letter",
     description:
       "A signed decision to stop running, turn away from what created distance, and return to God with prayer, Word, praise, and brotherhood.",
   },
   {
-    pillar: "Pillar #2 Restore",
-    title: "Restore Commitment Letter",
+    pillar: "Pillar #2: Restore your Relationships",
+    title: "Restore your Relationships Commitment Letter",
     description:
-      "A signed choice to stop building on a broken foundation, face the wound carried longest, and receive restoration fully.",
+      "A signed choice to face the damage honestly, forgive what needs to be forgiven, and rebuild trust one courageous step at a time.",
   },
   {
-    pillar: "Pillar #3 Reignite",
-    title: "Reignite Commitment Letter",
+    pillar: "Pillar #3: Reignite your Purpose",
+    title: "Reignite your Purpose Commitment Letter",
     description:
-      "A signed commitment to align time, energy, decisions, and relationships with the God-given assignment still alive inside you.",
+      "A signed commitment to align your time, energy, decisions, and relationships with the God-given mission still burning inside you.",
   },
 ]
 

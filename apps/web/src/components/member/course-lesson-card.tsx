@@ -31,10 +31,36 @@ export type CourseLessonState = "unlocked" | "available" | "available-waiting" |
 
 interface CourseLessonCardProps {
   lesson: CourseLesson
+  prevLesson?: CourseLesson
   state: CourseLessonState
   isUnlocking?: boolean
   onUnlock?: () => void
   onPlay?: () => void
+}
+
+// Splits "Pillar #1: Return to God | Module 1: The Drift" into
+// { pillar: "Pillar #1: Return to God", module: "Module 1: The Drift" }.
+// Titles without a pipe (intro / closing) return pillar: null.
+function parseTitleParts(title: string): { pillar: string | null; module: string } {
+  const idx = title.indexOf(" | ")
+  if (idx === -1) return { pillar: null, module: title }
+  return { pillar: title.slice(0, idx), module: title.slice(idx + 3) }
+}
+
+// Builds a compact thumbnail chip label, e.g. "Pillar 1 · Module 1".
+function thumbnailLabel(title: string): string {
+  const { pillar, module } = parseTitleParts(title)
+  if (!pillar) return module  // "Welcome to Faith on Fire" / "Remain Connected"
+
+  // "Pillar #1: Return to God" → "Pillar 1"
+  const pillarMatch = pillar.match(/Pillar #(\d+)/)
+  // "Module 1: The Drift" → "Module 1"
+  const moduleMatch = module.match(/^(Module \d+)/)
+
+  if (pillarMatch && moduleMatch) {
+    return `Pillar ${pillarMatch[1]} · ${moduleMatch[1]}`
+  }
+  return module
 }
 
 // A single course "video" tile. Behaviour depends on `state`: unlocked tiles
@@ -43,6 +69,7 @@ interface CourseLessonCardProps {
 // shown locked so the path forward is always visible.
 export function CourseLessonCard({
   lesson,
+  prevLesson,
   state,
   isUnlocking = false,
   onUnlock,
@@ -50,6 +77,7 @@ export function CourseLessonCard({
 }: CourseLessonCardProps) {
   const isUnlocked = state === "unlocked"
   const isLocked = state === "locked" || state === "available-waiting"
+  const { pillar, module } = parseTitleParts(lesson.title)
 
   return (
     <Card className="group overflow-hidden border-none p-0 ring-1 ring-foreground/10 transition-shadow hover:shadow-lg hover:shadow-foreground/5">
@@ -59,10 +87,10 @@ export function CourseLessonCard({
         onClick={isUnlocked ? onPlay : state === "available" ? onUnlock : undefined}
         aria-label={
           isUnlocked
-            ? `Play Module ${lesson.number}: ${lesson.title}`
+            ? `Play ${lesson.title}`
             : state === "available"
-              ? `Unlock Module ${lesson.number}: ${lesson.title}`
-              : `Module ${lesson.number} locked`
+              ? `Unlock ${lesson.title}`
+              : `${lesson.title} — locked`
         }
         className="gradient-ember relative flex aspect-video w-full items-center justify-center overflow-hidden focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/50 disabled:cursor-default"
       >
@@ -75,8 +103,8 @@ export function CourseLessonCard({
         />
         <div className={`absolute inset-0 ${isLocked ? "bg-black/60" : "bg-black/30"}`} />
 
-        <span className="absolute left-3 top-3 inline-flex items-center justify-center rounded-full bg-black/30 px-2.5 py-1 font-heading text-xs font-semibold tracking-wide text-white backdrop-blur-sm">
-          Module {lesson.number}
+        <span className="absolute left-3 top-3 inline-flex items-center justify-center rounded-full bg-black/40 px-2.5 py-1 font-heading text-xs font-semibold tracking-wide text-white backdrop-blur-sm">
+          {thumbnailLabel(lesson.title)}
         </span>
         <span className="absolute bottom-3 right-3 inline-flex items-center gap-1 rounded-full bg-black/40 px-2 py-1 font-heading text-[0.7rem] font-semibold text-white backdrop-blur-sm normal-case">
           <HugeiconsIcon icon={Clock01Icon} className="size-3" />
@@ -104,14 +132,21 @@ export function CourseLessonCard({
             <span className="font-heading text-xs font-semibold normal-case">
               {state === "available-waiting"
                 ? "Unlocks tomorrow"
-                : `Unlocks after Module ${lesson.number - 1}`}
+                : prevLesson
+                  ? `Unlocks after ${thumbnailLabel(prevLesson.title)}`
+                  : "Locked"}
             </span>
           </span>
         )}
       </button>
 
       <CardContent className="flex flex-col gap-1.5 p-5">
-        <h3 className="text-lg leading-tight">{lesson.title}</h3>
+        {pillar ? (
+          <span className="font-heading text-[0.65rem] font-semibold tracking-[0.15em] text-[var(--fire-red)] uppercase">
+            {pillar}
+          </span>
+        ) : null}
+        <h3 className="text-base font-semibold leading-snug">{module}</h3>
         <p className="text-sm leading-relaxed text-muted-foreground normal-case font-sans">
           {lesson.subtitle}
         </p>
@@ -142,24 +177,28 @@ export function CourseVideoModal({ lesson, url, isLoading, error, onClose }: Cou
     return () => document.removeEventListener("keydown", onKey)
   }, [onClose])
 
+  const { pillar, module } = parseTitleParts(lesson.title)
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
-      aria-label={`Module ${lesson.number}: ${lesson.title}`}
+      aria-label={lesson.title}
     >
       <div
         className="relative w-full max-w-4xl overflow-hidden rounded-2xl bg-black shadow-2xl"
         onClick={(event) => event.stopPropagation()}
       >
         <div className="flex items-center justify-between gap-4 px-5 py-3">
-          <div className="flex flex-col">
-            <span className="font-heading text-xs font-semibold tracking-[0.2em] text-[var(--sun-gold)]">
-              Module {lesson.number}
-            </span>
-            <h3 className="text-base leading-tight text-white">{lesson.title}</h3>
+          <div className="flex flex-col gap-0.5">
+            {pillar ? (
+              <span className="font-heading text-[0.6rem] font-semibold tracking-[0.2em] text-[var(--sun-gold)] uppercase">
+                {pillar}
+              </span>
+            ) : null}
+            <h3 className="text-base leading-tight text-white">{module}</h3>
           </div>
           <button
             type="button"
