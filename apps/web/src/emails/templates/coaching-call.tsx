@@ -1,8 +1,9 @@
-import { Column, Img, Link, Row, Section, Text } from "@react-email/components"
+import { Column, Link, Row, Section, Text } from "@react-email/components"
 
 import { brand } from "../components/brand"
 import { CtaButton } from "../components/cta-button"
 import { FeatureGrid } from "../components/feature-grid"
+import { HeroRow } from "../components/hero-row"
 import { EmailLayout } from "../components/layout"
 import { StatCircle } from "../components/stat-circle"
 import { paragraph } from "../components/text-styles"
@@ -40,22 +41,12 @@ export function CoachingCallEmail({
 }) {
   return (
     <EmailLayout previewText="Got 15 minutes? Let's talk.">
-      <Row style={{ margin: "0 0 28px" }}>
-        <Column style={{ width: "340px", verticalAlign: "middle" as const }}>
-          <Text style={tagline}>Ignite Your Faith. Transform Your Life. Impact The World.</Text>
-          <Text style={headlineTop}>Got 15</Text>
-          <Text style={headlineTop}>Minutes?</Text>
-          <Text style={headlineScript}>Let's talk.</Text>
-        </Column>
-        <Column style={{ verticalAlign: "middle" as const, paddingLeft: "16px" }}>
-          <Img
-            src={`${EMAIL_ASSETS_URL}/coaching-hero.png`}
-            alt="A stone path winding up a mountain toward a cross at sunrise"
-            width="220"
-            style={{ display: "block", width: "100%", maxWidth: "220px", borderRadius: "12px" }}
-          />
-        </Column>
-      </Row>
+      <HeroRow
+        headlineLines={["Got 15", "Minutes?"]}
+        accentLine="Let's talk."
+        imageSrc={`${EMAIL_ASSETS_URL}/coaching-hero.png`}
+        imageAlt="A stone path winding up a mountain toward a cross at sunrise"
+      />
 
       <Section style={box}>
         <Row>
@@ -93,36 +84,6 @@ export function CoachingCallEmail({
       </Text>
     </EmailLayout>
   )
-}
-
-const tagline: React.CSSProperties = {
-  fontFamily: brand.fontDisplay,
-  fontSize: "10px",
-  fontWeight: 700,
-  letterSpacing: "0.1em",
-  textTransform: "uppercase" as const,
-  color: brand.mutedForeground,
-  margin: "0 0 14px",
-}
-
-const headlineTop: React.CSSProperties = {
-  fontFamily: brand.fontDisplay,
-  fontSize: "32px",
-  fontWeight: 700,
-  letterSpacing: "0.01em",
-  textTransform: "uppercase" as const,
-  color: brand.foreground,
-  margin: "0",
-  lineHeight: "36px",
-}
-
-const headlineScript: React.CSSProperties = {
-  fontFamily: "Georgia, 'Times New Roman', serif",
-  fontStyle: "italic",
-  fontSize: "26px",
-  color: brand.gold,
-  margin: "4px 0 0",
-  lineHeight: "32px",
 }
 
 const box: React.CSSProperties = {

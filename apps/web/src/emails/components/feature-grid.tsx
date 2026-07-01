@@ -8,11 +8,13 @@ export function FeatureGrid({
 }: {
   items: { icon?: string; title: string; description: string }[]
 }) {
+  const columnWidth = `${Math.floor(100 / items.length)}%`
+
   return (
     <Section style={{ margin: "24px 0 0" }}>
       <Row>
         {items.map((item) => (
-          <Column key={item.title} style={column}>
+          <Column key={item.title} style={{ ...column, width: columnWidth }}>
             {item.icon ? (
               <table role="presentation" cellPadding={0} cellSpacing={0} style={{ margin: "0 auto 10px" }}>
                 <tr>
@@ -44,7 +46,6 @@ export function FeatureGrid({
 }
 
 const column: React.CSSProperties = {
-  width: "25%",
   padding: "0 6px",
   textAlign: "center" as const,
   verticalAlign: "top" as const,
