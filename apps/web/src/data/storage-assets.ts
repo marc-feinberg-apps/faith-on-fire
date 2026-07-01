@@ -14,3 +14,9 @@ export const storageAssets = {
   problemOther: "percentages/others.jpg",
   introVideo: "intro-video.mp4",
 } as const
+
+// Email-only assets live under the bucket's `email/` prefix and are referenced
+// via EMAIL_ASSETS_URL in src/emails/components/urls.ts instead of
+// publicStorageUrl — email templates render outside the app's Vite pipeline
+// (react-email's own dev server, ad hoc send scripts), where import.meta.env
+// isn't populated. See that file for the current list of email/ files.

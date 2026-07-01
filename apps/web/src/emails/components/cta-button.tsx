@@ -13,8 +13,8 @@ export function CtaButton({ label, url }: { label: string; url: string }) {
 }
 
 const button: React.CSSProperties = {
-  backgroundColor: brand.fireRed,
-  color: "#FFFFFF",
+  backgroundColor: brand.gold,
+  color: brand.bgDark,
   fontFamily: brand.fontDisplay,
   fontSize: "15px",
   fontWeight: 700,
@@ -24,5 +24,5 @@ const button: React.CSSProperties = {
   borderRadius: "9999px",
   padding: "16px 36px",
   display: "inline-block",
-  boxShadow: "0 8px 18px rgba(206, 35, 9, 0.35)",
+  boxShadow: "0 8px 18px rgba(201, 162, 39, 0.35)",
 }

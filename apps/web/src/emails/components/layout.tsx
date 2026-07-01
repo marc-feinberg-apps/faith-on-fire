@@ -13,8 +13,7 @@ import {
 } from "@react-email/components"
 
 import { brand } from "./brand"
-
-const SITE_URL = "https://www.faithonfire.world"
+import { SITE_URL } from "./urls"
 
 const footerNavLinks = [
   { label: "Ebook", href: `${SITE_URL}/ebook` },
@@ -22,15 +21,33 @@ const footerNavLinks = [
   { label: "Mastermind", href: `${SITE_URL}/mastermind` },
 ]
 
+const lightTheme = {
+  bg: "#FAF8F4",
+  card: "#FFFFFF",
+  border: "#DED6CE",
+  foreground: "#171311",
+  mutedForeground: "#625650",
+  accent: "#CE2309",
+}
+
 export function EmailLayout({
   previewText,
   footerVariant = "transactional",
+  theme = "dark",
   children,
 }: {
   previewText: string
   footerVariant?: "transactional" | "marketing"
+  theme?: "dark" | "light"
   children: React.ReactNode
 }) {
+  const isLight = theme === "light"
+  const bg = isLight ? lightTheme.bg : brand.bgDark
+  const cardBg = isLight ? lightTheme.card : brand.surfaceDark
+  const border = isLight ? lightTheme.border : brand.border
+  const mutedText = isLight ? lightTheme.mutedForeground : brand.mutedForeground
+  const accent = isLight ? lightTheme.accent : brand.gold
+
   return (
     <Html>
       <Head>
@@ -56,14 +73,14 @@ export function EmailLayout({
         />
       </Head>
       <Preview>{previewText}</Preview>
-      <Body style={main}>
-        <div style={gradientBar} />
-        <Section style={header}>
+      <Body style={{ ...main, backgroundColor: bg }}>
+        <div style={{ ...gradientBar, backgroundImage: `linear-gradient(90deg, ${brand.goldLight}, ${brand.gold})` }} />
+        <Section style={{ ...header, backgroundColor: isLight ? lightTheme.bg : brand.bgDark }}>
           <table role="presentation" cellPadding={0} cellSpacing={0} align="center" style={{ margin: "0 auto" }}>
             <tr>
               <td style={logoBadge}>
                 <Img
-                  src={`${SITE_URL}/assets/brand/faith-on-fire-logo-transparent.png`}
+                  src={`${SITE_URL}/assets/brand/faith-on-fire-logo-white.png`}
                   alt="Faith on Fire"
                   width="130"
                   height="67"
@@ -74,48 +91,53 @@ export function EmailLayout({
           </table>
         </Section>
         <Container style={cardOuter}>
-          <Section style={card}>{children}</Section>
+          <Section style={{ ...card, backgroundColor: cardBg, border: `1px solid ${border}` }}>{children}</Section>
         </Container>
-        <Section style={footer}>
-          <Text style={footerText}>
+        <Section style={{ ...footer, backgroundColor: bg }}>
+          <Text style={{ ...footerText, color: mutedText }}>
             Faith on Fire &middot; Helping Men Return To God, Restore Relationships &amp; Reignite
             Their Purpose
           </Text>
-          <Text style={footerText}>
+          <Text style={{ ...footerText, color: mutedText }}>
             Questions? Reach out anytime at{" "}
-            <Link href="mailto:support@faithonfire.world" style={footerLink}>
+            <Link href="mailto:support@faithonfire.world" style={{ color: accent, textDecoration: "underline" }}>
               support@faithonfire.world
             </Link>
           </Text>
-          <Hr style={footerHr} />
+          <Hr style={{ ...footerHr, borderColor: border }} />
           <table role="presentation" cellPadding={0} cellSpacing={0} align="center" style={{ margin: "0 auto 12px" }}>
             <tr>
               {footerNavLinks.map((link, index) => (
                 <td key={link.href} style={{ padding: index === 0 ? "0" : "0 0 0 16px" }}>
-                  <Link href={link.href} style={footerNavLink}>
+                  <Link href={link.href} style={{ ...footerNavLink, color: accent }}>
                     {link.label}
                   </Link>
                 </td>
               ))}
             </tr>
           </table>
-          <Text style={footerMuted}>
+          <Text style={{ ...footerMuted, color: mutedText }}>
             You're receiving this because you joined Faith on Fire at{" "}
-            <Link href={SITE_URL} style={footerLink}>
+            <Link href={SITE_URL} style={{ color: accent, textDecoration: "underline" }}>
               faithonfire.world
             </Link>
             .
           </Text>
           {footerVariant === "marketing" ? (
-            <Text style={footerMuted}>
+            <Text style={{ ...footerMuted, color: mutedText }}>
               Don't want these emails?{" "}
-              <Link href={`mailto:support@faithonfire.world?subject=Unsubscribe`} style={footerLink}>
+              <Link
+                href={`mailto:support@faithonfire.world?subject=Unsubscribe`}
+                style={{ color: accent, textDecoration: "underline" }}
+              >
                 Unsubscribe
               </Link>
               .
             </Text>
           ) : null}
-          <Text style={footerCopyright}>&copy; {new Date().getFullYear()} Faith on Fire. All rights reserved.</Text>
+          <Text style={{ ...footerCopyright, color: mutedText }}>
+            &copy; {new Date().getFullYear()} Faith on Fire. All rights reserved.
+          </Text>
         </Section>
       </Body>
     </Html>
@@ -123,7 +145,6 @@ export function EmailLayout({
 }
 
 const main: React.CSSProperties = {
-  backgroundColor: brand.warmCream,
   fontFamily: brand.fontBody,
   margin: 0,
   padding: 0,
@@ -131,11 +152,9 @@ const main: React.CSSProperties = {
 
 const gradientBar: React.CSSProperties = {
   height: "4px",
-  backgroundImage: `linear-gradient(90deg, ${brand.fireRed}, ${brand.flameOrange}, ${brand.sunGold})`,
 }
 
 const header: React.CSSProperties = {
-  backgroundColor: brand.emberDark,
   padding: "28px 24px",
   textAlign: "center" as const,
 }
@@ -155,11 +174,9 @@ const cardOuter: React.CSSProperties = {
 }
 
 const card: React.CSSProperties = {
-  backgroundColor: brand.card,
-  border: `1px solid ${brand.border}`,
   borderRadius: "20px",
   padding: "40px",
-  boxShadow: "0 10px 30px rgba(24, 19, 17, 0.08)",
+  boxShadow: "0 10px 30px rgba(0, 0, 0, 0.5)",
 }
 
 const footer: React.CSSProperties = {
@@ -170,7 +187,6 @@ const footer: React.CSSProperties = {
 }
 
 const footerText: React.CSSProperties = {
-  color: brand.mutedForeground,
   fontSize: "13px",
   lineHeight: "20px",
   margin: "4px 0",
@@ -181,13 +197,7 @@ const footerMuted: React.CSSProperties = {
   fontSize: "12px",
 }
 
-const footerLink: React.CSSProperties = {
-  color: brand.fireRed,
-  textDecoration: "underline",
-}
-
 const footerHr: React.CSSProperties = {
-  borderColor: brand.border,
   margin: "16px 0",
 }
 
@@ -197,7 +207,6 @@ const footerNavLink: React.CSSProperties = {
   fontWeight: 700,
   letterSpacing: "0.06em",
   textTransform: "uppercase" as const,
-  color: brand.fireRed,
   textDecoration: "none",
 }
 

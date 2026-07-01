@@ -6,7 +6,7 @@ export const heading: React.CSSProperties = {
   fontWeight: 700,
   letterSpacing: "0.02em",
   textTransform: "uppercase" as const,
-  color: brand.fireRed,
+  color: brand.foreground,
   margin: "0 0 16px",
   lineHeight: "32px",
 }
@@ -20,7 +20,7 @@ export const paragraph: React.CSSProperties = {
 }
 
 export const strong: React.CSSProperties = {
-  color: brand.fireRed,
+  color: brand.gold,
 }
 
 export const label: React.CSSProperties = {
@@ -38,4 +38,19 @@ export const value: React.CSSProperties = {
   fontSize: "15px",
   color: brand.foreground,
   margin: "0 0 8px",
+}
+
+export const credentialLabel: React.CSSProperties = {
+  ...label,
+}
+
+export const credentialValue: React.CSSProperties = {
+  fontFamily: "'Courier New', Courier, monospace",
+  fontSize: "15px",
+  fontWeight: 700,
+  color: brand.gold,
+  backgroundColor: brand.bgDark,
+  padding: "4px 8px",
+  borderRadius: "6px",
+  display: "inline-block",
 }
