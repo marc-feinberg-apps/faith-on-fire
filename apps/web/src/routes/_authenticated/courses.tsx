@@ -1,24 +1,17 @@
 import { useState } from "react"
-import { createFileRoute, redirect, Link } from "@tanstack/react-router"
+import { createFileRoute, redirect, Link, useNavigate } from "@tanstack/react-router"
 import { useServerFn } from "@tanstack/react-start"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { ArrowLeft01Icon, Calendar03Icon, CheckmarkCircle02Icon, Download04Icon } from "@hugeicons/core-free-icons"
 
 import { SectionHeading } from "@/components/section-heading"
-import { CourseLessonCard, CourseVideoModal } from "@/components/member/course-lesson-card"
+import { CourseLessonCard } from "@/components/member/course-lesson-card"
 import type { CourseLesson, CourseLessonState } from "@/components/member/course-lesson-card"
 import { ConsultationCard } from "@/components/member/consultation-card"
-import {
-  getCourseArea,
-  getCourseLibrary,
-  unlockNextModule,
-  getCourseVideoUrl,
-  getWorkbookDownloadUrl,
-} from "@/server/member"
+import { getCourseArea, getCourseLibrary, unlockNextModule, getWorkbookDownloadUrl } from "@/server/member"
 import type { CourseLibraryState } from "@/server/member"
 import { courseLessons } from "@/data/site"
-
-const WORKBOOK_DOWNLOADED_KEY = "fof:workbook-downloaded"
+import { WORKBOOK_DOWNLOADED_KEY } from "@/lib/workbook"
 
 export const Route = createFileRoute("/_authenticated/courses")({
   // Strict per-product gate: course content requires an active course purchase.
@@ -46,10 +39,10 @@ function lessonState(number: number, library: CourseLibraryState): CourseLessonS
 function CoursesPage() {
   const { area, library: initialLibrary } = Route.useLoaderData()
   const calendlyUrl = area?.calendlyUrl ?? ""
+  const navigate = useNavigate()
 
   const refetchLibrary = useServerFn(getCourseLibrary)
   const unlock = useServerFn(unlockNextModule)
-  const getVideoUrl = useServerFn(getCourseVideoUrl)
   const fetchWorkbookUrl = useServerFn(getWorkbookDownloadUrl)
 
   const [library, setLibrary] = useState<CourseLibraryState>(
@@ -61,12 +54,6 @@ function CoursesPage() {
   const [workbookDownloaded, setWorkbookDownloaded] = useState(
     () => typeof window !== "undefined" && !!localStorage.getItem(WORKBOOK_DOWNLOADED_KEY),
   )
-
-  // Active video player state.
-  const [playing, setPlaying] = useState<CourseLesson | null>(null)
-  const [videoUrl, setVideoUrl] = useState<string | null>(null)
-  const [videoLoading, setVideoLoading] = useState(false)
-  const [videoError, setVideoError] = useState("")
 
   async function handleUnlock(lesson: CourseLesson) {
     setUnlockError("")
@@ -91,29 +78,8 @@ function CoursesPage() {
     }
   }
 
-  async function handlePlay(lesson: CourseLesson) {
-    setPlaying(lesson)
-    setVideoUrl(null)
-    setVideoError("")
-    setVideoLoading(true)
-    try {
-      const result = await getVideoUrl({ data: { module: lesson.number } })
-      if (result.url) {
-        setVideoUrl(result.url)
-      } else {
-        setVideoError("We couldn't load this video. Please try again.")
-      }
-    } catch {
-      setVideoError("We couldn't load this video. Please try again.")
-    } finally {
-      setVideoLoading(false)
-    }
-  }
-
-  function closePlayer() {
-    setPlaying(null)
-    setVideoUrl(null)
-    setVideoError("")
+  function handlePlay(lesson: CourseLesson) {
+    void navigate({ to: "/courses/$slug", params: { slug: lesson.slug } })
   }
 
   async function handleWorkbookDownload() {
@@ -232,16 +198,6 @@ function CoursesPage() {
           <ConsultationCard calendlyUrl={calendlyUrl} />
         </div>
       </section>
-
-      {playing ? (
-        <CourseVideoModal
-          lesson={playing}
-          url={videoUrl}
-          isLoading={videoLoading}
-          error={videoError}
-          onClose={closePlayer}
-        />
-      ) : null}
     </div>
   )
 }

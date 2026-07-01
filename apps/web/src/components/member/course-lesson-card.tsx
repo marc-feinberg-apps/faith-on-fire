@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { HugeiconsIcon } from "@hugeicons/react"
 import {
   PlayIcon,
@@ -6,11 +5,9 @@ import {
   LockIcon,
   Calendar03Icon,
   Loading03Icon,
-  Cancel01Icon,
 } from "@hugeicons/core-free-icons"
 
 import { Card, CardContent } from "@workspace/ui/components/card"
-import { VideoPlayer } from "@/components/member/video-player"
 import { courseThumbnailUrl } from "@/lib/supabase/storage"
 
 export interface CourseLesson {
@@ -41,14 +38,14 @@ interface CourseLessonCardProps {
 // Splits "Pillar #1: Return to God | Module 1: The Drift" into
 // { pillar: "Pillar #1: Return to God", module: "Module 1: The Drift" }.
 // Titles without a pipe (intro / closing) return pillar: null.
-function parseTitleParts(title: string): { pillar: string | null; module: string } {
+export function parseTitleParts(title: string): { pillar: string | null; module: string } {
   const idx = title.indexOf(" | ")
   if (idx === -1) return { pillar: null, module: title }
   return { pillar: title.slice(0, idx), module: title.slice(idx + 3) }
 }
 
 // Builds a compact thumbnail chip label, e.g. "Pillar 1 · Module 1".
-function thumbnailLabel(title: string): string {
+export function thumbnailLabel(title: string): string {
   const { pillar, module } = parseTitleParts(title)
   if (!pillar) return module  // "Welcome to Faith on Fire" / "Remain Connected"
 
@@ -152,83 +149,5 @@ export function CourseLessonCard({
         </p>
       </CardContent>
     </Card>
-  )
-}
-
-interface CourseVideoModalProps {
-  lesson: CourseLesson
-  url: string | null
-  isLoading: boolean
-  error?: string
-  onClose: () => void
-}
-
-// Lightweight, dependency-free player overlay (no Dialog component exists in the
-// UI kit). Renders the freshly signed video URL with native controls; closes on
-// backdrop click or Escape.
-export function CourseVideoModal({ lesson, url, isLoading, error, onClose }: CourseVideoModalProps) {
-  useEffect(() => {
-    function onKey(event: KeyboardEvent) {
-      // In fullscreen, let the browser/player handle Escape (exit fullscreen)
-      // rather than tearing down the whole modal.
-      if (event.key === "Escape" && !document.fullscreenElement) onClose()
-    }
-    document.addEventListener("keydown", onKey)
-    return () => document.removeEventListener("keydown", onKey)
-  }, [onClose])
-
-  const { pillar, module } = parseTitleParts(lesson.title)
-
-  return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
-      aria-label={lesson.title}
-    >
-      <div
-        className="relative w-full max-w-4xl overflow-hidden rounded-2xl bg-black shadow-2xl"
-        onClick={(event) => event.stopPropagation()}
-      >
-        <div className="flex items-center justify-between gap-4 px-5 py-3">
-          <div className="flex flex-col gap-0.5">
-            {pillar ? (
-              <span className="font-heading text-[0.6rem] font-semibold tracking-[0.2em] text-[var(--sun-gold)] uppercase">
-                {pillar}
-              </span>
-            ) : null}
-            <h3 className="text-base leading-tight text-white">{module}</h3>
-          </div>
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Close video"
-            className="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
-          >
-            <HugeiconsIcon icon={Cancel01Icon} className="size-5" />
-          </button>
-        </div>
-
-        <div className="flex aspect-video w-full items-center justify-center bg-black">
-          {url ? (
-            <VideoPlayer src={url} />
-          ) : (
-            <div className="flex flex-col items-center gap-3 text-white/70">
-              {isLoading ? (
-                <>
-                  <HugeiconsIcon icon={Loading03Icon} className="size-7 animate-spin" />
-                  <span className="font-heading text-sm normal-case">Loading your lesson…</span>
-                </>
-              ) : (
-                <span className="font-heading text-sm normal-case">
-                  {error || "We couldn't load this video. Please try again."}
-                </span>
-              )}
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
   )
 }

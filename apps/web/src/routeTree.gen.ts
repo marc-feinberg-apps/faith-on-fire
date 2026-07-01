@@ -30,6 +30,7 @@ import { Route as AuthenticatedBrotherhoodRouteImport } from './routes/_authenti
 import { Route as AuthenticatedAccountRouteImport } from './routes/_authenticated/account'
 import { Route as ApiStripeWebhookRouteImport } from './routes/api/stripe/webhook'
 import { Route as ApiSamcartWebhookRouteImport } from './routes/api/samcart/webhook'
+import { Route as AuthenticatedCoursesSlugRouteImport } from './routes/_authenticated/courses_.$slug'
 
 const UpdatePasswordRoute = UpdatePasswordRouteImport.update({
   id: '/update-password',
@@ -136,6 +137,12 @@ const ApiSamcartWebhookRoute = ApiSamcartWebhookRouteImport.update({
   path: '/api/samcart/webhook',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedCoursesSlugRoute =
+  AuthenticatedCoursesSlugRouteImport.update({
+    id: '/courses_/$slug',
+    path: '/courses/$slug',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -156,6 +163,7 @@ export interface FileRoutesByFullPath {
   '/courses': typeof AuthenticatedCoursesRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/purchase/success': typeof PurchaseSuccessRoute
+  '/courses/$slug': typeof AuthenticatedCoursesSlugRoute
   '/api/samcart/webhook': typeof ApiSamcartWebhookRoute
   '/api/stripe/webhook': typeof ApiStripeWebhookRoute
 }
@@ -178,6 +186,7 @@ export interface FileRoutesByTo {
   '/courses': typeof AuthenticatedCoursesRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/purchase/success': typeof PurchaseSuccessRoute
+  '/courses/$slug': typeof AuthenticatedCoursesSlugRoute
   '/api/samcart/webhook': typeof ApiSamcartWebhookRoute
   '/api/stripe/webhook': typeof ApiStripeWebhookRoute
 }
@@ -202,6 +211,7 @@ export interface FileRoutesById {
   '/_authenticated/courses': typeof AuthenticatedCoursesRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/purchase/success': typeof PurchaseSuccessRoute
+  '/_authenticated/courses_/$slug': typeof AuthenticatedCoursesSlugRoute
   '/api/samcart/webhook': typeof ApiSamcartWebhookRoute
   '/api/stripe/webhook': typeof ApiStripeWebhookRoute
 }
@@ -226,6 +236,7 @@ export interface FileRouteTypes {
     | '/courses'
     | '/dashboard'
     | '/purchase/success'
+    | '/courses/$slug'
     | '/api/samcart/webhook'
     | '/api/stripe/webhook'
   fileRoutesByTo: FileRoutesByTo
@@ -248,6 +259,7 @@ export interface FileRouteTypes {
     | '/courses'
     | '/dashboard'
     | '/purchase/success'
+    | '/courses/$slug'
     | '/api/samcart/webhook'
     | '/api/stripe/webhook'
   id:
@@ -271,6 +283,7 @@ export interface FileRouteTypes {
     | '/_authenticated/courses'
     | '/_authenticated/dashboard'
     | '/purchase/success'
+    | '/_authenticated/courses_/$slug'
     | '/api/samcart/webhook'
     | '/api/stripe/webhook'
   fileRoutesById: FileRoutesById
@@ -444,6 +457,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiSamcartWebhookRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/courses_/$slug': {
+      id: '/_authenticated/courses_/$slug'
+      path: '/courses/$slug'
+      fullPath: '/courses/$slug'
+      preLoaderRoute: typeof AuthenticatedCoursesSlugRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
@@ -452,6 +472,7 @@ interface AuthenticatedRouteChildren {
   AuthenticatedBrotherhoodRoute: typeof AuthenticatedBrotherhoodRoute
   AuthenticatedCoursesRoute: typeof AuthenticatedCoursesRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedCoursesSlugRoute: typeof AuthenticatedCoursesSlugRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
@@ -459,6 +480,7 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedBrotherhoodRoute: AuthenticatedBrotherhoodRoute,
   AuthenticatedCoursesRoute: AuthenticatedCoursesRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedCoursesSlugRoute: AuthenticatedCoursesSlugRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(

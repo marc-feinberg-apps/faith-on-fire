@@ -26,13 +26,22 @@ interface VideoPlayerProps {
   src: string
   /** Autoplay on mount (best-effort; muted autoplay always allowed). */
   autoPlay?: boolean
+  /** Fired when playback reaches the end of the video. */
+  onEnded?: () => void
+  /**
+   * Extra UI (toasts, "up next" cards, etc.) layered over the player. Rendered
+   * *inside* the fullscreen container (not as an outside sibling), so it stays
+   * visible when the member toggles native fullscreen — anything outside this
+   * element's subtree is hidden by the Fullscreen API while active.
+   */
+  overlay?: React.ReactNode
 }
 
 // A self-contained, YouTube-style player: custom play/pause, scrubber, volume
 // slider, and a fullscreen toggle layered over a native <video>. Controls hide
 // while the cursor is idle during playback and reappear on movement. Keyboard
 // shortcuts: space/k (play), ←/→ (seek 5s), ↑/↓ (volume), m (mute), f (full).
-export function VideoPlayer({ src, autoPlay = true }: VideoPlayerProps) {
+export function VideoPlayer({ src, autoPlay = true, onEnded, overlay }: VideoPlayerProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -111,6 +120,7 @@ export function VideoPlayer({ src, autoPlay = true }: VideoPlayerProps) {
     const onProgress = () => {
       if (video.buffered.length) setBuffered(video.buffered.end(video.buffered.length - 1))
     }
+    const onEndedEvent = () => onEnded?.()
 
     video.addEventListener("play", onPlay)
     video.addEventListener("pause", onPause)
@@ -121,6 +131,7 @@ export function VideoPlayer({ src, autoPlay = true }: VideoPlayerProps) {
     video.addEventListener("waiting", onWaiting)
     video.addEventListener("playing", onPlaying)
     video.addEventListener("progress", onProgress)
+    video.addEventListener("ended", onEndedEvent)
     return () => {
       video.removeEventListener("play", onPlay)
       video.removeEventListener("pause", onPause)
@@ -131,8 +142,9 @@ export function VideoPlayer({ src, autoPlay = true }: VideoPlayerProps) {
       video.removeEventListener("waiting", onWaiting)
       video.removeEventListener("playing", onPlaying)
       video.removeEventListener("progress", onProgress)
+      video.removeEventListener("ended", onEndedEvent)
     }
-  }, [])
+  }, [onEnded])
 
   useEffect(() => {
     const onFsChange = () => setIsFullscreen(document.fullscreenElement === containerRef.current)
@@ -303,6 +315,8 @@ export function VideoPlayer({ src, autoPlay = true }: VideoPlayerProps) {
           </button>
         </div>
       </div>
+
+      {overlay}
     </div>
   )
 }

@@ -55,7 +55,7 @@ export const offers = [
     eyebrow: "The Course",
     title: "The Blueprint",
     description: "The 11-module roadmap to return, restore, reignite.",
-    ctaLabel: "Explore the Course",
+    ctaLabel: "Get the Course",
     href: "/course",
     image: courseCoverUrl,
     // The source photo is a wide landscape with Marc positioned right of
