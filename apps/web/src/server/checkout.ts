@@ -25,10 +25,15 @@ export const createCheckoutSession = createServerFn({ method: "POST" })
 
     const isSubscription = data.product === "mastermind"
 
+    // Course buyers get routed to a dedicated upsell page pitching the
+    // Mastermind; Mastermind is the top of the ladder so it keeps the plain
+    // success page.
+    const successPath = data.product === "course" ? "/purchase/course-upsell" : "/purchase/success"
+
     const session = await stripe.checkout.sessions.create({
       mode: isSubscription ? "subscription" : "payment",
       line_items: [{ price: priceId, quantity: 1 }],
-      success_url: `${origin}/purchase/success?session_id={CHECKOUT_SESSION_ID}&product=${data.product}`,
+      success_url: `${origin}${successPath}?session_id={CHECKOUT_SESSION_ID}&product=${data.product}`,
       cancel_url: cancelUrl,
       metadata: { product: data.product },
       // Subscriptions always get a Customer; one-time payments need this to

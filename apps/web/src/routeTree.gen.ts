@@ -24,6 +24,8 @@ import { Route as AboutMarcRouteImport } from './routes/about-marc'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PurchaseSuccessRouteImport } from './routes/purchase/success'
+import { Route as PurchaseEbookThankYouRouteImport } from './routes/purchase/ebook-thank-you'
+import { Route as PurchaseCourseUpsellRouteImport } from './routes/purchase/course-upsell'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedCoursesRouteImport } from './routes/_authenticated/courses'
 import { Route as AuthenticatedBrotherhoodRouteImport } from './routes/_authenticated/brotherhood'
@@ -106,6 +108,16 @@ const PurchaseSuccessRoute = PurchaseSuccessRouteImport.update({
   path: '/purchase/success',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PurchaseEbookThankYouRoute = PurchaseEbookThankYouRouteImport.update({
+  id: '/purchase/ebook-thank-you',
+  path: '/purchase/ebook-thank-you',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PurchaseCourseUpsellRoute = PurchaseCourseUpsellRouteImport.update({
+  id: '/purchase/course-upsell',
+  path: '/purchase/course-upsell',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -162,6 +174,8 @@ export interface FileRoutesByFullPath {
   '/brotherhood': typeof AuthenticatedBrotherhoodRoute
   '/courses': typeof AuthenticatedCoursesRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/purchase/course-upsell': typeof PurchaseCourseUpsellRoute
+  '/purchase/ebook-thank-you': typeof PurchaseEbookThankYouRoute
   '/purchase/success': typeof PurchaseSuccessRoute
   '/courses/$slug': typeof AuthenticatedCoursesSlugRoute
   '/api/samcart/webhook': typeof ApiSamcartWebhookRoute
@@ -185,6 +199,8 @@ export interface FileRoutesByTo {
   '/brotherhood': typeof AuthenticatedBrotherhoodRoute
   '/courses': typeof AuthenticatedCoursesRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/purchase/course-upsell': typeof PurchaseCourseUpsellRoute
+  '/purchase/ebook-thank-you': typeof PurchaseEbookThankYouRoute
   '/purchase/success': typeof PurchaseSuccessRoute
   '/courses/$slug': typeof AuthenticatedCoursesSlugRoute
   '/api/samcart/webhook': typeof ApiSamcartWebhookRoute
@@ -210,6 +226,8 @@ export interface FileRoutesById {
   '/_authenticated/brotherhood': typeof AuthenticatedBrotherhoodRoute
   '/_authenticated/courses': typeof AuthenticatedCoursesRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/purchase/course-upsell': typeof PurchaseCourseUpsellRoute
+  '/purchase/ebook-thank-you': typeof PurchaseEbookThankYouRoute
   '/purchase/success': typeof PurchaseSuccessRoute
   '/_authenticated/courses_/$slug': typeof AuthenticatedCoursesSlugRoute
   '/api/samcart/webhook': typeof ApiSamcartWebhookRoute
@@ -235,6 +253,8 @@ export interface FileRouteTypes {
     | '/brotherhood'
     | '/courses'
     | '/dashboard'
+    | '/purchase/course-upsell'
+    | '/purchase/ebook-thank-you'
     | '/purchase/success'
     | '/courses/$slug'
     | '/api/samcart/webhook'
@@ -258,6 +278,8 @@ export interface FileRouteTypes {
     | '/brotherhood'
     | '/courses'
     | '/dashboard'
+    | '/purchase/course-upsell'
+    | '/purchase/ebook-thank-you'
     | '/purchase/success'
     | '/courses/$slug'
     | '/api/samcart/webhook'
@@ -282,6 +304,8 @@ export interface FileRouteTypes {
     | '/_authenticated/brotherhood'
     | '/_authenticated/courses'
     | '/_authenticated/dashboard'
+    | '/purchase/course-upsell'
+    | '/purchase/ebook-thank-you'
     | '/purchase/success'
     | '/_authenticated/courses_/$slug'
     | '/api/samcart/webhook'
@@ -303,6 +327,8 @@ export interface RootRouteChildren {
   ResetPasswordRoute: typeof ResetPasswordRoute
   TestimonialsRoute: typeof TestimonialsRoute
   UpdatePasswordRoute: typeof UpdatePasswordRoute
+  PurchaseCourseUpsellRoute: typeof PurchaseCourseUpsellRoute
+  PurchaseEbookThankYouRoute: typeof PurchaseEbookThankYouRoute
   PurchaseSuccessRoute: typeof PurchaseSuccessRoute
   ApiSamcartWebhookRoute: typeof ApiSamcartWebhookRoute
   ApiStripeWebhookRoute: typeof ApiStripeWebhookRoute
@@ -415,6 +441,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PurchaseSuccessRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/purchase/ebook-thank-you': {
+      id: '/purchase/ebook-thank-you'
+      path: '/purchase/ebook-thank-you'
+      fullPath: '/purchase/ebook-thank-you'
+      preLoaderRoute: typeof PurchaseEbookThankYouRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/purchase/course-upsell': {
+      id: '/purchase/course-upsell'
+      path: '/purchase/course-upsell'
+      fullPath: '/purchase/course-upsell'
+      preLoaderRoute: typeof PurchaseCourseUpsellRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
@@ -502,6 +542,8 @@ const rootRouteChildren: RootRouteChildren = {
   ResetPasswordRoute: ResetPasswordRoute,
   TestimonialsRoute: TestimonialsRoute,
   UpdatePasswordRoute: UpdatePasswordRoute,
+  PurchaseCourseUpsellRoute: PurchaseCourseUpsellRoute,
+  PurchaseEbookThankYouRoute: PurchaseEbookThankYouRoute,
   PurchaseSuccessRoute: PurchaseSuccessRoute,
   ApiSamcartWebhookRoute: ApiSamcartWebhookRoute,
   ApiStripeWebhookRoute: ApiStripeWebhookRoute,

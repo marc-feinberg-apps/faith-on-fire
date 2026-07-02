@@ -33,6 +33,15 @@ export const mastermindZoomUrl = publicStorageUrl(storageAssets.mastermindZoom)
 
 export const introVideoUrl = publicStorageUrl(storageAssets.introVideo)
 
+// Post-purchase upsell videos, shown on the dedicated thank-you pages a buyer
+// is redirected to right after checkout (see routes/purchase/).
+export const courseBlueprintOfferVideoUrl = publicStorageUrl(
+  storageAssets.courseBlueprintOfferVideo,
+)
+export const weeklyMastermindOfferVideoUrl = publicStorageUrl(
+  storageAssets.weeklyMastermindOfferVideo,
+)
+
 // The three things Faith on Fire sells. Single source of truth for the
 // homepage offer cards and any cross-sell grids. `image` is null for offers
 // that don't have real artwork yet — the UI falls back to a styled icon

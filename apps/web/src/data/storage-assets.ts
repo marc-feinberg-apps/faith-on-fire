@@ -13,6 +13,8 @@ export const storageAssets = {
   problemForgiveness: "percentages/forgiveness-struggle.jpg",
   problemOther: "percentages/others.jpg",
   introVideo: "intro-video.mp4",
+  courseBlueprintOfferVideo: "upsell/course-blueprint-offer.mp4",
+  weeklyMastermindOfferVideo: "upsell/weekly-mastermind-offer.mp4",
 } as const
 
 // Email-only assets live under the bucket's `email/` prefix and are referenced
