@@ -26,6 +26,12 @@ interface VideoPlayerProps {
   src: string
   /** Autoplay on mount (best-effort; muted autoplay always allowed). */
   autoPlay?: boolean
+  /**
+   * Start muted so autoplay isn't blocked by browser policy (unmuted autoplay
+   * is unreliable / often silently blocked). The player's own mute button
+   * still lets the viewer turn sound on. Only affects the initial mount.
+   */
+  defaultMuted?: boolean
   /** Fired when playback reaches the end of the video. */
   onEnded?: () => void
   /**
@@ -41,7 +47,13 @@ interface VideoPlayerProps {
 // slider, and a fullscreen toggle layered over a native <video>. Controls hide
 // while the cursor is idle during playback and reappear on movement. Keyboard
 // shortcuts: space/k (play), ←/→ (seek 5s), ↑/↓ (volume), m (mute), f (full).
-export function VideoPlayer({ src, autoPlay = true, onEnded, overlay }: VideoPlayerProps) {
+export function VideoPlayer({
+  src,
+  autoPlay = true,
+  defaultMuted = false,
+  onEnded,
+  overlay,
+}: VideoPlayerProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -52,7 +64,7 @@ export function VideoPlayer({ src, autoPlay = true, onEnded, overlay }: VideoPla
   const [duration, setDuration] = useState(0)
   const [buffered, setBuffered] = useState(0)
   const [volume, setVolume] = useState(1)
-  const [muted, setMuted] = useState(false)
+  const [muted, setMuted] = useState(defaultMuted)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [showControls, setShowControls] = useState(true)
 
@@ -226,6 +238,7 @@ export function VideoPlayer({ src, autoPlay = true, onEnded, overlay }: VideoPla
         ref={videoRef}
         src={src}
         autoPlay={autoPlay}
+        muted={defaultMuted}
         playsInline
         onClick={togglePlay}
         className="size-full"

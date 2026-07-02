@@ -80,7 +80,7 @@ function CourseUpsellPage() {
         <div className="group relative mt-8 w-full">
           <div className="gradient-fire absolute -inset-px rounded-[1.4rem] opacity-70 blur-[2px]" />
           <div className="relative aspect-video w-full overflow-hidden rounded-[1.3rem] shadow-2xl shadow-black/50 ring-1 ring-white/10">
-            <VideoPlayer src={weeklyMastermindOfferVideoUrl} autoPlay={false} />
+            <VideoPlayer src={weeklyMastermindOfferVideoUrl} autoPlay defaultMuted />
           </div>
         </div>
 
