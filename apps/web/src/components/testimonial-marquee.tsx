@@ -96,9 +96,21 @@ function TestimonialVideoCard({ headline, quote, name, videoId, videoStart }: Te
   )
 }
 
-export function TestimonialVideoGrid({ testimonials }: { testimonials: Testimonial[] }) {
+export function TestimonialVideoGrid({
+  testimonials,
+  columns = 2,
+}: {
+  testimonials: Testimonial[]
+  columns?: 2 | 3
+}) {
   return (
-    <div className="mx-auto grid max-w-4xl gap-6 sm:grid-cols-2">
+    <div
+      className={
+        columns === 3
+          ? "mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          : "mx-auto grid max-w-4xl gap-6 sm:grid-cols-2"
+      }
+    >
       {testimonials.map((testimonial) => (
         <TestimonialVideoCard key={testimonial.videoId} {...testimonial} />
       ))}

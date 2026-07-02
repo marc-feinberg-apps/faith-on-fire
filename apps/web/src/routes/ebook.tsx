@@ -10,13 +10,13 @@ import { OwnedNotice } from "@/components/owned-notice"
 import { TestimonialVideoGrid } from "@/components/testimonial-marquee"
 import { Card, CardContent } from "@workspace/ui/components/card"
 import {
+  allTestimonials,
   blueprintModules,
   costOfStayingAway,
   ebookCoverUrl,
   ebookPurchaseUrl,
   pillars,
   pricing,
-  testimonials,
 } from "@/data/site"
 
 export const Route = createFileRoute("/ebook")({
@@ -170,7 +170,7 @@ function EbookPage() {
           description="Real voices on what Marc's coaching, teaching, and guidance have meant in their lives."
         />
         <div className="mt-14">
-          <TestimonialVideoGrid testimonials={testimonials} />
+          <TestimonialVideoGrid testimonials={allTestimonials} columns={3} />
         </div>
       </GradientSection>
 

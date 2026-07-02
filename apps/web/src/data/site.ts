@@ -626,6 +626,8 @@ export const faithOnFireTestimonials = [
   },
 ]
 
+export const allTestimonials = [...testimonials, ...faithOnFireTestimonials]
+
 export const communityForWho = [
   "Men ready to return, rebuild, and run their race.",
   "Men who want accountability, not performance.",

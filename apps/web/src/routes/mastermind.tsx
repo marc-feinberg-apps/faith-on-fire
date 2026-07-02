@@ -9,6 +9,7 @@ import { FaqSection } from "@/components/faq-section"
 import { TestimonialVideoGrid } from "@/components/testimonial-marquee"
 import { Card, CardContent } from "@workspace/ui/components/card"
 import {
+  allTestimonials,
   brotherhoodLies,
   communityForWho,
   communityNotForWho,
@@ -16,7 +17,6 @@ import {
   mastermindZoomUrl,
   memberJourney,
   pricing,
-  testimonials,
 } from "@/data/site"
 
 export const Route = createFileRoute("/mastermind")({
@@ -221,7 +221,7 @@ function MastermindPage() {
           description="Real voices on what Marc's coaching, teaching, and guidance have meant in their lives."
         />
         <div className="mt-14">
-          <TestimonialVideoGrid testimonials={testimonials} />
+          <TestimonialVideoGrid testimonials={allTestimonials} columns={3} />
         </div>
       </GradientSection>
 

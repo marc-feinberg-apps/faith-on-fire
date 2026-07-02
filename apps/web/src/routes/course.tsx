@@ -9,13 +9,13 @@ import { TestimonialVideoGrid } from "@/components/testimonial-marquee"
 import { Card, CardContent } from "@workspace/ui/components/card"
 import { Badge } from "@workspace/ui/components/badge"
 import {
+  allTestimonials,
   blueprintModules,
   courseCoverUrl,
   courseFaqs,
   pricing,
   scriptureAnchors,
   siteConfig,
-  testimonials,
 } from "@/data/site"
 
 const courseTitle = "The Faith on Fire Course — 11 Modules to Return, Restore, Reignite"
@@ -143,7 +143,7 @@ function CoursePage() {
           description="Real voices on what Marc's coaching, teaching, and guidance have meant in their lives."
         />
         <div className="mt-14">
-          <TestimonialVideoGrid testimonials={testimonials} />
+          <TestimonialVideoGrid testimonials={allTestimonials} columns={3} />
         </div>
       </GradientSection>
 
