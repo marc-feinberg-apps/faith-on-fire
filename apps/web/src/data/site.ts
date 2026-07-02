@@ -598,6 +598,25 @@ export const testimonials = [
   },
 ]
 
+export const faithOnFireTestimonials = [
+  {
+    headline: "He Grew Up Christian, But Faith on Fire Made His Faith Real",
+    quote:
+      "He grew up in church and surrounded by Christianity, but for a long time it never felt personal. Through Faith on Fire's brotherhood, teaching, and deeper walk with God, his faith became real, meaningful, and valuable in his life.",
+    name: "Faith on Fire Testimony",
+    videoUrl: "https://youtu.be/qnsFs6p2ESQ",
+    videoId: "qnsFs6p2ESQ",
+  },
+  {
+    headline: "27-Year-Old Man Shares How Faith on Fire Changed His Life",
+    quote:
+      "A 27-year-old man shares his journey of transformation, faith, and renewed purpose. Through the Faith on Fire brotherhood, he discovered what it means to return to God, restore what matters most, and reignite his purpose.",
+    name: "Faith on Fire Testimony",
+    videoUrl: "https://youtu.be/lbaGzk0Uahw",
+    videoId: "lbaGzk0Uahw",
+  },
+]
+
 export const communityForWho = [
   "Men ready to return, rebuild, and run their race.",
   "Men who want accountability, not performance.",

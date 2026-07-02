@@ -4,7 +4,7 @@ import { SectionHeading } from "@/components/section-heading"
 import { GradientSection } from "@/components/gradient-section"
 import { FireCtaSection } from "@/components/fire-cta-section"
 import { TestimonialVideoGrid } from "@/components/testimonial-marquee"
-import { testimonials } from "@/data/site"
+import { faithOnFireTestimonials, testimonials } from "@/data/site"
 
 export const Route = createFileRoute("/testimonials")({
   head: () => ({
@@ -41,8 +41,19 @@ function TestimonialsPage() {
 
       <GradientSection variant="cream">
         <SectionHeading
+          eyebrow="Faith on Fire Testimony Spotlight"
+          title="Stories from the Faith on Fire road"
+          description="These testimonies speak directly to what God is doing through Faith on Fire."
+        />
+        <div className="mt-14">
+          <TestimonialVideoGrid testimonials={faithOnFireTestimonials} />
+        </div>
+      </GradientSection>
+
+      <GradientSection variant="white">
+        <SectionHeading
           eyebrow="Video Testimonials"
-          title="Real voices, real transformation"
+          title="More real voices, real transformation"
           description="From champions in the ring to leaders and everyday men — hear it in their own words."
         />
         <div className="mt-14">

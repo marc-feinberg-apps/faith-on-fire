@@ -3,6 +3,7 @@ import { useState } from "react"
 import { Card, CardContent } from "@workspace/ui/components/card"
 
 type Testimonial = {
+  headline?: string
   quote: string
   name: string
   videoUrl: string
@@ -10,7 +11,7 @@ type Testimonial = {
   videoStart?: number
 }
 
-function TestimonialVideoCard({ quote, name, videoId, videoStart }: Testimonial) {
+function TestimonialVideoCard({ headline, quote, name, videoId, videoStart }: Testimonial) {
   const [isPlaying, setIsPlaying] = useState(false)
   const embedParams = new URLSearchParams({
     autoplay: "1",
@@ -68,6 +69,11 @@ function TestimonialVideoCard({ quote, name, videoId, videoStart }: Testimonial)
           )}
         </div>
         <blockquote className="flex flex-1 flex-col gap-3">
+          {headline && (
+            <h3 className="font-heading text-xl leading-tight text-foreground">
+              {headline}
+            </h3>
+          )}
           <span className="font-heading text-3xl leading-none text-[var(--sun-gold)]" aria-hidden="true">
             “
           </span>
