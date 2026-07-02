@@ -1,12 +1,15 @@
-import { createFileRoute } from "@tanstack/react-router"
+import { useState } from "react"
+import { createFileRoute, useNavigate } from "@tanstack/react-router"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { CheckmarkCircle02Icon } from "@hugeicons/core-free-icons"
+import { z } from "zod"
 
 import { SectionHeading } from "@/components/section-heading"
 import { GradientSection } from "@/components/gradient-section"
 import { FireCtaSection } from "@/components/fire-cta-section"
 import { ExternalCtaButton } from "@/components/external-cta-button"
 import { OwnedNotice } from "@/components/owned-notice"
+import { EbookThankYou } from "@/components/ebook-thank-you"
 import { TestimonialVideoGrid } from "@/components/testimonial-marquee"
 import { Card, CardContent } from "@workspace/ui/components/card"
 import {
@@ -20,6 +23,14 @@ import {
 } from "@/data/site"
 
 export const Route = createFileRoute("/ebook")({
+  // SamCart's "Return URL" / "Thank You Page" is set to /ebook?purchased=1 so
+  // buyers land back here after checkout instead of on a SamCart page. The
+  // router's search parser coerces numeric-looking query values, so "1"
+  // arrives as either the string or the number depending on how SamCart
+  // encodes it — accept both.
+  validateSearch: z.object({
+    purchased: z.union([z.literal("1"), z.literal(1)]).optional(),
+  }),
   head: () => ({
     meta: [
       { title: "The E-book | Faith on Fire" },
@@ -37,9 +48,20 @@ function EbookPage() {
   // The ebook is included with the Course and Mastermind tiers, so an owning
   // member sees a "you already have it" notice instead of the buy CTA.
   const { access } = Route.useRouteContext()
+  const { purchased } = Route.useSearch()
+  const navigate = useNavigate({ from: Route.fullPath })
+  const [showThankYou, setShowThankYou] = useState(
+    purchased === "1" || purchased === 1,
+  )
+
+  function dismissThankYou() {
+    setShowThankYou(false)
+    void navigate({ search: {}, replace: true })
+  }
 
   return (
     <>
+      {showThankYou && <EbookThankYou onDismiss={dismissThankYou} />}
       <section className="relative overflow-hidden py-20 sm:py-28">
         <div className="absolute inset-0 gradient-ember" />
         <div

@@ -137,6 +137,12 @@ Set this in your local `.env` file and in Netlify environment variables when
 the real SamCart link and Resend account are available. `RESEND_API_KEY` and
 `RESEND_FROM_EMAIL` are required before the Contact form can send email.
 
+In SamCart's product settings, also set the Return URL / Thank You Page to
+`https://<your-domain>/ebook?purchased=1` so buyers are redirected back to
+the site after checkout. The `/ebook` route reads that query param and shows
+a confetti thank-you popup (`src/components/ebook-thank-you.tsx`) before
+clearing it from the URL.
+
 ## SEO
 
 Every route sets its own `<title>` and meta description via TanStack
