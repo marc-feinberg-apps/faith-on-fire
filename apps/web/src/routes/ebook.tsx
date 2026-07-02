@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { createFileRoute, useNavigate } from "@tanstack/react-router"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { CheckmarkCircle02Icon } from "@hugeicons/core-free-icons"
@@ -50,9 +50,17 @@ function EbookPage() {
   const { access } = Route.useRouteContext()
   const { purchased } = Route.useSearch()
   const navigate = useNavigate({ from: Route.fullPath })
-  const [showThankYou, setShowThankYou] = useState(
-    purchased === "1" || purchased === 1,
-  )
+  const [showThankYou, setShowThankYou] = useState(false)
+
+  useEffect(() => {
+    // ?purchased=1 alone isn't proof of a real purchase — anyone can type it
+    // into the address bar. Only trust it when the browser actually arrived
+    // via a SamCart referrer, which a manually-typed or shared URL won't have.
+    const cameFromSamcart = document.referrer.includes("samcart.com")
+    if ((purchased === "1" || purchased === 1) && cameFromSamcart) {
+      setShowThankYou(true)
+    }
+  }, [purchased])
 
   function dismissThankYou() {
     setShowThankYou(false)
