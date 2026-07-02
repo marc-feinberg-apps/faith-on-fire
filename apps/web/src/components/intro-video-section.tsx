@@ -62,7 +62,6 @@ export function IntroVideoSection() {
           <video
             ref={videoRef}
             src={introVideoUrl}
-            poster="/assets/brand/marc-feinberg-founder.jpeg"
             autoPlay
             muted
             loop

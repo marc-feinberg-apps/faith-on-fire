@@ -8,11 +8,11 @@
 
 # Security headers applied to every response. The CSP allowlist is derived from
 # the third parties the app actually talks to: Supabase (auth/REST/storage +
-# signed image/video URLs), Google Fonts, Stripe checkout, and SamCart. It uses
-# 'unsafe-inline' for scripts/styles because TanStack Start emits inline
-# hydration scripts and React/Tailwind use inline styles, and Netlify static
-# headers can't issue per-request nonces. Update the supabase.co origin if the
-# project ref changes.
+# signed image/video URLs), Google Fonts, Stripe checkout, SamCart, and
+# YouTube (testimonial video thumbnails + embeds). It uses 'unsafe-inline' for
+# scripts/styles because TanStack Start emits inline hydration scripts and
+# React/Tailwind use inline styles, and Netlify static headers can't issue
+# per-request nonces. Update the supabase.co origin if the project ref changes.
 [[headers]]
   for = "/*"
   [headers.values]
@@ -21,4 +21,4 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://raaagsavhlkogmxfpfsx.supabase.co; media-src 'self' blob: https://raaagsavhlkogmxfpfsx.supabase.co; connect-src 'self' https://raaagsavhlkogmxfpfsx.supabase.co; frame-src 'self' https://js.stripe.com https://checkout.stripe.com; form-action 'self' https://checkout.stripe.com https://*.samcart.com; base-uri 'self'; object-src 'none'; frame-ancestors 'none'"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://raaagsavhlkogmxfpfsx.supabase.co https://img.youtube.com https://i.ytimg.com; media-src 'self' blob: https://raaagsavhlkogmxfpfsx.supabase.co; connect-src 'self' https://raaagsavhlkogmxfpfsx.supabase.co; frame-src 'self' https://js.stripe.com https://checkout.stripe.com https://www.youtube-nocookie.com; form-action 'self' https://checkout.stripe.com https://*.samcart.com; base-uri 'self'; object-src 'none'; frame-ancestors 'none'"
